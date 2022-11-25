@@ -11,6 +11,8 @@
     "@mui/lab": "^5.0.0-alpha.109",
     "@mui/material": "^5.10.15",
     "@mui/system": "^5.10.15",
+    "@mui/x-data-grid": "^5.17.13",
+    "@mui/x-data-grid-generator": "^5.17.13",
     "@tabler/icons": "^1.112.0",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",

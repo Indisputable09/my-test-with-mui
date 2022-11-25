@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { useNavBarStyles } from './NavBar.styles';
 import NavBarMenu from '../NavBarMenu';
+import TableComponent from '../TableComponent';
 
 interface NavBarProps {
   openDrawer: boolean;
@@ -28,7 +29,7 @@ const NavBar: React.FC<NavBarProps> = ({ openDrawer }) => {
           maxWidth="lg"
           className={cx(classes.container, openDrawer ? 'active' : null)}
         >
-          <Typography>I'm the content</Typography>
+          <TableComponent />
         </Container>
       </main>
     </div>
