@@ -20,7 +20,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ toggleDrawer, openDrawer }) => {
-  const { classes, cx } = useHeaderStyles();
+  const { classes } = useHeaderStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
