@@ -6,6 +6,7 @@ import { useNavBarStyles } from './NavBar.styles';
 import NavBarMenu from '../NavBarMenu';
 import TableComponent from '../TableComponent';
 import { Box } from '@mui/material';
+import CollapsedBreadcrumbs from '../Crumbs';
 
 interface NavBarProps {
   openDrawer: boolean;
@@ -31,6 +32,7 @@ const NavBar: React.FC<NavBarProps> = ({ openDrawer }) => {
         <Container
           className={cx(classes.container, openDrawer ? 'active' : null)}
         >
+          <CollapsedBreadcrumbs />
           <TableComponent />
         </Container>
       </main>

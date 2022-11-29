@@ -13,6 +13,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button';
 import { useHeaderStyles } from './Header.styles';
+import Badge from '@mui/material/Badge';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 interface HeaderProps {
   toggleDrawer: (open: boolean) => void;
@@ -86,6 +88,15 @@ const Header: React.FC<HeaderProps> = ({ toggleDrawer, openDrawer }) => {
                 sx={{ ml: 1 }}
               >
                 <AccountCircle className={classes.headerIcon} />
+              </IconButton>
+              <IconButton
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+                <Badge badgeContent={17} color="error">
+                  <NotificationsIcon />
+                </Badge>
               </IconButton>
               <Box className={classes.credentials}>
                 <Typography

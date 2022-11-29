@@ -53,7 +53,7 @@ const MoreActions: React.FC = () => {
             size="small"
             edge="start"
             color="inherit"
-            aria-label="more-actions"
+            aria-label="delete"
           >
             <DeleteIcon />
           </IconButton>
@@ -64,7 +64,7 @@ const MoreActions: React.FC = () => {
             size="small"
             edge="start"
             color="inherit"
-            aria-label="more-actions"
+            aria-label="edit"
           >
             <EditIcon />
           </IconButton>
@@ -75,62 +75,54 @@ const MoreActions: React.FC = () => {
 };
 
 export const rows = [
-  { id: 1, name: 'Jon', status: 'Inactive', actions: 'help' },
+  { id: 1, name: 'Jon', status: 'Inactive' },
   {
     id: 2,
     image: 'Lannister',
     name: 'Cersei',
     status: 'Active',
-    actions: 'test',
   },
   {
     id: 3,
     image: 'Lannister',
     name: 'Jaime',
     status: 'Active',
-    actions: 'clean',
   },
   {
     id: 4,
     image: 'Stark',
     name: 'Arya',
     status: 'Active',
-    actions: 'drink',
   },
   {
     id: 5,
     image: 'Targaryen',
     name: 'Daenerys',
     status: 'Inactive',
-    actions: 'more test',
   },
   {
     id: 6,
     image: 'Melisandre',
-    name: null,
+    name: 'Daenerys',
     status: 'Active',
-    actions: 'check',
   },
   {
     id: 7,
     image: 'Clifford',
     name: 'Ferrara',
     status: 'Active',
-    actions: 'filter',
   },
   {
     id: 8,
     image: 'Frances',
     name: 'Rossini',
     status: 'Inactive',
-    actions: 'show',
   },
   {
     id: 9,
     image: 'Roxie',
     name: 'Harvey',
     status: 'Active',
-    actions: 'hide',
   },
 ];
 
