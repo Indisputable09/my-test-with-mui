@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import { GridColDef } from '@mui/x-data-grid';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -7,6 +6,28 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import IconButton from '@mui/material/IconButton';
+import Switch from '@mui/material/Switch';
+
+interface IControlledSwitchProps {
+  status: string;
+}
+
+const ControlledSwitch: React.FC<IControlledSwitchProps> = ({ status }) => {
+  const [checked, setChecked] = React.useState(true);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(event.target.checked);
+  };
+
+  return (
+    <Switch
+      checked={status === 'Active' && checked}
+      onChange={handleChange}
+      inputProps={{ 'aria-label': 'controlled' }}
+      color="success"
+    />
+  );
+};
 
 const MoreActions: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -183,21 +204,7 @@ export const columns: GridColDef[] = [
     width: 100,
     editable: false,
     renderCell: params => {
-      return (
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            width: '100%',
-            color: params.row.status === 'Active' ? 'green' : 'red',
-            backgroundColor:
-              params.row.status === 'Active' ? '#00800047' : '#ff00004a',
-            borderRadius: '5px',
-          }}
-        >
-          <p>{params.row.status}</p>
-        </Box>
-      );
+      return <ControlledSwitch status={params.row.status} />;
     },
   },
   {
