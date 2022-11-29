@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/my-test-with-mui/static/css/main.7acaea2f.css",
-    "main.js": "/my-test-with-mui/static/js/main.07d3183d.js",
+    "main.js": "/my-test-with-mui/static/js/main.1b190ae7.js",
     "index.html": "/my-test-with-mui/index.html",
     "main.7acaea2f.css.map": "/my-test-with-mui/static/css/main.7acaea2f.css.map",
-    "main.07d3183d.js.map": "/my-test-with-mui/static/js/main.07d3183d.js.map"
+    "main.1b190ae7.js.map": "/my-test-with-mui/static/js/main.1b190ae7.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.07d3183d.js"
+    "static/js/main.1b190ae7.js"
   ]
 }
