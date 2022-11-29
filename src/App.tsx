@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from './Header';
-import NavBar from './NavBar';
+import Header from './components/Header';
+import NavBar from './components/NavBar';
 
 export const App: React.FC = () => {
   const [openDrawer, setOpenDrawer] = React.useState<boolean>(false);
