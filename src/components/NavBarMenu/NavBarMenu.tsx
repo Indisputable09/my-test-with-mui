@@ -7,7 +7,7 @@ import NavBarMenuItem from '../NavBarMenuItem';
 import { navBarMenuItems } from './NavBarMenuContent';
 
 const NavBarMenu: React.FC = () => {
-  const { classes, cx } = useNavBarMenuStyles();
+  const { classes } = useNavBarMenuStyles();
 
   return (
     <List component="nav" className={classes.navBarMenu} disablePadding>

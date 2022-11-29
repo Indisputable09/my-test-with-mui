@@ -1,11 +1,11 @@
-import IconDashboard from '@mui/icons-material/Dashboard';
-import IconShoppingCart from '@mui/icons-material/ShoppingCart';
-import IconPeople from '@mui/icons-material/People';
-import IconBarChart from '@mui/icons-material/BarChart';
+// import IconDashboard from '@mui/icons-material/Dashboard';
+// import IconShoppingCart from '@mui/icons-material/ShoppingCart';
+// import IconPeople from '@mui/icons-material/People';
+// import IconBarChart from '@mui/icons-material/BarChart';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import SourceIcon from '@mui/icons-material/Source';
 import SettingsIcon from '@mui/icons-material/Settings';
-import IconLibraryBooks from '@mui/icons-material/LibraryBooks';
+// import IconLibraryBooks from '@mui/icons-material/LibraryBooks';
 
 export const navBarMenuItems = [
   //   {
