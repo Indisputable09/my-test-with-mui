@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { IRow } from '../TableComponent/TableComponent';
+import SelectActions from '../SelectActions';
 
 interface IToolbarProps {
   handleChangeFilter: (
@@ -41,25 +42,22 @@ const Toolbar: React.FC<IToolbarProps> = ({
         onChange={e => handleChangeFilter(e)}
         autoComplete="off"
       />
-
-      <Button
-        variant="contained"
-        sx={{
-          py: 1,
-          px: 2,
-          fontSize: '11px',
-          backgroundColor: '#3A57E8',
-          color: '#fff',
-        }}
-      >
-        {selectedRows.length > 0 ? (
-          <DeleteIcon />
-        ) : (
-          <>
-            <AddIcon /> Додати
-          </>
-        )}
-      </Button>
+      {selectedRows.length > 0 ? (
+        <SelectActions />
+      ) : (
+        <Button
+          variant="contained"
+          sx={{
+            py: 1,
+            px: 2,
+            fontSize: '11px',
+            backgroundColor: '#3A57E8',
+            color: '#fff',
+          }}
+        >
+          <AddIcon /> Додати
+        </Button>
+      )}
     </Box>
   );
 };

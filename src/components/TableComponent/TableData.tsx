@@ -1,19 +1,32 @@
 import * as React from 'react';
 import { GridColDef } from '@mui/x-data-grid';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import IconButton from '@mui/material/IconButton';
 import Switch from '@mui/material/Switch';
+import { Box, Typography } from '@mui/material';
+import img1 from '../../images/product_mini_1.jpeg';
+import img2 from '../../images/product_mini_2.jpeg';
+import { CellExpandComponent } from './CellExpand';
 
 interface IControlledSwitchProps {
   status: string;
 }
 
+interface IPriceCellProps {
+  price: number;
+  discount: number | null;
+}
+
 const ControlledSwitch: React.FC<IControlledSwitchProps> = ({ status }) => {
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = React.useState<boolean>(
+    status === 'Active' ? true : false
+  );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
@@ -21,7 +34,7 @@ const ControlledSwitch: React.FC<IControlledSwitchProps> = ({ status }) => {
 
   return (
     <Switch
-      checked={status === 'Active' && checked}
+      checked={checked}
       onChange={handleChange}
       inputProps={{ 'aria-label': 'controlled' }}
       color="success"
@@ -41,7 +54,16 @@ const MoreActions: React.FC = () => {
   };
 
   return (
-    <>
+    <Box sx={{ display: 'flex', gap: 2 }}>
+      <IconButton
+        sx={{ display: 'flex', justifyContent: 'center', ml: 1 }}
+        size="large"
+        edge="start"
+        color="inherit"
+        aria-label="edit"
+      >
+        <EditIcon />
+      </IconButton>
       <IconButton
         sx={{ display: 'flex', justifyContent: 'center' }}
         size="large"
@@ -69,80 +91,205 @@ const MoreActions: React.FC = () => {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>
-          <IconButton
-            sx={{ display: 'flex', justifyContent: 'center' }}
-            size="small"
-            edge="start"
-            color="inherit"
-            aria-label="delete"
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 1,
+            }}
           >
-            <DeleteIcon />
-          </IconButton>
+            <IconButton
+              sx={{ display: 'flex', justifyContent: 'center' }}
+              size="small"
+              edge="start"
+              color="inherit"
+              aria-label="view"
+            >
+              <VisibilityIcon />
+            </IconButton>
+            <Typography variant="h6" component="p" fontSize={15}>
+              Переглянути
+            </Typography>
+          </Box>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <IconButton
-            sx={{ display: 'flex', justifyContent: 'center' }}
-            size="small"
-            edge="start"
-            color="inherit"
-            aria-label="edit"
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 1,
+            }}
           >
-            <EditIcon />
-          </IconButton>
+            <IconButton
+              sx={{ display: 'flex', justifyContent: 'center' }}
+              size="small"
+              edge="start"
+              color="inherit"
+              aria-label="copy"
+            >
+              <ContentCopyIcon />
+            </IconButton>
+            <Typography variant="h6" component="p" fontSize={15}>
+              Копіювати
+            </Typography>
+          </Box>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 1,
+            }}
+          >
+            <IconButton
+              sx={{ display: 'flex', justifyContent: 'center' }}
+              size="small"
+              edge="start"
+              color="inherit"
+              aria-label="delete"
+            >
+              <DeleteIcon />
+            </IconButton>
+            <Typography variant="h6" component="p" fontSize={15}>
+              Видалити
+            </Typography>
+          </Box>
         </MenuItem>
       </Menu>
-    </>
+    </Box>
+  );
+};
+
+const PriceCell: React.FC<IPriceCellProps> = ({ price, discount }) => {
+  return (
+    <Box
+      sx={{
+        width: '100%',
+        height: '100%',
+        position: 'relative',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Typography
+        variant="h6"
+        component="p"
+        sx={{
+          fontSize: '14px',
+          position: discount ? 'absolute' : 'static',
+          textDecoration: discount ? 'line-through' : 'none',
+          bottom: '6px',
+          right: '12px',
+        }}
+      >
+        {price}
+      </Typography>
+      {discount && (
+        <>
+          <Typography
+            variant="h6"
+            component="p"
+            sx={{
+              fontSize: '10px',
+              position: 'absolute',
+              color: 'red',
+              top: '4px',
+              left: '5px',
+            }}
+          >
+            (-{discount}%)
+          </Typography>
+          <Typography
+            variant="h6"
+            component="p"
+            sx={{
+              fontSize: '14px',
+              position: 'absolute',
+              top: '6px',
+              right: '12px',
+              color: 'green',
+            }}
+          >
+            {price - (price * discount) / 100}
+          </Typography>
+        </>
+      )}
+    </Box>
   );
 };
 
 export const rows = [
-  { id: 1, name: 'Jon', status: 'Inactive' },
+  {
+    id: 1,
+    image: img1,
+    name: 'В цій бібліотеці ще немає можливості робити рядки автоматичної висоти залежно від вмісту контенту, тому приходиться виходити з цієї ситуації кастомними шляхами',
+    status: 'Inactive',
+  },
   {
     id: 2,
-    image: 'Lannister',
+    image: img1,
     name: 'Cersei',
+    price: 1500,
+    discount: 20,
     status: 'Active',
   },
   {
     id: 3,
-    image: 'Lannister',
+    image: img2,
     name: 'Jaime',
+    price: 1800,
     status: 'Active',
   },
   {
     id: 4,
-    image: 'Stark',
+    image: img1,
     name: 'Arya',
+    price: 20000,
+    discount: 20,
     status: 'Active',
   },
   {
     id: 5,
-    image: 'Targaryen',
+    image: img2,
     name: 'Daenerys',
+    price: 20000,
     status: 'Inactive',
   },
   {
     id: 6,
-    image: 'Melisandre',
+    image: img2,
     name: 'Daenerys',
+    price: 1500,
+    discount: 80,
     status: 'Active',
   },
   {
     id: 7,
-    image: 'Clifford',
+    image: img2,
     name: 'Ferrara',
+    price: 100,
+    discount: 20,
     status: 'Active',
   },
   {
     id: 8,
-    image: 'Frances',
+    image: img2,
     name: 'Rossini',
+    price: 1000,
+    discount: 25,
     status: 'Inactive',
   },
   {
     id: 9,
-    image: 'Roxie',
+    image: img2,
     name: 'Harvey',
+    price: 300,
+    discount: 5,
     status: 'Active',
   },
 ];
@@ -163,7 +310,7 @@ export const columns: GridColDef[] = [
     renderCell: params => {
       return (
         <div>
-          <img src="" alt="" />
+          <img src={params.row.image} alt={params.row.name} width="60" />
         </div>
       );
     },
@@ -173,6 +320,7 @@ export const columns: GridColDef[] = [
     headerName: 'Name',
     width: 330,
     editable: false,
+    renderCell: CellExpandComponent,
   },
   {
     field: 'sku',
@@ -185,12 +333,11 @@ export const columns: GridColDef[] = [
     headerName: 'Price',
     width: 110,
     editable: false,
-  },
-  {
-    field: 'quantity',
-    headerName: 'Quantity',
-    width: 70,
-    editable: false,
+    renderCell: params => {
+      return (
+        <PriceCell price={params.row.price} discount={params.row?.discount} />
+      );
+    },
   },
   {
     field: 'category',
@@ -214,6 +361,6 @@ export const columns: GridColDef[] = [
     sortable: false,
     disableColumnMenu: true,
     renderCell: () => <MoreActions />,
-    width: 50,
+    width: 120,
   },
 ];

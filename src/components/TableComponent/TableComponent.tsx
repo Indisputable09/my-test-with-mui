@@ -1,14 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import {
-  ukUA,
-  DataGrid,
-  gridPageCountSelector,
-  gridPageSelector,
-  useGridApiContext,
-  useGridSelector,
-} from '@mui/x-data-grid';
-import Pagination from '@mui/material/Pagination';
+import { ukUA, DataGrid } from '@mui/x-data-grid';
 import { columns, rows, showImgColumn } from './TableData';
 import Toolbar from '../Toolbar';
 
@@ -19,24 +11,10 @@ export interface IRow {
   status: string;
 }
 
-const CustomPagination: React.FC = () => {
-  const apiRef = useGridApiContext();
-  const page = useGridSelector(apiRef, gridPageSelector);
-  const pageCount = useGridSelector(apiRef, gridPageCountSelector);
-
-  return (
-    <Pagination
-      color="primary"
-      count={pageCount}
-      page={page + 1}
-      onChange={(event, value) => apiRef.current.setPage(value - 1)}
-    />
-  );
-};
-
 const TableComponent: React.FC = () => {
   const [filter, setFilter] = React.useState<string>('');
   const [selectedRows, setSelectedRows] = React.useState<IRow[]>([]);
+  const [pageSize, setPageSize] = React.useState<number>(5);
 
   const handleChangeFilter = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
@@ -67,13 +45,12 @@ const TableComponent: React.FC = () => {
         selectedRows={selectedRows}
       />
       <DataGrid
+        pageSize={pageSize}
+        onPageSizeChange={newPageSize => setPageSize(newPageSize)}
+        rowsPerPageOptions={[5, 10, 15, 20]}
+        // rowsPerPageOptions={[20, 50, 100, 300]}
         pagination
-        pageSize={5}
-        rowsPerPageOptions={[5]}
         checkboxSelection
-        components={{
-          Pagination: CustomPagination,
-        }}
         columnVisibilityModel={{
           image: showImgColumn,
         }}

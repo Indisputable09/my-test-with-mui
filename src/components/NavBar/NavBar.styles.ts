@@ -7,18 +7,40 @@ const customTheme = createTheme({
       xs: 0,
       sm: 600,
       md: 1024,
-      lg: 1200,
+      lg: 1330,
       xl: 1450,
     },
   },
 });
 
 export const drawerWidth = 260;
+export const miniDrawerWidth = 60;
 
 export const useNavBarStyles = makeStyles<void>()(
   (theme, _params, classes) => ({
     root: {
       display: 'flex',
+    },
+    miniDrawerPaper: {
+      width: miniDrawerWidth,
+      position: 'absolute',
+      height: 'calc(100vh - 64px)',
+      top: '64px',
+      [customTheme.breakpoints.down('sm')]: {
+        top: '51px',
+        height: 'calc(100vh - 51px)',
+      },
+      left: 0,
+      overflowX: 'hidden',
+      transform: 'TranslateX(0) scale(1)',
+      transition: 'transform 500ms ease-out',
+      whiteSpace: 'nowrap',
+      paddingTop: theme.spacing(4),
+      paddingBottom: theme.spacing(4),
+
+      '&.hide': {
+        transform: 'TranslateX(-100%) scale(0)',
+      },
     },
     drawerPaper: {
       position: 'absolute',
@@ -30,14 +52,14 @@ export const useNavBarStyles = makeStyles<void>()(
       },
       left: 0,
       overflowX: 'hidden',
-      transform: 'TranslateX(-100%)',
-      transition: 'transform 250ms ease-out',
+      transform: 'TranslateX(-100%) scale(0)',
+      transition: 'transform 500ms ease-out',
       whiteSpace: 'nowrap',
       width: drawerWidth,
       paddingTop: theme.spacing(4),
       paddingBottom: theme.spacing(4),
       '&.active': {
-        transform: 'TranslateX(0)',
+        transform: 'TranslateX(0) scale(1)',
       },
       '&::-webkit-scrollbar': {
         width: '5px',
@@ -64,7 +86,7 @@ export const useNavBarStyles = makeStyles<void>()(
       [customTheme.breakpoints.down('xl')]: {
         opacity: 0,
         pointerEvents: 'none',
-        transition: 'opacity 250ms linear',
+        transition: 'opacity 500ms linear',
         '&.active': {
           opacity: 1,
           pointerEvents: 'auto',
@@ -83,6 +105,9 @@ export const useNavBarStyles = makeStyles<void>()(
       },
     },
     container: {
+      [customTheme.breakpoints.down('lg')]: {
+        paddingLeft: '74px',
+      },
       maxWidth: '100%',
       marginRight: 'auto',
       marginLeft: 'auto',
@@ -91,9 +116,10 @@ export const useNavBarStyles = makeStyles<void>()(
       left: 0,
       transform: 'TranslateX(0)',
       transition: 'all 250ms ease-out',
-      paddingTop: theme.spacing(4),
-      paddingBottom: theme.spacing(4),
+      paddingTop: theme.spacing(2),
+      paddingBottom: theme.spacing(2),
       '&.active': {
+        transform: `TranslateX(${miniDrawerWidth}px)`,
         [customTheme.breakpoints.up('xl')]: {
           marginLeft: 0,
           transform: `TranslateX(${drawerWidth}px)`,

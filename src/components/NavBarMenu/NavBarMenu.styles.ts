@@ -13,7 +13,7 @@ export const useNavBarMenuStyles = makeStyles<void>()(
       width: drawerWidth,
     },
     menuItemIcon: {
-      color: '#97c05c',
+      color: '#111111',
     },
   })
 );

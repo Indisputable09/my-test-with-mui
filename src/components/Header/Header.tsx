@@ -71,14 +71,20 @@ const Header: React.FC<HeaderProps> = ({ toggleDrawer, openDrawer }) => {
               <Button
                 variant="contained"
                 sx={{
-                  py: 1,
-                  px: 2,
+                  py: '6px',
+                  px: '16px',
+                  mr: 1,
                   fontSize: '11px',
                   backgroundColor: '#3A57E8',
                 }}
               >
                 Очистити кеш
               </Button>
+              <IconButton aria-label="show new notifications" color="inherit">
+                <Badge badgeContent={17} color="error">
+                  <NotificationsIcon className={classes.headerIcon} />
+                </Badge>
+              </IconButton>
               <IconButton
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
@@ -89,15 +95,7 @@ const Header: React.FC<HeaderProps> = ({ toggleDrawer, openDrawer }) => {
               >
                 <AccountCircle className={classes.headerIcon} />
               </IconButton>
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Badge badgeContent={17} color="error">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
+
               <Box className={classes.credentials}>
                 <Typography
                   component="p"

@@ -8,7 +8,13 @@ function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
   event.preventDefault();
 }
 
-const CollapsedBreadcrumbs: React.FC = () => {
+interface ICrumbsProps {
+  productName?: string | null;
+}
+
+const CollapsedBreadcrumbs: React.FC<ICrumbsProps> = ({
+  productName = null,
+}) => {
   return (
     <Box role="presentation" onClick={handleClick} sx={{ mb: 3 }}>
       <Breadcrumbs maxItems={2} aria-label="breadcrumb">
@@ -24,7 +30,9 @@ const CollapsedBreadcrumbs: React.FC = () => {
         <Link underline="hover" color="inherit" href="#">
           New Collection
         </Link>
-        <Typography color="text.primary">This page</Typography>
+        <Typography color="text.primary">
+          {productName ? productName : 'This page'}
+        </Typography>
       </Breadcrumbs>
     </Box>
   );
