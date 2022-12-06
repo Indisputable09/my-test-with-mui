@@ -39,7 +39,7 @@ const Header: React.FC<HeaderProps> = ({ toggleDrawer, openDrawer }) => {
   };
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" className={classes.appbar}>
+      <AppBar className={classes.appbar}>
         <Toolbar>
           <IconButton
             size="large"

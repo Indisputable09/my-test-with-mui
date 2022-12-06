@@ -5,6 +5,9 @@ export const useHeaderStyles = makeStyles<void>()(
     appbar: {
       background: '#ffffff',
       color: '#232D42',
+      // boxShadow: '0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%)',
+      boxShadow: '0px 7px 11px -1px rgba(0,0,0,0.47)',
+      position: 'relative',
     },
     logo: {
       display: 'flex',

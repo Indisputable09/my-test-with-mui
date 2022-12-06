@@ -23,6 +23,7 @@ export const useNavBarStyles = makeStyles<void>()(
     },
     miniDrawerPaper: {
       width: miniDrawerWidth,
+      backgroundColor: '#fff',
       position: 'absolute',
       height: 'calc(100vh - 64px)',
       top: '64px',
@@ -33,10 +34,15 @@ export const useNavBarStyles = makeStyles<void>()(
       left: 0,
       overflowX: 'hidden',
       transform: 'TranslateX(0) scale(1)',
-      transition: 'transform 500ms ease-out',
+      transition: 'transform 500ms ease-out, backgroundColor 250ms ease-out',
       whiteSpace: 'nowrap',
       paddingTop: theme.spacing(4),
       paddingBottom: theme.spacing(4),
+      boxShadow: '7px 4px 11px -1px rgba(0,0,0,0.47)',
+
+      '&.dark': {
+        backgroundColor: '#303030',
+      },
 
       '&.hide': {
         transform: 'TranslateX(-100%) scale(0)',
@@ -58,6 +64,7 @@ export const useNavBarStyles = makeStyles<void>()(
       width: drawerWidth,
       paddingTop: theme.spacing(4),
       paddingBottom: theme.spacing(4),
+      boxShadow: '7px 4px 11px -1px rgba(0,0,0,0.47)',
       '&.active': {
         transform: 'TranslateX(0) scale(1)',
       },
@@ -80,7 +87,7 @@ export const useNavBarStyles = makeStyles<void>()(
         height: 'calc(100vh - 56px)',
       },
       overflowX: 'hidden',
-      backgroundColor: 'rgb(227, 242, 253)',
+      backgroundColor: '#fff',
     },
     overlay: {
       [customTheme.breakpoints.down('xl')]: {

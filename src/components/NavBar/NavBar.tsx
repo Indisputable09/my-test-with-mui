@@ -1,44 +1,39 @@
 import React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import Drawer from '@mui/material/Drawer';
 import Container from '@mui/material/Container';
 import { useNavBarStyles } from './NavBar.styles';
 import NavBarMenu from '../NavBarMenu';
 import TableComponent from '../TableComponent';
 import { Box, Typography } from '@mui/material';
 import CollapsedBreadcrumbs from '../Crumbs';
-import NavBarMenuMini from '../NavBarMenuMini';
 import ProductPage from '../ProductPage';
 import { ProductType } from '../types/ProductTypes';
 
-interface NavBarProps {
+interface INavBarProps {
   openDrawer: boolean;
   productId: number | null;
   rows: ProductType[];
+  handleThemeClick: () => void;
+  darkTheme: boolean;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ openDrawer, productId, rows }) => {
+const NavBar: React.FC<INavBarProps> = ({
+  openDrawer,
+  productId,
+  rows,
+  handleThemeClick,
+  darkTheme,
+}) => {
   const chosenProduct = rows.find(row => row.id === productId);
   const { classes, cx } = useNavBarStyles();
   return (
     <div className={cx('App', classes.root)}>
       <CssBaseline />
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: cx(classes.drawerPaper, openDrawer ? 'active' : null),
-        }}
-      >
-        <NavBarMenu />
-      </Drawer>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: cx(classes.miniDrawerPaper, openDrawer ? 'hide' : null),
-        }}
-      >
-        <NavBarMenuMini />
-      </Drawer>
+      <NavBarMenu
+        openDrawer={openDrawer}
+        handleThemeClick={handleThemeClick}
+        darkTheme={darkTheme}
+      />
       <main className={cx(classes.content, openDrawer ? 'active' : null)}>
         <Box
           className={cx(classes.overlay, openDrawer ? 'active' : null)}

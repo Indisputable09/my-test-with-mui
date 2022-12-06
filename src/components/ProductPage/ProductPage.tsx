@@ -1,8 +1,9 @@
 import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import SaveIcon from '@mui/icons-material/Save';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Divider, List, ListItem, Typography } from '@mui/material';
 import CollapsedBreadcrumbs from '../Crumbs';
 import { ProductType } from '../types/ProductTypes';
@@ -70,9 +71,18 @@ const ProductPage: React.FC<IProductPageProps> = ({ chosenProduct }) => {
             size="small"
             edge="start"
             color="inherit"
-            aria-label="copy"
+            aria-label="save"
           >
-            <ContentCopyIcon />
+            <SaveIcon />
+          </IconButton>
+          <IconButton
+            className={classes.button}
+            size="small"
+            edge="start"
+            color="inherit"
+            aria-label="delete"
+          >
+            <DeleteIcon />
           </IconButton>
         </Box>
       </Box>

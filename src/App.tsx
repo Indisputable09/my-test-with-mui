@@ -3,10 +3,19 @@ import React from 'react';
 import Header from './components/Header';
 import NavBar from './components/NavBar';
 import { rows } from './components/TableComponent/TableData';
+import { THEME_MODE } from './constants/themeMode';
 
 export const App: React.FC = () => {
   const [openDrawer, setOpenDrawer] = React.useState<boolean>(false);
+  const [darkTheme, setDarkTheme] = React.useState<boolean>(
+    THEME_MODE === 'dark' ? true : false ?? false
+  );
+
   const [mockProductId, setMockProductId] = React.useState<null | number>(null);
+
+  const handleThemeClick = () => {
+    setDarkTheme(!darkTheme);
+  };
 
   // const mockProductId = null;
 
@@ -23,7 +32,13 @@ export const App: React.FC = () => {
       >
         Це типу лінк на продукт
       </Button>
-      <NavBar openDrawer={openDrawer} productId={mockProductId} rows={rows} />
+      <NavBar
+        openDrawer={openDrawer}
+        productId={mockProductId}
+        rows={rows}
+        handleThemeClick={handleThemeClick}
+        darkTheme={darkTheme}
+      />
     </>
   );
 };
