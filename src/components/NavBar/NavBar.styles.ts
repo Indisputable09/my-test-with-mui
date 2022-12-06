@@ -124,7 +124,7 @@ export const useNavBarStyles = makeStyles<void>()(
       transform: 'TranslateX(0)',
       transition: 'all 250ms ease-out',
       paddingTop: theme.spacing(2),
-      paddingBottom: theme.spacing(2),
+      paddingBottom: theme.spacing(8),
       '&.active': {
         transform: `TranslateX(${miniDrawerWidth}px)`,
         [customTheme.breakpoints.up('xl')]: {
