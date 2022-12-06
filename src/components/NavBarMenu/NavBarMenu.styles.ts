@@ -16,11 +16,15 @@ export const useNavBarMenuStyles = makeStyles<void>()(
     },
     menuItemIcon: {
       color: '#111111',
+      transition: 'all 250ms ease-out',
+      '&.dark': {
+        color: '#ffffff',
+      },
     },
   })
 );
 
-export const ThemeSwithcerStyled = styled(Switch)(({ checked, theme }) => {
+export const ThemeSwitcherStyled = styled(Switch)(({ checked, theme }) => {
   return {
     width: 62,
     height: 34,

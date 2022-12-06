@@ -3,7 +3,6 @@ import AddIcon from '@mui/icons-material/Add';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { IRow } from '../TableComponent/TableComponent';
 import SelectActions from '../SelectActions';
 

@@ -26,13 +26,14 @@ type NavBarMenuItemPropsWithoutItems = Omit<NavBarMenuItemPropsTypes, 'items'>;
 
 export type NavBarMenuItemProps = NavBarMenuItemPropsWithoutItems & {
   items?: NavBarMenuItemProps[];
+  darkTheme?: boolean;
 };
 
 const NavBarMenuItem: React.FC<NavBarMenuItemProps> = (
   props: NavBarMenuItemProps
 ) => {
-  const { classes } = useNavBarMenuItemStyles();
-  const { name, Icon, items = [], id } = props;
+  const { classes, cx } = useNavBarMenuItemStyles();
+  const { name, Icon, items = [], id, darkTheme } = props;
   const isExpandable = items && items.length > 0;
   const [open, setOpen] = React.useState(false);
 
@@ -41,9 +42,15 @@ const NavBarMenuItem: React.FC<NavBarMenuItemProps> = (
   }
 
   const MenuItemRoot = (
-    <ListItem button className={classes.menuPrimaryItem} onClick={handleClick}>
+    <ListItem
+      button
+      className={cx(classes.menuPrimaryItem, darkTheme ? 'dark' : null)}
+      onClick={handleClick}
+    >
       {!!Icon && (
-        <ListItemIcon className={classes.menuItemIcon}>
+        <ListItemIcon
+          className={cx(classes.menuItemIcon, darkTheme ? 'dark' : null)}
+        >
           <Icon />
         </ListItemIcon>
       )}
@@ -65,7 +72,11 @@ const NavBarMenuItem: React.FC<NavBarMenuItemProps> = (
         className={classes.menuSecondaryItemList}
       >
         {items.map((item, index) => (
-          <ListItem key={index} button className={classes.menuSecondaryItem}>
+          <ListItem
+            key={index}
+            button
+            className={cx(classes.menuSecondaryItem, darkTheme ? 'dark' : null)}
+          >
             <ListItemText primary={item.name} inset={!Icon} />
           </ListItem>
         ))}

@@ -24,7 +24,11 @@ export const App: React.FC = () => {
   };
   return (
     <>
-      <Header toggleDrawer={toggleDrawer} openDrawer={openDrawer} />
+      <Header
+        toggleDrawer={toggleDrawer}
+        openDrawer={openDrawer}
+        darkTheme={darkTheme}
+      />
 
       <Button
         onClick={() => setMockProductId(2)}

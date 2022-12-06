@@ -11,8 +11,7 @@ import {
   ListItemIcon,
 } from '@mui/material';
 import { useNavBarStyles } from '../NavBar/NavBar.styles';
-import { ThemeSwithcerStyled } from './NavBarMenu.styles';
-// import { THEME_MODE } from '../../constants/themeMode';
+import { ThemeSwitcherStyled } from './NavBarMenu.styles';
 
 interface INavBarMenuProps {
   openDrawer: boolean;
@@ -54,7 +53,7 @@ const NavBarMenu: React.FC<INavBarMenuProps> = ({
         >
           {navBarMenuItems.map((item, index) => (
             <React.Fragment key={index}>
-              <NavBarMenuItem {...item} />
+              <NavBarMenuItem {...item} darkTheme={darkTheme} />
               <Divider />
             </React.Fragment>
           ))}
@@ -62,7 +61,7 @@ const NavBarMenu: React.FC<INavBarMenuProps> = ({
         <FormControlLabel
           sx={{ mt: 'auto', mr: 'auto', ml: 'auto' }}
           control={
-            <ThemeSwithcerStyled
+            <ThemeSwitcherStyled
               sx={{ m: 1 }}
               checked={dark}
               onChange={handleChange}
@@ -100,7 +99,7 @@ const NavBarMenu: React.FC<INavBarMenuProps> = ({
         <FormControlLabel
           sx={{ mt: 'auto', mr: 'auto', ml: '-11px' }}
           control={
-            <ThemeSwithcerStyled
+            <ThemeSwitcherStyled
               sx={{ m: 1 }}
               checked={dark}
               onChange={handleChange}

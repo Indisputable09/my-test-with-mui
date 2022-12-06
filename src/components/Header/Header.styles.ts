@@ -5,9 +5,19 @@ export const useHeaderStyles = makeStyles<void>()(
     appbar: {
       background: '#ffffff',
       color: '#232D42',
-      // boxShadow: '0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%)',
       boxShadow: '0px 7px 11px -1px rgba(0,0,0,0.47)',
       position: 'relative',
+      transition: 'background-color 250ms ease-out',
+      '&.dark': {
+        backgroundColor: '#303030',
+      },
+    },
+    menuToggler: {
+      color: '#000000',
+      transition: 'color 250ms ease-out',
+      '&.dark': {
+        color: '#ffffff',
+      },
     },
     logo: {
       display: 'flex',
@@ -17,10 +27,27 @@ export const useHeaderStyles = makeStyles<void>()(
       color: 'inherit',
       textDecoration: 'none',
       transition: 'all linear 250ms',
+      '&.dark': {
+        color: '#ffffff',
+      },
       '&:hover': {
         textDecoration: 'none',
         transform: 'scale(1.1)',
         color: 'inherit',
+        '&.dark': {
+          color: '#ffffff',
+        },
+      },
+    },
+    cashButton: {
+      padding: '6px 16px 6px 16px',
+      marginRight: '8px',
+      fontSize: '11px',
+      backgroundColor: '#3A57E8',
+      transition: 'all linear 250ms',
+      '&.dark': {
+        backgroundColor: 'inherit',
+        border: '1px solid #fff',
       },
     },
     credentials: {

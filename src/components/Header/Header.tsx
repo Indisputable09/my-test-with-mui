@@ -19,10 +19,15 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 interface HeaderProps {
   toggleDrawer: (open: boolean) => void;
   openDrawer: boolean;
+  darkTheme: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ toggleDrawer, openDrawer }) => {
-  const { classes } = useHeaderStyles();
+const Header: React.FC<HeaderProps> = ({
+  toggleDrawer,
+  openDrawer,
+  darkTheme,
+}) => {
+  const { classes, cx } = useHeaderStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -39,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ toggleDrawer, openDrawer }) => {
   };
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar className={classes.appbar}>
+      <AppBar className={cx(classes.appbar, darkTheme ? 'dark' : null)}>
         <Toolbar>
           <IconButton
             size="large"
@@ -49,14 +54,22 @@ const Header: React.FC<HeaderProps> = ({ toggleDrawer, openDrawer }) => {
             sx={{ mr: 2 }}
             onClick={() => toggleDrawer(!openDrawer)}
           >
-            {openDrawer ? <CloseIcon /> : <MenuIcon />}
+            {openDrawer ? (
+              <CloseIcon
+                className={cx(classes.menuToggler, darkTheme ? 'dark' : null)}
+              />
+            ) : (
+              <MenuIcon
+                className={cx(classes.menuToggler, darkTheme ? 'dark' : null)}
+              />
+            )}
           </IconButton>
           <Typography
             variant="h6"
             noWrap
             component="a"
             href="/"
-            className={classes.logo}
+            className={cx(classes.logo, darkTheme ? 'dark' : null)}
           >
             LOGO
           </Typography>
@@ -70,13 +83,7 @@ const Header: React.FC<HeaderProps> = ({ toggleDrawer, openDrawer }) => {
             >
               <Button
                 variant="contained"
-                sx={{
-                  py: '6px',
-                  px: '16px',
-                  mr: 1,
-                  fontSize: '11px',
-                  backgroundColor: '#3A57E8',
-                }}
+                className={cx(classes.cashButton, darkTheme ? 'dark' : null)}
               >
                 Очистити кеш
               </Button>
