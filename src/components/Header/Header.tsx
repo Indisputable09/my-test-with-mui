@@ -27,15 +27,15 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const { classes, cx } = useHeaderStyles();
   const [auth, setAuth] = React.useState(true);
-  const [setAnchorEl] = React.useState<null | HTMLElement>(null);
+  // const [_, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClickAuth = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAuth(!auth);
   };
 
-  const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+  // const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -96,7 +96,7 @@ const Header: React.FC<HeaderProps> = ({
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleMenu}
+                // onClick={handleMenu}
                 color="inherit"
                 className={cx(classes.headerIconButton)}
               >
