@@ -1,5 +1,4 @@
 import React from 'react';
-
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -10,8 +9,14 @@ import ToggleOffIcon from '@mui/icons-material/ToggleOff';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Typography } from '@mui/material';
+import { useSelectActionsStyles } from './SelectActions.styles';
 
-const SelectActions: React.FC = () => {
+interface ISelectActions {
+  darkTheme: boolean;
+}
+
+const SelectActions: React.FC<ISelectActions> = ({ darkTheme }) => {
+  const { classes, cx } = useSelectActionsStyles();
   const [action, setAction] = React.useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -21,7 +26,12 @@ const SelectActions: React.FC = () => {
   return (
     <div>
       <FormControl sx={{ m: 1, minWidth: 100 }}>
-        <InputLabel id="action-select-label">Action</InputLabel>
+        <InputLabel
+          id="action-select-label"
+          className={cx(classes.selectLabel, darkTheme ? 'dark' : null)}
+        >
+          Action
+        </InputLabel>
         <Select
           labelId="action-select-label"
           id="action-select"
@@ -29,19 +39,18 @@ const SelectActions: React.FC = () => {
           onChange={handleChange}
           autoWidth
           label="Action"
+          className={cx(classes.selectInput, darkTheme ? 'dark' : null)}
+          MenuProps={{
+            classes: {
+              paper: cx(classes.selectMenu, darkTheme ? 'dark' : null),
+            },
+          }}
         >
           <MenuItem value="">
             <em>Відмінити</em>
           </MenuItem>
           <MenuItem value="активувати">
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 1,
-              }}
-            >
+            <Box className={cx(classes.menuItem, darkTheme ? 'dark' : null)}>
               <IconButton
                 sx={{ display: 'flex', justifyContent: 'center' }}
                 size="small"
@@ -57,14 +66,7 @@ const SelectActions: React.FC = () => {
             </Box>
           </MenuItem>
           <MenuItem value="деактивувати">
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 1,
-              }}
-            >
+            <Box className={cx(classes.menuItem, darkTheme ? 'dark' : null)}>
               <IconButton
                 sx={{ display: 'flex', justifyContent: 'center' }}
                 size="small"
@@ -80,14 +82,7 @@ const SelectActions: React.FC = () => {
             </Box>
           </MenuItem>
           <MenuItem value="копіювати">
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 1,
-              }}
-            >
+            <Box className={cx(classes.menuItem, darkTheme ? 'dark' : null)}>
               <IconButton
                 sx={{ display: 'flex', justifyContent: 'center' }}
                 size="small"
@@ -103,14 +98,7 @@ const SelectActions: React.FC = () => {
             </Box>
           </MenuItem>
           <MenuItem value="видалити">
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 1,
-              }}
-            >
+            <Box className={cx(classes.menuItem, darkTheme ? 'dark' : null)}>
               <IconButton
                 sx={{ display: 'flex', justifyContent: 'center' }}
                 size="small"

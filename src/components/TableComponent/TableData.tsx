@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { GridColDef } from '@mui/x-data-grid';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -12,10 +11,12 @@ import Switch from '@mui/material/Switch';
 import { Box, Typography } from '@mui/material';
 import img1 from '../../images/product_mini_1.jpeg';
 import img2 from '../../images/product_mini_2.jpeg';
-import { CellExpandComponent } from './CellExpand';
+import { useTableComponentStyles } from './TableComponent.styles';
+import Modal from '../Modal';
 
 interface IControlledSwitchProps {
   status: string;
+  darkTheme: boolean;
 }
 
 interface IPriceCellProps {
@@ -23,7 +24,14 @@ interface IPriceCellProps {
   discount: number | null;
 }
 
-const ControlledSwitch: React.FC<IControlledSwitchProps> = ({ status }) => {
+interface IMoreActionsProps {
+  darkTheme: boolean;
+}
+
+export const ControlledSwitch: React.FC<IControlledSwitchProps> = ({
+  status,
+  darkTheme,
+}) => {
   const [checked, setChecked] = React.useState<boolean>(
     status === 'Active' ? true : false
   );
@@ -32,18 +40,31 @@ const ControlledSwitch: React.FC<IControlledSwitchProps> = ({ status }) => {
     setChecked(event.target.checked);
   };
 
+  const { classes, cx } = useTableComponentStyles();
+
   return (
     <Switch
       checked={checked}
       onChange={handleChange}
       inputProps={{ 'aria-label': 'controlled' }}
       color="success"
+      className={cx(classes.switch, darkTheme ? 'dark' : null)}
     />
   );
 };
 
-const MoreActions: React.FC = () => {
+export const MoreActions: React.FC<IMoreActionsProps> = ({ darkTheme }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [openDeleteModal, setOpenDeleteModal] = React.useState<boolean>(false);
+
+  const handleClickOpenModal = () => {
+    handleClose();
+    setOpenDeleteModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenDeleteModal(false);
+  };
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -53,8 +74,17 @@ const MoreActions: React.FC = () => {
     setAnchorEl(null);
   };
 
+  const { classes, cx } = useTableComponentStyles();
+
   return (
     <Box sx={{ display: 'flex', gap: 2 }}>
+      {openDeleteModal && (
+        <Modal
+          shouldOpenModal={openDeleteModal}
+          handleCloseModal={handleCloseModal}
+          type={'delete'}
+        />
+      )}
       <IconButton
         sx={{ display: 'flex', justifyContent: 'center', ml: 1 }}
         size="large"
@@ -86,7 +116,7 @@ const MoreActions: React.FC = () => {
           vertical: 'top',
           horizontal: 'right',
         }}
-        sx={{ display: 'flex', justifyContent: 'center' }}
+        className={cx(classes.moreActionsMenu, darkTheme ? 'dark' : null)}
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
@@ -136,7 +166,7 @@ const MoreActions: React.FC = () => {
             </Typography>
           </Box>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleClickOpenModal}>
           <Box
             sx={{
               display: 'flex',
@@ -151,6 +181,7 @@ const MoreActions: React.FC = () => {
               edge="start"
               color="inherit"
               aria-label="delete"
+              // onClick={handleClickOpenModal}
             >
               <DeleteIcon />
             </IconButton>
@@ -164,7 +195,7 @@ const MoreActions: React.FC = () => {
   );
 };
 
-const PriceCell: React.FC<IPriceCellProps> = ({ price, discount }) => {
+export const PriceCell: React.FC<IPriceCellProps> = ({ price, discount }) => {
   return (
     <Box
       sx={{
@@ -296,71 +327,71 @@ export const rows = [
 
 export const showImgColumn = rows.some(item => item.hasOwnProperty('image'));
 
-export const columns: GridColDef[] = [
-  {
-    field: 'id',
-    headerName: 'ID',
-    width: 50,
-  },
-  {
-    field: 'image',
-    headerName: 'Image',
-    width: 110,
-    editable: false,
-    renderCell: params => {
-      return (
-        <div>
-          <img src={params.row.image} alt={params.row.name} width="60" />
-        </div>
-      );
-    },
-  },
-  {
-    field: 'name',
-    headerName: 'Name',
-    width: 330,
-    editable: false,
-    renderCell: CellExpandComponent,
-  },
-  {
-    field: 'sku',
-    headerName: 'SKU',
-    width: showImgColumn ? 110 : 220,
-    editable: false,
-  },
-  {
-    field: 'price',
-    headerName: 'Price',
-    width: 110,
-    editable: false,
-    renderCell: params => {
-      return (
-        <PriceCell price={params.row.price} discount={params.row?.discount} />
-      );
-    },
-  },
-  {
-    field: 'category',
-    headerName: 'Category',
-    width: 150,
-    editable: false,
-  },
-  {
-    field: 'status',
-    headerName: 'Status',
-    width: 100,
-    editable: false,
-    renderCell: params => {
-      return <ControlledSwitch status={params.row.status} />;
-    },
-  },
-  {
-    field: 'actions',
-    headerName: '',
-    editable: false,
-    sortable: false,
-    disableColumnMenu: true,
-    renderCell: () => <MoreActions />,
-    width: 120,
-  },
-];
+// export const columns: GridColDef[] = [
+//   {
+//     field: 'id',
+//     headerName: 'ID',
+//     width: 50,
+//   },
+//   {
+//     field: 'image',
+//     headerName: 'Image',
+//     width: 110,
+//     editable: false,
+//     renderCell: params => {
+//       return (
+//         <div>
+//           <img src={params.row.image} alt={params.row.name} width="60" />
+//         </div>
+//       );
+//     },
+//   },
+//   {
+//     field: 'name',
+//     headerName: 'Name',
+//     width: 330,
+//     editable: false,
+//     renderCell: CellExpandComponent,
+//   },
+//   {
+//     field: 'sku',
+//     headerName: 'SKU',
+//     width: showImgColumn ? 110 : 220,
+//     editable: false,
+//   },
+//   {
+//     field: 'price',
+//     headerName: 'Price',
+//     width: 110,
+//     editable: false,
+//     renderCell: params => {
+//       return (
+//         <PriceCell price={params.row.price} discount={params.row?.discount} />
+//       );
+//     },
+//   },
+//   {
+//     field: 'category',
+//     headerName: 'Category',
+//     width: 150,
+//     editable: false,
+//   },
+//   {
+//     field: 'status',
+//     headerName: 'Status',
+//     width: 100,
+//     editable: false,
+//     renderCell: params => {
+//       return <ControlledSwitch status={params.row.status} />;
+//     },
+//   },
+//   {
+//     field: 'actions',
+//     headerName: '',
+//     editable: false,
+//     sortable: false,
+//     disableColumnMenu: true,
+//     renderCell: () => <MoreActions />,
+//     width: 120,
+//   },
+// ];

@@ -34,14 +34,16 @@ export const useNavBarStyles = makeStyles<void>()(
       left: 0,
       overflowX: 'hidden',
       transform: 'TranslateX(0) scale(1)',
-      transition: 'transform 500ms ease-out, background-color 250ms ease-out',
+      transition:
+        'transform 500ms ease-out, background-color 250ms ease-out, box-shadow 250ms ease-out',
       whiteSpace: 'nowrap',
       paddingTop: theme.spacing(4),
       paddingBottom: theme.spacing(4),
       boxShadow: '7px 4px 11px -1px rgba(0,0,0,0.47)',
 
       '&.dark': {
-        backgroundColor: '#303030',
+        backgroundColor: '#212C3A',
+        boxShadow: '4px 5px 11px -1px rgba(255,255,255,1);',
       },
 
       '&.hide': {
@@ -59,14 +61,16 @@ export const useNavBarStyles = makeStyles<void>()(
       left: 0,
       overflowX: 'hidden',
       transform: 'TranslateX(-100%) scale(0)',
-      transition: 'transform 500ms ease-out, background-color 250ms ease-out',
+      transition:
+        'transform 500ms ease-out, background-color 250ms ease-out, box-shadow 250ms ease-out',
       whiteSpace: 'nowrap',
       width: drawerWidth,
       paddingTop: theme.spacing(4),
       paddingBottom: theme.spacing(4),
       boxShadow: '7px 4px 11px -1px rgba(0,0,0,0.47)',
       '&.dark': {
-        backgroundColor: '#303030',
+        backgroundColor: '#212C3A',
+        boxShadow: '4px 5px 11px -1px rgba(255,255,255,1);',
       },
       '&.active': {
         transform: 'TranslateX(0) scale(1)',
@@ -91,6 +95,31 @@ export const useNavBarStyles = makeStyles<void>()(
       },
       overflowX: 'hidden',
       backgroundColor: '#fff',
+      transition: 'all 250ms ease-out',
+      '&.dark': {
+        backgroundColor: '#24303F',
+        color: '#fff',
+      },
+      '&::-webkit-scrollbar': {
+        width: '5px',
+        height: '5px',
+      },
+      '&::-webkit-scrollbar-track': {
+        background: 'transparent',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        background: 'lightGrey',
+        '&:hover': { background: 'grey' },
+        borderRadius: '100vw',
+      },
+    },
+    title: {
+      fontSize: '3rem',
+      mb: '20px',
+      transition: 'all 250ms ease-out',
+      '&.dark': {
+        color: '#ffffff',
+      },
     },
     overlay: {
       [customTheme.breakpoints.down('xl')]: {

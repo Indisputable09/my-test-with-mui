@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Divider, IconButton, InputLabel, TextField } from '@mui/material';
+import { Box, Divider, IconButton, InputLabel } from '@mui/material';
 import { Theme, useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
@@ -7,17 +7,10 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import CancelIcon from '@mui/icons-material/Cancel';
+import { StyledField, useProductPageStyles } from '../ProductPage.styles';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
 
 const names = [
   'Oliver Hansen',
@@ -54,9 +47,13 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
 
 interface IMultipleSelectChipProps {
   list: string[];
+  darkTheme: boolean;
 }
 
-const MultipleSelectChip: React.FC<IMultipleSelectChipProps> = ({ list }) => {
+const MultipleSelectChip: React.FC<IMultipleSelectChipProps> = ({
+  list,
+  darkTheme,
+}) => {
   const theme = useTheme();
   const [selectedListItems, setSelectedListItems] = React.useState<string[]>(
     []
@@ -82,6 +79,8 @@ const MultipleSelectChip: React.FC<IMultipleSelectChipProps> = ({ list }) => {
     setSelectedListItems([]);
   };
 
+  const { classes, cx } = useProductPageStyles();
+
   return (
     <div>
       <FormControl sx={{ width: '70%' }}>
@@ -92,16 +91,15 @@ const MultipleSelectChip: React.FC<IMultipleSelectChipProps> = ({ list }) => {
           value={selectedListItems}
           onChange={handleChange}
           input={<OutlinedInput id="select-multiple-chip" />}
+          className={cx(classes.selectInput, darkTheme ? 'dark' : null)}
           renderValue={selected => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               <IconButton
                 onClick={handleDeleteAll}
-                sx={{
-                  position: 'absolute',
-                  top: '50%',
-                  right: '5%',
-                  transform: 'translateY(-50%)',
-                }}
+                className={cx(
+                  classes.cancelAllChipsButton,
+                  darkTheme ? 'dark' : null
+                )}
               >
                 <CancelIcon onMouseDown={event => event.stopPropagation()} />
               </IconButton>
@@ -109,8 +107,13 @@ const MultipleSelectChip: React.FC<IMultipleSelectChipProps> = ({ list }) => {
                 <Chip
                   key={value}
                   label={value}
+                  className={cx(classes.chip, darkTheme ? 'dark' : null)}
                   deleteIcon={
                     <CancelIcon
+                      className={cx(
+                        classes.cancelChipIcon,
+                        darkTheme ? 'dark' : null
+                      )}
                       onMouseDown={event => event.stopPropagation()}
                     />
                   }
@@ -121,7 +124,17 @@ const MultipleSelectChip: React.FC<IMultipleSelectChipProps> = ({ list }) => {
               ))}
             </Box>
           )}
-          MenuProps={MenuProps}
+          MenuProps={{
+            classes: {
+              paper: cx(classes.selectMenu, darkTheme ? 'dark' : null),
+            },
+            PaperProps: {
+              style: {
+                maxHeight: ITEM_HEIGHT * 2.5 + ITEM_PADDING_TOP,
+                width: 250,
+              },
+            },
+          }}
         >
           {list.map(item => (
             <MenuItem
@@ -138,80 +151,86 @@ const MultipleSelectChip: React.FC<IMultipleSelectChipProps> = ({ list }) => {
   );
 };
 
-export const Connections: React.FC = () => {
+interface IConnectionsProps {
+  darkTheme: boolean;
+}
+
+export const Connections: React.FC<IConnectionsProps> = ({ darkTheme }) => {
+  const { classes, cx } = useProductPageStyles();
+
   return (
     <Box
       component="form"
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        mt: '32px',
+        pt: '24px',
+        pb: '48px',
       }}
       noValidate
       autoComplete="off"
     >
       <InputLabel
         htmlFor="manufactured"
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          mb: '24px',
-          color: '#000',
-        }}
+        className={cx(classes.label, darkTheme ? 'dark' : null)}
       >
-        Manufactured
-        <TextField
+        Виробник
+        <StyledField
           id="manufactured"
           variant="outlined"
           sx={{ width: '70%', mt: '16px' }}
+          darkTheme={darkTheme}
         />
       </InputLabel>
       <InputLabel
         htmlFor="mainCategory"
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          mb: '24px',
-          color: '#000',
-        }}
+        className={cx(classes.label, darkTheme ? 'dark' : null)}
       >
-        Main category
-        <MultipleSelectChip list={names} />
+        <div>
+          Категорія<span style={{ color: 'red', fontSize: '20px' }}>*</span>
+        </div>
+        <MultipleSelectChip
+          darkTheme={darkTheme}
+          list={names}
+          // input={<StyledField label="Name" />}
+          // className={cx(classes.selectInput, darkTheme ? 'dark' : null)}
+          // MenuProps={{
+          //   classes: {
+          //     paper: cx(classes.selectMenu, darkTheme ? 'dark' : null),
+          //   },
+          // }}
+        />
       </InputLabel>
       <InputLabel
         htmlFor="showInCategories"
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          color: '#000',
-        }}
+        className={cx(classes.noMarginLabel, darkTheme ? 'dark' : null)}
       >
-        Show in categories
-        <MultipleSelectChip list={categories} />
+        Показувати в категоріях
+        <MultipleSelectChip
+          darkTheme={darkTheme}
+          list={categories}
+          // className={cx(classes.selectInput, darkTheme ? 'dark' : null)}
+          // MenuProps={{
+          //   classes: {
+          //     paper: cx(classes.selectMenu, darkTheme ? 'dark' : null),
+          //   },
+          // }}
+        />
       </InputLabel>
-      <Divider sx={{ my: '24px', borderColor: 'black' }} />
+      <Divider className={cx(classes.divider, darkTheme ? 'dark' : null)} />
       <InputLabel
         htmlFor="relatedProducts"
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          mb: '24px',
-          color: '#000',
-        }}
+        className={cx(classes.label, darkTheme ? 'dark' : null)}
       >
-        Related products
-        <MultipleSelectChip list={relatedProducts} />
+        Схожі товари
+        <MultipleSelectChip list={relatedProducts} darkTheme={darkTheme} />
       </InputLabel>
       <InputLabel
         htmlFor="featuredProducts"
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          color: '#000',
-        }}
+        className={cx(classes.label, darkTheme ? 'dark' : null)}
       >
-        Featured products
-        <MultipleSelectChip list={featuredProducts} />
+        Рекламні товари
+        <MultipleSelectChip list={featuredProducts} darkTheme={darkTheme} />
       </InputLabel>
     </Box>
   );

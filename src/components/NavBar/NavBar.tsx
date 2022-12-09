@@ -34,7 +34,13 @@ const NavBar: React.FC<INavBarProps> = ({
         handleThemeClick={handleThemeClick}
         darkTheme={darkTheme}
       />
-      <main className={cx(classes.content, openDrawer ? 'active' : null)}>
+      <main
+        className={cx(
+          classes.content,
+          openDrawer ? 'active' : null,
+          darkTheme ? 'dark' : null
+        )}
+      >
         <Box
           className={cx(classes.overlay, openDrawer ? 'active' : null)}
         ></Box>
@@ -42,14 +48,17 @@ const NavBar: React.FC<INavBarProps> = ({
           className={cx(classes.container, openDrawer ? 'active' : null)}
         >
           {productId && chosenProduct ? (
-            <ProductPage chosenProduct={chosenProduct} />
+            <ProductPage chosenProduct={chosenProduct} darkTheme={darkTheme} />
           ) : (
             <>
-              <CollapsedBreadcrumbs />
-              <Typography component="h2" sx={{ fontSize: '3rem', mb: '20px' }}>
+              <CollapsedBreadcrumbs darkTheme={darkTheme} />
+              <Typography
+                component="h2"
+                className={cx(classes.title, darkTheme ? 'dark' : null)}
+              >
                 Товари
               </Typography>
-              <TableComponent />
+              <TableComponent darkTheme={darkTheme} />
             </>
           )}
         </Container>

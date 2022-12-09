@@ -7,9 +7,10 @@ export const useHeaderStyles = makeStyles<void>()(
       color: '#232D42',
       boxShadow: '0px 7px 11px -1px rgba(0,0,0,0.47)',
       position: 'relative',
-      transition: 'background-color 250ms ease-out',
+      transition: 'all 250ms ease-out',
       '&.dark': {
-        backgroundColor: '#303030',
+        backgroundColor: '#212C3A',
+        boxShadow: '0px 3px 11px -1px rgba(255,255,255,1);',
       },
     },
     menuToggler: {
@@ -50,6 +51,9 @@ export const useHeaderStyles = makeStyles<void>()(
         border: '1px solid #fff',
       },
     },
+    // accountMenu: {
+    //   backgroundColor: 'tomato',
+    // },
     credentials: {
       display: 'flex',
       flexDirection: 'column',
@@ -59,12 +63,39 @@ export const useHeaderStyles = makeStyles<void>()(
         display: 'none',
       },
     },
+    userName: {
+      fontWeight: 400,
+      fontSize: '16px',
+      lineHeight: '1.75',
+      color: '#232D42',
+      transition: 'all linear 250ms',
+      '&.dark': {
+        color: '#ffffff',
+      },
+    },
+    userEmail: {
+      fontWeight: 400,
+      fontSize: '13px',
+      lineHeight: '1.3',
+      color: '#8A92A6',
+      transition: 'all linear 250ms',
+      '&.dark': {
+        color: '#c8cdd9',
+      },
+    },
+    headerIconButton: {
+      marginLeft: '8px',
+    },
     headerIcon: {
       width: '40px',
       height: '40px',
+      transition: 'all linear 250ms',
       [theme.breakpoints.down('sm')]: {
         width: '35px',
         height: '35px',
+      },
+      '&.dark': {
+        color: '#ffffff',
       },
     },
   })

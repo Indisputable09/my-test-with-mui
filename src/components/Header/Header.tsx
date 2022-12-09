@@ -9,8 +9,6 @@ import CloseIcon from '@mui/icons-material/Close';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button';
 import { useHeaderStyles } from './Header.styles';
 import Badge from '@mui/material/Badge';
@@ -89,7 +87,12 @@ const Header: React.FC<HeaderProps> = ({
               </Button>
               <IconButton aria-label="show new notifications" color="inherit">
                 <Badge badgeContent={17} color="error">
-                  <NotificationsIcon className={classes.headerIcon} />
+                  <NotificationsIcon
+                    className={cx(
+                      classes.headerIcon,
+                      darkTheme ? 'dark' : null
+                    )}
+                  />
                 </Badge>
               </IconButton>
               <IconButton
@@ -98,31 +101,23 @@ const Header: React.FC<HeaderProps> = ({
                 aria-haspopup="true"
                 onClick={handleMenu}
                 color="inherit"
-                sx={{ ml: 1 }}
+                className={cx(classes.headerIconButton)}
               >
-                <AccountCircle className={classes.headerIcon} />
+                <AccountCircle
+                  className={cx(classes.headerIcon, darkTheme ? 'dark' : null)}
+                />
               </IconButton>
 
               <Box className={classes.credentials}>
                 <Typography
                   component="p"
-                  sx={{
-                    fontWeight: 400,
-                    fontSize: '16px',
-                    lineHeight: '1.75',
-                    color: '#232D42',
-                  }}
+                  className={cx(classes.userName, darkTheme ? 'dark' : null)}
                 >
                   Austin Robertson
                 </Typography>
                 <Typography
                   component="p"
-                  sx={{
-                    fontWeight: 400,
-                    fontSize: '13px',
-                    lineHeight: '1.3',
-                    color: '#8A92A6',
-                  }}
+                  className={cx(classes.userEmail, darkTheme ? 'dark' : null)}
                 >
                   user@mail.com
                 </Typography>
@@ -134,9 +129,12 @@ const Header: React.FC<HeaderProps> = ({
                 onClick={handleClickAuth}
                 color="inherit"
               >
-                <LogoutIcon className={classes.headerIcon} />
+                <LogoutIcon
+                  className={cx(classes.headerIcon, darkTheme ? 'dark' : null)}
+                />
               </IconButton>
-              <Menu
+              {/* <Menu
+                // className={cx(classes.accountMenu)}
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
@@ -151,9 +149,19 @@ const Header: React.FC<HeaderProps> = ({
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
+                <MenuItem
+                  className={cx(classes.accountMenu)}
+                  onClick={handleClose}
+                >
+                  Profile
+                </MenuItem>
+                <MenuItem
+                  className={cx(classes.accountMenu)}
+                  onClick={handleClose}
+                >
+                  My account
+                </MenuItem>
+              </Menu> */}
             </Box>
           ) : (
             <IconButton
@@ -166,7 +174,9 @@ const Header: React.FC<HeaderProps> = ({
                 ml: 'auto',
               }}
             >
-              <LoginIcon className={classes.headerIcon} />
+              <LoginIcon
+                className={cx(classes.headerIcon, darkTheme ? 'dark' : null)}
+              />
             </IconButton>
           )}
         </Toolbar>

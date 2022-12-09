@@ -1,10 +1,12 @@
 import React from 'react';
+import { styled } from '@mui/material/styles';
 import AddIcon from '@mui/icons-material/Add';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { IRow } from '../TableComponent/TableComponent';
 import SelectActions from '../SelectActions';
+import { useToolbarStyles } from './Toolbar.styles';
 
 interface IToolbarProps {
   handleChangeFilter: (
@@ -12,47 +14,74 @@ interface IToolbarProps {
   ) => void;
   filter: string;
   selectedRows: IRow[];
+  darkTheme: boolean;
 }
+
+interface ISearchFieldProps {
+  darkTheme: boolean;
+}
+
+const SearchField = styled(TextField, {
+  shouldForwardProp: prop =>
+    prop !== 'color' &&
+    prop !== 'variant' &&
+    prop !== 'sx' &&
+    prop !== 'darkTheme',
+  name: 'SearchField',
+  slot: 'Root',
+})<ISearchFieldProps>(({ darkTheme }) => {
+  return {
+    input: {
+      color: darkTheme ? '#fff' : '#000',
+    },
+    '&.dark label.Mui-focused': {
+      color: '#ffffff',
+    },
+    '&.dark label': {
+      color: '#ffffff',
+    },
+    '&.dark .MuiInput-underline:after': {
+      borderBottomColor: '#ffffff',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'grey',
+      },
+      '&:hover fieldset': {
+        borderColor: darkTheme ? '#fff' : '#000',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: darkTheme ? '#fff' : '#1976d2',
+      },
+    },
+  };
+});
 
 const Toolbar: React.FC<IToolbarProps> = ({
   handleChangeFilter,
   filter,
   selectedRows,
+  darkTheme,
 }) => {
+  const { classes, cx } = useToolbarStyles();
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        height: 80,
-        width: '100%',
-        backgroundColor: '#fff',
-        mb: 2,
-        px: 2,
-        borderRadius: '10px',
-      }}
-    >
-      <TextField
+    <Box className={cx(classes.toolbarContainer, darkTheme ? 'dark' : null)}>
+      <SearchField
         id="search"
         label="Пошук..."
         variant="outlined"
         value={filter}
         onChange={e => handleChangeFilter(e)}
         autoComplete="off"
+        darkTheme={darkTheme}
+        className={cx(classes.searchField, darkTheme ? 'dark' : null)}
       />
       {selectedRows.length > 0 ? (
-        <SelectActions />
+        <SelectActions darkTheme={darkTheme} />
       ) : (
         <Button
           variant="contained"
-          sx={{
-            py: 1,
-            px: 2,
-            fontSize: '11px',
-            backgroundColor: '#3A57E8',
-            color: '#fff',
-          }}
+          className={cx(classes.addButton, darkTheme ? 'dark' : null)}
         >
           <AddIcon /> Додати
         </Button>

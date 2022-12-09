@@ -17,11 +17,10 @@ export const App: React.FC = () => {
     setDarkTheme(!darkTheme);
   };
 
-  // const mockProductId = null;
-
   const toggleDrawer = (open: boolean) => {
     setOpenDrawer(open);
   };
+
   return (
     <>
       <Header

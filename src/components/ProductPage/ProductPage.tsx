@@ -15,24 +15,51 @@ import {
   Discounts,
   Images,
   Options,
+  Data,
 } from './SubLinks';
+import Modal from '../Modal';
 
 interface IProductPageProps {
   chosenProduct: ProductType;
+  darkTheme: boolean;
 }
 
 const links = [
-  { name: 'basic', id: 1 },
-  { name: 'connections', id: 2 },
-  { name: 'images', id: 3 },
-  { name: 'attributes', id: 4 },
-  { name: 'options', id: 5 },
-  { name: 'discounts', id: 6 },
+  { name: 'загальне', id: 1 },
+  { name: 'данні', id: 2 },
+  { name: "зв'язок", id: 3 },
+  { name: 'зображення', id: 4 },
+  { name: 'атрибути', id: 5 },
+  { name: 'опції', id: 6 },
+  { name: 'акції', id: 7 },
+  { name: 'seo', id: 8 },
 ];
 
-const ProductPage: React.FC<IProductPageProps> = ({ chosenProduct }) => {
+const ProductPage: React.FC<IProductPageProps> = ({
+  chosenProduct,
+  darkTheme,
+}) => {
   const { classes, cx } = useProductPageStyles();
   const [linkId, setLinkId] = React.useState<number>(1);
+  const [openBackModal, setOpenBackModal] = React.useState<boolean>(false);
+  const [openDeleteModal, setOpenDeleteModal] = React.useState<boolean>(false);
+  const [openSaveModal, setOpenSaveModal] = React.useState<boolean>(false);
+
+  const handleClickOpenModal = (variant: string) => {
+    if (variant === 'back') {
+      setOpenBackModal(true);
+    } else if (variant === 'delete') {
+      setOpenDeleteModal(true);
+    } else if (variant === 'save') {
+      setOpenSaveModal(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setOpenBackModal(false);
+    setOpenDeleteModal(false);
+    setOpenSaveModal(false);
+  };
 
   const handleClickLink = (id: number) => {
     setLinkId(id as number);
@@ -40,9 +67,33 @@ const ProductPage: React.FC<IProductPageProps> = ({ chosenProduct }) => {
 
   return (
     <Box>
+      {openBackModal && (
+        <Modal
+          shouldOpenModal={openBackModal}
+          handleCloseModal={handleCloseModal}
+          type={'back'}
+        />
+      )}
+      {openDeleteModal && (
+        <Modal
+          shouldOpenModal={openDeleteModal}
+          handleCloseModal={handleCloseModal}
+          type={'delete'}
+        />
+      )}
+      {openSaveModal && (
+        <Modal
+          shouldOpenModal={openSaveModal}
+          handleCloseModal={handleCloseModal}
+          type={'save'}
+        />
+      )}
       <Box className={classes.panel}>
         <Box>
-          <CollapsedBreadcrumbs productName={chosenProduct!.name} />
+          <CollapsedBreadcrumbs
+            productName={chosenProduct!.name}
+            darkTheme={darkTheme}
+          />
           <Typography component="h2" className={classes.productTitle}>
             {chosenProduct!.name}
           </Typography>
@@ -54,6 +105,7 @@ const ProductPage: React.FC<IProductPageProps> = ({ chosenProduct }) => {
             edge="start"
             color="inherit"
             aria-label="back"
+            onClick={() => handleClickOpenModal('back')}
           >
             <ArrowBackIcon />
           </IconButton>
@@ -72,6 +124,7 @@ const ProductPage: React.FC<IProductPageProps> = ({ chosenProduct }) => {
             edge="start"
             color="inherit"
             aria-label="save"
+            onClick={() => handleClickOpenModal('save')}
           >
             <SaveIcon />
           </IconButton>
@@ -81,6 +134,7 @@ const ProductPage: React.FC<IProductPageProps> = ({ chosenProduct }) => {
             edge="start"
             color="inherit"
             aria-label="delete"
+            onClick={() => handleClickOpenModal('delete')}
           >
             <DeleteIcon />
           </IconButton>
@@ -108,12 +162,13 @@ const ProductPage: React.FC<IProductPageProps> = ({ chosenProduct }) => {
         })}
       </List>
       <Divider />
-      {linkId === 1 && <Basic />}
-      {linkId === 2 && <Connections />}
-      {linkId === 3 && <Images />}
-      {linkId === 4 && <Attributes />}
-      {linkId === 5 && <Options />}
-      {linkId === 6 && <Discounts />}
+      {linkId === 1 && <Basic darkTheme={darkTheme} />}
+      {linkId === 2 && <Data darkTheme={darkTheme} />}
+      {linkId === 3 && <Connections darkTheme={darkTheme} />}
+      {linkId === 4 && <Images />}
+      {linkId === 5 && <Attributes />}
+      {linkId === 6 && <Options />}
+      {linkId === 7 && <Discounts />}
     </Box>
   );
 };

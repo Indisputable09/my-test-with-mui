@@ -26,7 +26,7 @@ const NavBarMenu: React.FC<INavBarMenuProps> = ({
 }) => {
   const { classes } = useNavBarMenuStyles();
   const { classes: nbClasses, cx } = useNavBarStyles();
-  const [dark, setDark] = React.useState<boolean>(false);
+  const [dark, setDark] = React.useState<boolean>(darkTheme ?? false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDark(event.target.checked);

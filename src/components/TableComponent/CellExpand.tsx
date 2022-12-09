@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Paper, Popper } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
 import { GridCellParams } from '@mui/x-data-grid';
+import { useTableComponentStyles } from './TableComponent.styles';
 
 function isOverflown(element: {
   scrollHeight: number;
@@ -39,8 +40,14 @@ const useCellExpandStyles = makeStyles<void>()((theme, _params, classes) => ({
   },
 }));
 
-const CellExpand = React.memo(function CellExpand(props: CellExpandProps) {
-  const { width, value } = props;
+interface ICellExpandProps {
+  darkTheme: boolean;
+}
+
+const CellExpand = React.memo(function CellExpand(
+  props: CellExpandProps & ICellExpandProps
+) {
+  const { width, value, darkTheme } = props;
   const wrapper = React.useRef<HTMLDivElement | null>(null);
   const cellDiv = React.useRef(null);
   const cellValue = React.useRef(null);
@@ -69,6 +76,8 @@ const CellExpand = React.memo(function CellExpand(props: CellExpandProps) {
     }
   }, [width]);
 
+  const { classes: tableClasses, cx } = useTableComponentStyles();
+
   return (
     <div
       ref={wrapper}
@@ -94,16 +103,14 @@ const CellExpand = React.memo(function CellExpand(props: CellExpandProps) {
           id={'123'}
           open={showFullCell && anchorEl != null}
           anchorEl={anchorEl}
-          style={{ width, marginLeft: -17 }}
+          style={{ width, paddingLeft: -17 }}
         >
           <Paper
             elevation={1}
             style={{ minHeight: wrapper.current!.offsetHeight - 2 }}
           >
             <div
-              style={{
-                padding: 5,
-              }}
+              className={cx(tableClasses.cellExpand, darkTheme ? 'dark' : null)}
             >
               {value}
             </div>
@@ -113,11 +120,21 @@ const CellExpand = React.memo(function CellExpand(props: CellExpandProps) {
     </div>
   );
 });
-export function CellExpandComponent(params: GridCellParams) {
+
+interface ICellExpandComponentProps {
+  params: GridCellParams;
+  darkTheme: boolean;
+}
+
+export const CellExpandComponent: React.FC<
+  ICellExpandComponentProps
+> = props => {
+  const { params, darkTheme } = props;
   return (
     <CellExpand
       value={params.value ? params.value.toString() : ''}
       width={Number(params.colDef.width)}
+      darkTheme={darkTheme}
     />
   );
-}
+};
