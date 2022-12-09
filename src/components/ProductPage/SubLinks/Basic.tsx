@@ -1,6 +1,5 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 import { CKEditor } from 'ckeditor4-react';
 import { InputLabel, Typography } from '@mui/material';
 import { StyledField, useProductPageStyles } from '../ProductPage.styles';
