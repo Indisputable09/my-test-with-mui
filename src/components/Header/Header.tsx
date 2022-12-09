@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const { classes, cx } = useHeaderStyles();
   const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClickAuth = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAuth(!auth);
@@ -37,9 +37,6 @@ const Header: React.FC<HeaderProps> = ({
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar className={cx(classes.appbar, darkTheme ? 'dark' : null)}>
