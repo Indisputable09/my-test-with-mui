@@ -16,7 +16,7 @@ export const useToolbarStyles = makeStyles<void>()(
       '&.dark': { backgroundColor: '#24303F' },
       border: '1px solid #ffffff',
     },
-    searchField: {},
+    searchField: { width: '720px' },
     addButton: {
       padding: '8px 16px 8px 16px',
       fontSize: '11px',

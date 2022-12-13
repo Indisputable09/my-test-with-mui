@@ -10,108 +10,38 @@ import {
   GridFilterMenuItem,
   HideGridColMenuItem,
   GridColumnsMenuItem,
-  GridCellParams,
 } from '@mui/x-data-grid';
-import {
-  ControlledSwitch,
-  MoreActions,
-  PriceCell,
-  rows,
-  showImgColumn,
-} from './TableData';
+import { showImgColumn } from './TableData';
 import Toolbar from '../Toolbar';
 import { useTableComponentStyles } from './TableComponent.styles';
 import { Checkbox, CheckboxProps } from '@mui/material';
-import { CellExpandComponent } from './CellExpand';
 
 export interface IRow {
   id: number;
   image?: string;
   name: string;
-  status: string;
+  price?: number;
+  discount?: number;
+  status?: string;
+  sort?: number;
 }
 
 interface ITableComponentProps {
   darkTheme: boolean;
+  columns: GridColDef[];
+  rows: IRow[];
+  page?: string;
 }
 
-const TableComponent: React.FC<ITableComponentProps> = ({ darkTheme }) => {
+const TableComponent: React.FC<ITableComponentProps> = ({
+  darkTheme,
+  columns,
+  rows,
+  page,
+}) => {
   const [filter, setFilter] = React.useState<string>('');
   const [selectedRows, setSelectedRows] = React.useState<IRow[]>([]);
   const [pageSize, setPageSize] = React.useState<number>(5);
-
-  const columns: GridColDef[] = [
-    {
-      field: 'id',
-      headerName: 'ID',
-      width: 50,
-    },
-    {
-      field: 'image',
-      headerName: 'Image',
-      width: 110,
-      editable: false,
-      renderCell: params => {
-        return (
-          <div>
-            <img src={params.row.image} alt={params.row.name} width="60" />
-          </div>
-        );
-      },
-    },
-    {
-      field: 'name',
-      headerName: 'Name',
-      width: 330,
-      editable: false,
-      renderCell: (params: GridCellParams) => {
-        return <CellExpandComponent params={params} darkTheme={darkTheme} />;
-      },
-    },
-    {
-      field: 'sku',
-      headerName: 'SKU',
-      width: showImgColumn ? 110 : 220,
-      editable: false,
-    },
-    {
-      field: 'price',
-      headerName: 'Price',
-      width: 110,
-      editable: false,
-      renderCell: params => {
-        return (
-          <PriceCell price={params.row.price} discount={params.row?.discount} />
-        );
-      },
-    },
-    {
-      field: 'category',
-      headerName: 'Category',
-      width: 150,
-      editable: false,
-    },
-    {
-      field: 'status',
-      headerName: 'Status',
-      width: 100,
-      editable: false,
-      renderCell: params => {
-        return (
-          <ControlledSwitch status={params.row.status} darkTheme={darkTheme} />
-        );
-      },
-    },
-    {
-      field: 'actions',
-      headerName: '',
-      editable: false,
-      sortable: false,
-      disableColumnMenu: true,
-      renderCell: () => <MoreActions darkTheme={darkTheme} />,
-      width: 120,
-    },
-  ];
 
   const handleChangeFilter = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
@@ -166,15 +96,16 @@ const TableComponent: React.FC<ITableComponentProps> = ({ darkTheme }) => {
   );
 
   return (
-    <Box sx={{ height: 400, width: '100%' }}>
+    <Box sx={{ width: '100%' }}>
       <Toolbar
         handleChangeFilter={handleChangeFilter}
         filter={filter}
         selectedRows={selectedRows}
         darkTheme={darkTheme}
+        page={page}
       />
       <DataGrid
-        // autoHeight
+        autoHeight
         pageSize={pageSize}
         onPageSizeChange={newPageSize => setPageSize(newPageSize)}
         rowsPerPageOptions={[5, 10, 15, 20]}

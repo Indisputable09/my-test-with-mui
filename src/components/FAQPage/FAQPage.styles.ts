@@ -2,7 +2,7 @@ import { makeStyles } from 'tss-react/mui';
 import { styled } from '@mui/material/styles';
 import { TextField } from '@mui/material';
 
-export const useProductPageStyles = makeStyles<void>()(
+export const useFAQPageStyles = makeStyles<void>()(
   (theme, _params, classes) => ({
     productTitle: { fontSize: '3rem', mb: '20px' },
     panel: {
@@ -170,7 +170,7 @@ export const useProductPageStyles = makeStyles<void>()(
   })
 );
 
-export const useBasicPageStyles = makeStyles<void>()(
+export const useBasicFAQPageStyles = makeStyles<void>()(
   (theme, _params, classes) => ({
     basicDescriptionField: {
       [`& fieldset`]: {
@@ -195,7 +195,10 @@ export const StyledField = styled(TextField, {
 })<IStyledFieldProps>(({ darkTheme }) => {
   return {
     input: {
-      color: darkTheme ? '#fff' : '#000',
+      color: darkTheme ? '#ffffff' : '#000000',
+    },
+    textarea: {
+      color: darkTheme ? '#ffffff' : '#000000',
     },
     '&.dark label.Mui-focused': {
       color: '#ffffff',

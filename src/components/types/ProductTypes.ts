@@ -4,5 +4,6 @@ export interface ProductType {
   name: string;
   price?: number;
   discount?: number;
-  status: string;
+  status?: string;
+  sort?: number;
 }
