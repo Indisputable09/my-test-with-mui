@@ -72,20 +72,18 @@ const NavBarMenuItem: React.FC<NavBarMenuItemProps> = (
         className={classes.menuSecondaryItemList}
       >
         {items.map((item, index) => {
-          if (item) {
-            return (
-              <ListItem
-                key={index}
-                button
-                className={cx(
-                  classes.menuSecondaryItem,
-                  darkTheme ? 'dark' : null
-                )}
-              >
-                <ListItemText primary={item.name} inset={!Icon} />
-              </ListItem>
-            );
-          }
+          return (
+            <ListItem
+              key={index}
+              button
+              className={cx(
+                classes.menuSecondaryItem,
+                darkTheme ? 'dark' : null
+              )}
+            >
+              <ListItemText primary={item.name} inset={!Icon} />
+            </ListItem>
+          );
         })}
       </List>
     </Collapse>
