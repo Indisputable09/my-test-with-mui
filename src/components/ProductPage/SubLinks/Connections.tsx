@@ -50,7 +50,7 @@ interface IMultipleSelectChipProps {
   darkTheme: boolean;
 }
 
-const MultipleSelectChip: React.FC<IMultipleSelectChipProps> = ({
+export const MultipleSelectChip: React.FC<IMultipleSelectChipProps> = ({
   list,
   darkTheme,
 }) => {

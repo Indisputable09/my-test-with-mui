@@ -15,6 +15,7 @@ interface IToolbarProps {
   filter: string;
   selectedRows: IRow[];
   darkTheme: boolean;
+  page?: string;
 }
 
 interface ISearchFieldProps {
@@ -62,6 +63,7 @@ const Toolbar: React.FC<IToolbarProps> = ({
   filter,
   selectedRows,
   darkTheme,
+  page,
 }) => {
   const { classes, cx } = useToolbarStyles();
   return (
@@ -77,7 +79,7 @@ const Toolbar: React.FC<IToolbarProps> = ({
         className={cx(classes.searchField, darkTheme ? 'dark' : null)}
       />
       {selectedRows.length > 0 ? (
-        <SelectActions darkTheme={darkTheme} />
+        <SelectActions darkTheme={darkTheme} page={page} />
       ) : (
         <Button
           variant="contained"

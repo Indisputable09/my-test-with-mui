@@ -2,7 +2,6 @@ import { Button } from '@mui/material';
 import React from 'react';
 import Header from './components/Header';
 import NavBar from './components/NavBar';
-import { rows } from './components/TableComponent/TableData';
 import { THEME_MODE } from './constants/themeMode';
 
 export const App: React.FC = () => {
@@ -12,6 +11,7 @@ export const App: React.FC = () => {
   );
 
   const [mockProductId, setMockProductId] = React.useState<null | number>(null);
+  const [mockFAQId, setMockFAQId] = React.useState<null | number>(null);
 
   const handleThemeClick = () => {
     setDarkTheme(!darkTheme);
@@ -33,12 +33,18 @@ export const App: React.FC = () => {
         onClick={() => setMockProductId(2)}
         sx={{ position: 'absolute', right: 0 }}
       >
-        Це типу лінк на продукт
+        До продукту
+      </Button>
+      <Button
+        onClick={() => setMockFAQId(3)}
+        sx={{ position: 'absolute', right: 0, top: '90px' }}
+      >
+        До питання
       </Button>
       <NavBar
         openDrawer={openDrawer}
         productId={mockProductId}
-        rows={rows}
+        FAQId={mockFAQId}
         handleThemeClick={handleThemeClick}
         darkTheme={darkTheme}
       />
