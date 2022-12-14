@@ -8,13 +8,11 @@ import Box from '@mui/material/Box';
 import { IRow } from '../TableComponent/TableComponent';
 import SelectActions from '../SelectActions';
 import { useToolbarStyles } from './Toolbar.styles';
-import { IconButton } from '@mui/material';
 
 interface IToolbarProps {
   handleChangeFilter: (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => void;
-  handleSearchIconClick: () => void;
   filter: string;
   selectedRows: IRow[];
   darkTheme: boolean;
@@ -63,7 +61,6 @@ const SearchField = styled(TextField, {
 
 const Toolbar: React.FC<IToolbarProps> = ({
   handleChangeFilter,
-  handleSearchIconClick,
   filter,
   selectedRows,
   darkTheme,
@@ -72,7 +69,7 @@ const Toolbar: React.FC<IToolbarProps> = ({
   const { classes, cx } = useToolbarStyles();
   return (
     <Box className={cx(classes.toolbarContainer, darkTheme ? 'dark' : null)}>
-      <Box sx={{ display: 'flex', gap: 2 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <SearchField
           id="search"
           label="Пошук..."
@@ -83,12 +80,7 @@ const Toolbar: React.FC<IToolbarProps> = ({
           darkTheme={darkTheme}
           className={cx(classes.searchField, darkTheme ? 'dark' : null)}
         />
-        <IconButton
-          onClick={handleSearchIconClick}
-          className={cx(classes.searchIconButton, darkTheme ? 'dark' : null)}
-        >
-          <SearchIcon />
-        </IconButton>
+        <SearchIcon />
       </Box>
       {selectedRows.length > 0 ? (
         <SelectActions darkTheme={darkTheme} page={page} />

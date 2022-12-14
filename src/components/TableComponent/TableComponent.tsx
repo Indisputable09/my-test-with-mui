@@ -40,7 +40,6 @@ const TableComponent: React.FC<ITableComponentProps> = ({
   page,
 }) => {
   const [filter, setFilter] = React.useState<string>('');
-  const [filteredRows, setFilteredRows] = React.useState<IRow[]>([]);
   const [selectedRows, setSelectedRows] = React.useState<IRow[]>([]);
   const [pageSize, setPageSize] = React.useState<number>(5);
 
@@ -59,16 +58,11 @@ const TableComponent: React.FC<ITableComponentProps> = ({
   };
 
   const onRowsSelectionHandler = (ids: number[]) => {
-    console.log('ids', ids);
     const selectedRowsData = ids.map(id => rows.find(row => row.id === id));
     setSelectedRows(selectedRowsData as IRow[]);
   };
 
-  const handleSearchIconClick = () => {
-    setFilteredRows(createFilter());
-  };
-
-  // const filteredRows = createFilter();
+  const filteredRows = createFilter();
 
   const { classes, cx } = useTableComponentStyles();
 
@@ -105,7 +99,6 @@ const TableComponent: React.FC<ITableComponentProps> = ({
     <Box sx={{ width: '100%' }}>
       <Toolbar
         handleChangeFilter={handleChangeFilter}
-        handleSearchIconClick={handleSearchIconClick}
         filter={filter}
         selectedRows={selectedRows}
         darkTheme={darkTheme}
@@ -124,7 +117,7 @@ const TableComponent: React.FC<ITableComponentProps> = ({
         columnVisibilityModel={{
           image: showImgColumn,
         }}
-        rows={filteredRows.length === 0 ? rows : filteredRows}
+        rows={filteredRows}
         columns={columns}
         disableSelectionOnClick
         experimentalFeatures={{ newEditingApi: true }}
