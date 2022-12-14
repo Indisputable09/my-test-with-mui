@@ -167,6 +167,70 @@ export const useProductPageStyles = makeStyles<void>()(
         color: '#ffffff',
       },
     },
+    comboBox: { width: 300, marginTop: '16px' },
+    comboBoxInput: {
+      '&.dark': {
+        color: '#fff',
+      },
+      transition: 'all 250ms ease-out',
+      '&.dark > svg': {
+        color: '#fff',
+        transition: 'all 250ms ease-out',
+      },
+      '& > svg': {
+        color: 'inherit',
+        transition: 'all 250ms ease-out',
+      },
+      '& > fieldset': {
+        borderColor: 'grey',
+        transition: 'all 250ms ease-out',
+      },
+      '&.dark:hover > fieldset': {
+        borderColor: 'white',
+        transition: 'all 250ms ease-out',
+      },
+      '&.dark.Mui-focused fieldset': {
+        borderColor: '#fff',
+      },
+    },
+    attributesDivider: {
+      width: '124px',
+      margin: '10px 32px 0 32px',
+      borderColor: '#111111',
+      transition: 'all 250ms ease-out',
+      '&.dark': {
+        borderColor: '#ffffff',
+      },
+    },
+    bottomDivider: {
+      width: '864px',
+      marginBottom: '24px',
+      borderColor: '#111111',
+      transition: 'all 250ms ease-out',
+      '&.dark': {
+        borderColor: '#ffffff',
+      },
+    },
+    deleteAttributeButton: {
+      margin: '11px 0 0 32px',
+      transition: 'all 250ms ease-out',
+      '&.dark': {
+        color: '#fff',
+      },
+    },
+    addButton: {
+      width: '188px',
+      marginLeft: '300px',
+      padding: '8px 16px 8px 16px',
+      fontSize: '11px',
+      backgroundColor: '#3A57E8',
+      color: '#fff',
+      transition: 'all 250ms ease-out',
+      '&.dark': {
+        backgroundColor: 'transparent',
+        border: '1px solid #fff',
+      },
+    },
   })
 );
 
@@ -195,6 +259,9 @@ export const StyledField = styled(TextField, {
 })<IStyledFieldProps>(({ darkTheme }) => {
   return {
     input: {
+      color: darkTheme ? '#fff' : '#000',
+    },
+    svg: {
       color: darkTheme ? '#fff' : '#000',
     },
     '&.dark label.Mui-focused': {

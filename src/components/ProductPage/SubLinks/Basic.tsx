@@ -52,22 +52,6 @@ export const Basic: React.FC<IBasicProps> = ({ darkTheme }) => {
         Опис
       </Typography>
       <CKEditor />
-      {/* <InputLabel
-        htmlFor="priceWithDiscount"
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          mb: '24px',
-          color: '#000',
-        }}
-      >
-        Price with discount
-        <TextField
-          id="priceWithDiscount"
-          variant="outlined"
-          sx={{ width: '70%', mt: '16px' }}
-        />
-      </InputLabel> */}
     </Box>
   );
 };

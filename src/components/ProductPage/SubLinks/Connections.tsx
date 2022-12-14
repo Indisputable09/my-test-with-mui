@@ -189,33 +189,14 @@ export const Connections: React.FC<IConnectionsProps> = ({ darkTheme }) => {
         <div>
           Категорія<span style={{ color: 'red', fontSize: '20px' }}>*</span>
         </div>
-        <MultipleSelectChip
-          darkTheme={darkTheme}
-          list={names}
-          // input={<StyledField label="Name" />}
-          // className={cx(classes.selectInput, darkTheme ? 'dark' : null)}
-          // MenuProps={{
-          //   classes: {
-          //     paper: cx(classes.selectMenu, darkTheme ? 'dark' : null),
-          //   },
-          // }}
-        />
+        <MultipleSelectChip darkTheme={darkTheme} list={names} />
       </InputLabel>
       <InputLabel
         htmlFor="showInCategories"
         className={cx(classes.noMarginLabel, darkTheme ? 'dark' : null)}
       >
         Показувати в категоріях
-        <MultipleSelectChip
-          darkTheme={darkTheme}
-          list={categories}
-          // className={cx(classes.selectInput, darkTheme ? 'dark' : null)}
-          // MenuProps={{
-          //   classes: {
-          //     paper: cx(classes.selectMenu, darkTheme ? 'dark' : null),
-          //   },
-          // }}
-        />
+        <MultipleSelectChip darkTheme={darkTheme} list={categories} />
       </InputLabel>
       <Divider className={cx(classes.divider, darkTheme ? 'dark' : null)} />
       <InputLabel
