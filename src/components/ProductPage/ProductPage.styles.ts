@@ -89,6 +89,8 @@ export const useProductPageStyles = makeStyles<void>()(
       },
     },
     divider: {
+      marginTop: '16px',
+      marginBottom: '24px',
       borderColor: '#111111',
       transition: 'all 250ms ease-out',
       '&.dark': {
