@@ -70,6 +70,10 @@ const StyledCustomPaper = styled(CustomPaper, {
       backgroundColor: darkTheme ? '#1F2A38' : '#ffffff',
       color: darkTheme ? '#fff' : '#111111',
     },
+    '& p': {
+      color: darkTheme ? '#ffffff' : 'inherit',
+      margin: 0,
+    },
     '& ul::-webkit-scrollbar': {
       width: '5px',
       height: '5px',
@@ -91,6 +95,7 @@ const ComboBox: React.FC<IComboBoxProps> = ({ list, darkTheme }) => {
   return (
     <Autocomplete
       id="combo-box"
+      noOptionsText={<p>Відсутні результати</p>}
       options={list}
       className={cx(classes.comboBox, darkTheme ? 'dark' : null)}
       renderInput={params => <StyledField {...params} darkTheme={darkTheme} />}
