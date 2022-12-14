@@ -17,6 +17,25 @@ export const useToolbarStyles = makeStyles<void>()(
       border: '1px solid #ffffff',
     },
     searchField: { width: '720px' },
+    searchIconButton: {
+      transition: 'all 250ms ease-out',
+      '&:hover': {
+        backgroundColor: 'transparent',
+        transition: 'all 250ms ease-out',
+        '& svg': {
+          transition: 'all 250ms ease-out',
+          transform: 'scale(1.3)',
+        },
+      },
+      '&.dark svg': {
+        transition: 'all 250ms ease-out',
+        color: '#ffffff',
+      },
+      '&.dark:hover svg': {
+        transition: 'all 250ms ease-out',
+        transform: 'scale(1.3)',
+      },
+    },
     addButton: {
       padding: '8px 16px 8px 16px',
       fontSize: '11px',

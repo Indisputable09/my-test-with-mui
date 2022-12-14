@@ -86,5 +86,25 @@ export const useTableComponentStyles = makeStyles<void>()(
         color: '#fff',
       },
     },
+    editIcon: {
+      transition: 'all 250ms ease-out',
+      'button:hover > &': {
+        color: '#219653',
+        filter: 'drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.25))',
+      },
+      'button:hover > &.dark': {
+        filter: 'drop-shadow(2px 2px 0px rgba(255, 255, 255, 0.25))',
+      },
+    },
+    deleteIcon: {
+      transition: 'color 250ms ease-out',
+      'button:hover > &': {
+        color: '#EB5757',
+        filter: 'drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.25))',
+      },
+      'button:hover > &.dark': {
+        filter: 'drop-shadow(2px 2px 0px rgba(255, 255, 255, 0.25))',
+      },
+    },
   })
 );

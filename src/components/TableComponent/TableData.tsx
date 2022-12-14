@@ -53,7 +53,11 @@ export const ControlledSwitch: React.FC<IControlledSwitchProps> = ({
   );
 };
 
-export const FAQActions: React.FC = () => {
+interface IFAQActionsProps {
+  darkTheme: boolean;
+}
+
+export const FAQActions: React.FC<IFAQActionsProps> = ({ darkTheme }) => {
   const [openDeleteModal, setOpenDeleteModal] = React.useState<boolean>(false);
 
   const handleClickOpenModal = () => {
@@ -63,6 +67,8 @@ export const FAQActions: React.FC = () => {
   const handleCloseModal = () => {
     setOpenDeleteModal(false);
   };
+
+  const { classes, cx } = useTableComponentStyles();
 
   return (
     <>
@@ -74,7 +80,9 @@ export const FAQActions: React.FC = () => {
           color="inherit"
           aria-label="edit"
         >
-          <EditIcon />
+          <EditIcon
+            className={cx(classes.editIcon, darkTheme ? 'dark' : null)}
+          />
         </IconButton>
         <IconButton
           sx={{ display: 'flex', justifyContent: 'center' }}
@@ -84,7 +92,9 @@ export const FAQActions: React.FC = () => {
           aria-label="delete"
           onClick={handleClickOpenModal}
         >
-          <DeleteIcon />
+          <DeleteIcon
+            className={cx(classes.deleteIcon, darkTheme ? 'dark' : null)}
+          />
         </IconButton>
       </Box>
       {openDeleteModal && (
@@ -130,7 +140,7 @@ export const MoreActions: React.FC<IMoreActionsProps> = ({ darkTheme }) => {
         color="inherit"
         aria-label="edit"
       >
-        <EditIcon />
+        <EditIcon className={cx(classes.editIcon, darkTheme ? 'dark' : null)} />
       </IconButton>
       <IconButton
         sx={{ display: 'flex', justifyContent: 'center' }}

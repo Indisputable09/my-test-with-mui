@@ -35,13 +35,19 @@ export const useSelectActionsStyles = makeStyles<void>()(
     selectMenu: {
       '&.dark ul': {
         backgroundColor: '#1F2A38',
-        color: '#fff',
+        color: '#ffffff',
       },
-      '& li': {
+      '&.dark li': {
         fontSize: 12,
       },
     },
     menuItem: {
+      '& svg': {
+        color: 'rgba(0, 0, 0, 0.54)',
+      },
+      '&.dark svg': {
+        color: '#ffffff',
+      },
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',

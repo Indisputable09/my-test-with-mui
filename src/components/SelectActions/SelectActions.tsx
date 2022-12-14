@@ -1,8 +1,10 @@
 import React from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
-import ToggleOnIcon from '@mui/icons-material/ToggleOn';
-import ToggleOffIcon from '@mui/icons-material/ToggleOff';
+// import ToggleOnIcon from '@mui/icons-material/ToggleOn';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+// import ToggleOffIcon from '@mui/icons-material/ToggleOff';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -68,9 +70,10 @@ const SelectActions: React.FC<ISelectActions> = ({
           vertical: 'top',
           horizontal: 'right',
         }}
+        className={cx(classes.selectMenu, darkTheme ? 'dark' : null)}
       >
         {page === 'product' && (
-          <MenuItem value="активувати">
+          <MenuItem value="всі">
             <Box className={cx(classes.menuItem, darkTheme ? 'dark' : null)}>
               <IconButton
                 sx={{ display: 'flex', justifyContent: 'center' }}
@@ -79,15 +82,15 @@ const SelectActions: React.FC<ISelectActions> = ({
                 color="inherit"
                 aria-label="delete"
               >
-                <ToggleOnIcon />
+                <CheckBoxIcon />
               </IconButton>
               <Typography variant="h6" component="p" fontSize={15}>
-                Активувати вибір
+                Обрати всі
               </Typography>
             </Box>
           </MenuItem>
         )}
-        <MenuItem value="деактивувати">
+        <MenuItem value="Відмінити">
           <Box className={cx(classes.menuItem, darkTheme ? 'dark' : null)}>
             <IconButton
               sx={{ display: 'flex', justifyContent: 'center' }}
@@ -96,10 +99,10 @@ const SelectActions: React.FC<ISelectActions> = ({
               color="inherit"
               aria-label="delete"
             >
-              <ToggleOffIcon />
+              <CheckBoxOutlineBlankIcon />
             </IconButton>
             <Typography variant="h6" component="p" fontSize={15}>
-              Деактивувати вибір
+              Відмінити вибір
             </Typography>
           </Box>
         </MenuItem>

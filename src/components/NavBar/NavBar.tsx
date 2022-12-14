@@ -153,7 +153,7 @@ const NavBar: React.FC<INavBarProps> = ({
       editable: false,
       sortable: false,
       disableColumnMenu: true,
-      renderCell: () => <FAQActions />,
+      renderCell: () => <FAQActions darkTheme={darkTheme} />,
       width: 120,
     },
   ];
@@ -179,7 +179,7 @@ const NavBar: React.FC<INavBarProps> = ({
       editable: false,
       sortable: false,
       disableColumnMenu: true,
-      renderCell: () => <FAQActions />,
+      renderCell: () => <FAQActions darkTheme={darkTheme} />,
       width: 120,
     },
   ];
