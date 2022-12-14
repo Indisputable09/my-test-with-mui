@@ -166,7 +166,7 @@ const ProductPage: React.FC<IProductPageProps> = ({
       {linkId === 2 && <Data darkTheme={darkTheme} />}
       {linkId === 3 && <Connections darkTheme={darkTheme} />}
       {linkId === 4 && <Images />}
-      {linkId === 5 && <Attributes />}
+      {linkId === 5 && <Attributes darkTheme={darkTheme} />}
       {linkId === 6 && <Options />}
       {linkId === 7 && <Discounts />}
     </Box>
