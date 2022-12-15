@@ -7,6 +7,7 @@ import {
   IconButton,
   InputLabel,
   Paper,
+  Typography,
 } from '@mui/material';
 import { nanoid } from 'nanoid';
 import Delete from '@mui/icons-material/Delete';
@@ -109,44 +110,56 @@ export const Attributes: React.FC<IAttributesProps> = ({ darkTheme }) => {
         py: '24px',
       }}
     >
-      {attributesCount.map(item => {
-        return (
-          <Box key={item.id} sx={{ display: 'flex', alignItems: 'center' }}>
-            <InputLabel
-              id="attribute-selection-label"
-              className={cx(classes.label, darkTheme ? 'dark' : null)}
-            >
-              Атрибут
-              <ComboBox list={attributes} darkTheme={darkTheme} />
-            </InputLabel>
-            <Divider
-              className={cx(
-                classes.attributesDivider,
-                darkTheme ? 'dark' : null
-              )}
-            />
-            <InputLabel
-              id="attribute-category-selection-label"
-              className={cx(classes.label, darkTheme ? 'dark' : null)}
-            >
-              Значення атрибуту
-              <ComboBox list={attributeCategories} darkTheme={darkTheme} />
-            </InputLabel>
-            <IconButton
-              className={cx(
-                classes.deleteAttributeButton,
-                darkTheme ? 'dark' : null
-              )}
-              onClick={() => handleDelete(item.id)}
-              name={item.id}
-            >
-              <Delete sx={{ width: '28px', height: '28px' }} />
-            </IconButton>
-          </Box>
-        );
-      })}
+      {attributesCount.length === 0 ? (
+        <Typography
+          component="h2"
+          sx={{ fontWeight: 700, fontSize: '20px', textAlign: 'center', mb: 2 }}
+        >
+          Атрибути відсутні
+        </Typography>
+      ) : (
+        attributesCount.map(item => {
+          return (
+            <Box key={item.id} sx={{ display: 'flex', alignItems: 'center' }}>
+              <InputLabel
+                id="attribute-selection-label"
+                className={cx(classes.label, darkTheme ? 'dark' : null)}
+              >
+                Атрибут
+                <ComboBox list={attributes} darkTheme={darkTheme} />
+              </InputLabel>
+              <Divider
+                className={cx(
+                  classes.attributesDivider,
+                  darkTheme ? 'dark' : null
+                )}
+              />
+              <InputLabel
+                id="attribute-category-selection-label"
+                className={cx(classes.label, darkTheme ? 'dark' : null)}
+              >
+                Значення атрибуту
+                <ComboBox list={attributeCategories} darkTheme={darkTheme} />
+              </InputLabel>
+              <IconButton
+                className={cx(
+                  classes.deleteAttributeButton,
+                  darkTheme ? 'dark' : null
+                )}
+                onClick={() => handleDelete(item.id)}
+                name={item.id}
+              >
+                <Delete sx={{ width: '28px', height: '28px' }} />
+              </IconButton>
+            </Box>
+          );
+        })
+      )}
       <Divider
-        className={cx(classes.bottomDivider, darkTheme ? 'dark' : null)}
+        className={cx(
+          classes.attributesBottomDivider,
+          darkTheme ? 'dark' : null
+        )}
       />
       <Button
         onClick={handleAddClick}

@@ -148,7 +148,7 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({
           <StyledField
             id="name"
             variant="outlined"
-            sx={{ width: '70%', mt: '16px' }}
+            sx={{ width: '100%', mt: '16px' }}
             required
             darkTheme={darkTheme}
           />
@@ -170,7 +170,7 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({
           <StyledField
             id="ISO"
             variant="outlined"
-            sx={{ width: '70%', mt: '16px' }}
+            sx={{ width: '100%', mt: '16px' }}
             required
             darkTheme={darkTheme}
           />
@@ -182,7 +182,7 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({
         >
           Значок
           <Autocomplete
-            id="combo-box"
+            id="autocomplete-icon"
             noOptionsText={<p>Відсутні результати</p>}
             options={icons}
             className={cx(classes.autocomplete, darkTheme ? 'dark' : null)}
@@ -207,7 +207,7 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({
           <StyledField
             id="url"
             variant="outlined"
-            sx={{ width: '70%', mt: '16px' }}
+            sx={{ width: '100%', mt: '16px' }}
             required
             darkTheme={darkTheme}
           />

@@ -14,13 +14,15 @@ export const useLanguagesPageStyles = makeStyles<void>()(
     button: { display: 'flex', justifyContent: 'center', height: '34px' },
     divider: {
       marginTop: '16px',
-      borderColor: '#111111',
+      borderColor: 'rgba(17, 17, 17, 0.25)',
       transition: 'all 250ms ease-out',
       '&.dark': {
-        borderColor: '#ffffff',
+        borderColor: 'rgba(255, 255, 255, 0.12)',
       },
     },
     label: {
+      fontWeight: 700,
+      fontSize: '20px',
       display: 'flex',
       flexDirection: 'column',
       marginBottom: '24px',
@@ -30,8 +32,10 @@ export const useLanguagesPageStyles = makeStyles<void>()(
         color: '#fff',
       },
     },
-    autocomplete: { width: '70%', marginTop: '16px' },
+    autocomplete: { width: '100%', marginTop: '16px' },
     mainLanguageText: {
+      fontWeight: 700,
+      fontSize: '20px',
       color: '#000',
       transition: 'all 250ms ease-out',
       '&.dark': {

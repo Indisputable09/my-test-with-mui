@@ -31,7 +31,7 @@ export const Basic: React.FC<IBasicProps> = ({ darkTheme }) => {
         <StyledField
           id="name"
           variant="outlined"
-          sx={{ width: '70%', mt: '16px' }}
+          sx={{ width: '100%', mt: '16px' }}
           required
           darkTheme={darkTheme}
         />
@@ -44,11 +44,14 @@ export const Basic: React.FC<IBasicProps> = ({ darkTheme }) => {
         <StyledField
           id="sku"
           variant="outlined"
-          sx={{ width: '70%', mt: '16px' }}
+          sx={{ width: '100%', mt: '16px' }}
           darkTheme={darkTheme}
         />
       </InputLabel>
-      <Typography component="h2" sx={{ mb: '24px', mt: 2 }}>
+      <Typography
+        component="h2"
+        sx={{ mb: '24px', mt: 2, fontWeight: 700, fontSize: '20px' }}
+      >
         Опис
       </Typography>
       <CKEditor />

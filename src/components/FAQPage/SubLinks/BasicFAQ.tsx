@@ -29,7 +29,7 @@ export const BasicFAQ: React.FC<IBasicFAQProps> = ({ darkTheme }) => {
         <StyledField
           id="question"
           variant="outlined"
-          sx={{ width: '70%', mt: '16px' }}
+          sx={{ width: '100%', mt: '16px' }}
           required
           darkTheme={darkTheme}
         />
