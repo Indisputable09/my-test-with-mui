@@ -49,27 +49,6 @@ const FAQPage: React.FC<IFAQPageProps> = ({ chosenQuestion, darkTheme }) => {
 
   return (
     <Box>
-      {openBackModal && (
-        <Modal
-          shouldOpenModal={openBackModal}
-          handleCloseModal={handleCloseModal}
-          type={'back'}
-        />
-      )}
-      {openDeleteModal && (
-        <Modal
-          shouldOpenModal={openDeleteModal}
-          handleCloseModal={handleCloseModal}
-          type={'delete'}
-        />
-      )}
-      {openSaveModal && (
-        <Modal
-          shouldOpenModal={openSaveModal}
-          handleCloseModal={handleCloseModal}
-          type={'save'}
-        />
-      )}
       <Box className={classes.panel}>
         <Box>
           <CollapsedBreadcrumbs
@@ -137,6 +116,27 @@ const FAQPage: React.FC<IFAQPageProps> = ({ chosenQuestion, darkTheme }) => {
       <Divider className={cx(classes.divider, darkTheme ? 'dark' : null)} />
       {linkId === 1 && <BasicFAQ darkTheme={darkTheme} />}
       {linkId === 2 && <ConnectionsFAQ darkTheme={darkTheme} />}
+      {openBackModal && (
+        <Modal
+          shouldOpenModal={openBackModal}
+          handleCloseModal={handleCloseModal}
+          type={'back'}
+        />
+      )}
+      {openDeleteModal && (
+        <Modal
+          shouldOpenModal={openDeleteModal}
+          handleCloseModal={handleCloseModal}
+          type={'delete'}
+        />
+      )}
+      {openSaveModal && (
+        <Modal
+          shouldOpenModal={openSaveModal}
+          handleCloseModal={handleCloseModal}
+          type={'save'}
+        />
+      )}
     </Box>
   );
 };

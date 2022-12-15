@@ -44,16 +44,13 @@ export const useHeaderStyles = makeStyles<void>()(
       padding: '6px 16px 6px 16px',
       marginRight: '8px',
       fontSize: '11px',
-      backgroundColor: '#3A57E8',
+      backgroundColor: 'transparent',
       transition: 'all linear 250ms',
       '&.dark': {
         backgroundColor: 'inherit',
         border: '1px solid #fff',
       },
     },
-    // accountMenu: {
-    //   backgroundColor: 'tomato',
-    // },
     credentials: {
       display: 'flex',
       flexDirection: 'column',

@@ -32,7 +32,7 @@ const SelectActions: React.FC<ISelectActions> = ({
   };
 
   return (
-    <div>
+    <div style={{ marginLeft: 'auto' }}>
       <IconButton
         sx={{
           display: 'flex',

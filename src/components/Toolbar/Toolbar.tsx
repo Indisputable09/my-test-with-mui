@@ -66,28 +66,33 @@ const Toolbar: React.FC<IToolbarProps> = ({
   darkTheme,
   page,
 }) => {
+  const handleAddClick = () => {};
+
   const { classes, cx } = useToolbarStyles();
   return (
     <Box className={cx(classes.toolbarContainer, darkTheme ? 'dark' : null)}>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <SearchField
-          id="search"
-          label="Пошук..."
-          variant="outlined"
-          value={filter}
-          onChange={e => handleChangeFilter(e)}
-          autoComplete="off"
-          darkTheme={darkTheme}
-          className={cx(classes.searchField, darkTheme ? 'dark' : null)}
-        />
-        <SearchIcon />
-      </Box>
+      {page !== 'languages' && (
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <SearchField
+            id="search"
+            label="Пошук..."
+            variant="outlined"
+            value={filter}
+            onChange={e => handleChangeFilter(e)}
+            autoComplete="off"
+            darkTheme={darkTheme}
+            className={cx(classes.searchField, darkTheme ? 'dark' : null)}
+          />
+          <SearchIcon />
+        </Box>
+      )}
       {selectedRows.length > 0 ? (
         <SelectActions darkTheme={darkTheme} page={page} />
       ) : (
         <Button
           variant="contained"
           className={cx(classes.addButton, darkTheme ? 'dark' : null)}
+          onClick={handleAddClick}
         >
           <AddIcon /> Додати
         </Button>

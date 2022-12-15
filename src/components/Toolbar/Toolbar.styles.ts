@@ -37,6 +37,7 @@ export const useToolbarStyles = makeStyles<void>()(
       },
     },
     addButton: {
+      marginLeft: 'auto',
       padding: '8px 16px 8px 16px',
       fontSize: '11px',
       backgroundColor: '#3A57E8',

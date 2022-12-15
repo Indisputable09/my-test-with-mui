@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const { classes, cx } = useHeaderStyles();
   const [auth, setAuth] = React.useState(true);
-  
+
   const handleClickAuth = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAuth(!auth);
   };
@@ -72,7 +72,7 @@ const Header: React.FC<HeaderProps> = ({
               }}
             >
               <Button
-                variant="contained"
+                variant="outlined"
                 className={cx(classes.cashButton, darkTheme ? 'dark' : null)}
               >
                 Очистити кеш

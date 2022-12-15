@@ -15,16 +15,19 @@ import {
   productRows,
   productCategoriesRows,
   FAQRows,
+  languagesRows,
   showImgColumn,
   FAQActions,
 } from '../TableComponent/TableData';
 import { CellExpandComponent } from '../TableComponent/CellExpand';
 import FAQPage from '../FAQPage';
+import LanguagesPage from '../LanguagesPage';
 
 interface INavBarProps {
   openDrawer: boolean;
   productId: number | null;
   FAQId: number | null;
+  languageId: number | null;
   handleThemeClick: () => void;
   darkTheme: boolean;
 }
@@ -33,11 +36,13 @@ const NavBar: React.FC<INavBarProps> = ({
   openDrawer,
   productId,
   FAQId,
+  languageId,
   handleThemeClick,
   darkTheme,
 }) => {
   const chosenProduct = productRows.find(row => row.id === productId);
   const chosenQuestion = FAQRows.find(row => row.id === FAQId);
+  const chosenLanguage = languagesRows.find(row => row.id === languageId);
   const { classes, cx } = useNavBarStyles();
 
   const productCatalogColumns: GridColDef[] = [
@@ -158,6 +163,31 @@ const NavBar: React.FC<INavBarProps> = ({
     },
   ];
 
+  const languagesColumns: GridColDef[] = [
+    {
+      field: 'id',
+      headerName: 'ID',
+      width: 50,
+    },
+    {
+      field: 'name',
+      headerName: 'Name',
+      width: 910,
+      editable: false,
+      renderCell: (params: GridCellParams) => {
+        return <CellExpandComponent params={params} darkTheme={darkTheme} />;
+      },
+    },
+    {
+      field: 'actions',
+      headerName: 'Дії',
+      editable: false,
+      sortable: false,
+      disableColumnMenu: true,
+      renderCell: () => <FAQActions darkTheme={darkTheme} />,
+      width: 120,
+    },
+  ];
   const FAQColumns: GridColDef[] = [
     {
       field: 'id',
@@ -211,53 +241,78 @@ const NavBar: React.FC<INavBarProps> = ({
           {FAQId && chosenQuestion && (
             <FAQPage darkTheme={darkTheme} chosenQuestion={chosenQuestion} />
           )}
-          {!productId && !chosenProduct && !FAQId && !chosenQuestion && (
-            <>
-              <CollapsedBreadcrumbs darkTheme={darkTheme} />
-
-              <>
-                <Typography
-                  component="h2"
-                  className={cx(classes.title, darkTheme ? 'dark' : null)}
-                >
-                  Каталог товарів
-                </Typography>
-                <TableComponent
-                  darkTheme={darkTheme}
-                  columns={productCatalogColumns}
-                  rows={productRows}
-                />
-              </>
-
-              <>
-                <Typography
-                  component="h2"
-                  className={cx(classes.title, darkTheme ? 'dark' : null)}
-                >
-                  Категорії товарів
-                </Typography>
-                <TableComponent
-                  darkTheme={darkTheme}
-                  columns={productCategoriesColumns}
-                  rows={productCategoriesRows}
-                />
-              </>
-              <>
-                <Typography
-                  component="h2"
-                  className={cx(classes.title, darkTheme ? 'dark' : null)}
-                >
-                  FAQ`s
-                </Typography>
-                <TableComponent
-                  darkTheme={darkTheme}
-                  columns={FAQColumns}
-                  rows={FAQRows}
-                  page={'FAQ'}
-                />
-              </>
-            </>
+          {languageId && chosenLanguage && (
+            <LanguagesPage
+              darkTheme={darkTheme}
+              chosenLanguage={chosenLanguage}
+            />
           )}
+          {!productId &&
+            !chosenProduct &&
+            !FAQId &&
+            !chosenQuestion &&
+            !languageId &&
+            !chosenLanguage && (
+              <>
+                <CollapsedBreadcrumbs darkTheme={darkTheme} />
+
+                <>
+                  <Typography
+                    component="h2"
+                    className={cx(classes.title, darkTheme ? 'dark' : null)}
+                  >
+                    Каталог товарів
+                  </Typography>
+                  <TableComponent
+                    darkTheme={darkTheme}
+                    columns={productCatalogColumns}
+                    rows={productRows}
+                  />
+                </>
+
+                <>
+                  <Typography
+                    component="h2"
+                    className={cx(classes.title, darkTheme ? 'dark' : null)}
+                  >
+                    Категорії товарів
+                  </Typography>
+                  <TableComponent
+                    darkTheme={darkTheme}
+                    columns={productCategoriesColumns}
+                    rows={productCategoriesRows}
+                  />
+                </>
+                <>
+                  <Typography
+                    component="h2"
+                    className={cx(classes.title, darkTheme ? 'dark' : null)}
+                  >
+                    FAQ`s
+                  </Typography>
+                  <TableComponent
+                    darkTheme={darkTheme}
+                    columns={FAQColumns}
+                    rows={FAQRows}
+                    page={'FAQ'}
+                  />
+                </>
+                <>
+                  <Typography
+                    component="h2"
+                    className={cx(classes.title, darkTheme ? 'dark' : null)}
+                  >
+                    Мови
+                  </Typography>
+                  <TableComponent
+                    darkTheme={darkTheme}
+                    columns={languagesColumns}
+                    rows={languagesRows}
+                    page={'languages'}
+                  />
+                </>
+              </>
+            )}
         </Container>
       </main>
     </div>

@@ -8,11 +8,14 @@ import {
   InputLabel,
   Paper,
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import { nanoid } from 'nanoid';
 import Delete from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
-import { StyledField, useProductPageStyles } from '../ProductPage.styles';
+import {
+  StyledCustomPaper,
+  StyledField,
+  useProductPageStyles,
+} from '../ProductPage.styles';
 
 const attributes = [
   'attribute1',
@@ -48,48 +51,11 @@ interface IComboBoxProps {
   darkTheme: boolean;
 }
 
-interface ICustomPaperProps {
-  darkTheme: boolean;
-}
-
-const CustomPaper: React.FC = props => {
+export const CustomPaper: React.FC = props => {
   return <Paper {...props} />;
 };
 
-const StyledCustomPaper = styled(CustomPaper, {
-  shouldForwardProp: prop =>
-    prop !== 'color' &&
-    prop !== 'variant' &&
-    prop !== 'sx' &&
-    prop !== 'darkTheme',
-  name: 'SearchField',
-  slot: 'Root',
-})<ICustomPaperProps>(({ darkTheme }) => {
-  return {
-    '&': {
-      backgroundColor: darkTheme ? '#1F2A38' : '#ffffff',
-      color: darkTheme ? '#fff' : '#111111',
-    },
-    '& p': {
-      color: darkTheme ? '#ffffff' : 'inherit',
-      margin: 0,
-    },
-    '& ul::-webkit-scrollbar': {
-      width: '5px',
-      height: '5px',
-    },
-    '& ul::-webkit-scrollbar-track': {
-      background: darkTheme ? '#24303F' : 'transparent',
-    },
-    '& ul::-webkit-scrollbar-thumb': {
-      background: 'grey',
-      '&:hover': { background: 'grey' },
-      borderRadius: '100vw',
-    },
-  };
-});
-
-const ComboBox: React.FC<IComboBoxProps> = ({ list, darkTheme }) => {
+export const ComboBox: React.FC<IComboBoxProps> = ({ list, darkTheme }) => {
   const { classes, cx } = useProductPageStyles();
 
   return (
@@ -116,7 +82,6 @@ interface IAttributesProps {
 }
 
 export const Attributes: React.FC<IAttributesProps> = ({ darkTheme }) => {
-  // const [attributesCount, setAttributesCount] = React.useState<number>(1);
   const [attributesCount, setAttributesCount] = React.useState([
     {
       id: nanoid(),

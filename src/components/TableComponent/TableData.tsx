@@ -475,6 +475,17 @@ export const FAQRows = [
   },
 ];
 
+export const languagesRows = [
+  {
+    id: 1,
+    name: 'Українська',
+  },
+  {
+    id: 2,
+    name: 'English',
+  },
+];
+
 export const showImgColumn = productRows.some(item =>
   item.hasOwnProperty('image')
 );
