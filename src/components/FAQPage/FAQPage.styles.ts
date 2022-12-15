@@ -31,6 +31,8 @@ export const useFAQPageStyles = makeStyles<void>()(
       },
     },
     label: {
+      fontWeight: 700,
+      fontSize: '20px',
       display: 'flex',
       flexDirection: 'column',
       marginBottom: '24px',
@@ -41,16 +43,10 @@ export const useFAQPageStyles = makeStyles<void>()(
       },
     },
     radioButtonsLabel: {
+      fontWeight: 700,
+      fontSize: '20px',
       color: '#000',
       marginBottom: '16px',
-      transition: 'all 250ms ease-out',
-      '&.dark': {
-        color: '#fff',
-      },
-    },
-    publishedText: {
-      marginTop: '24px',
-      color: '#000',
       transition: 'all 250ms ease-out',
       '&.dark': {
         color: '#fff',
@@ -89,10 +85,10 @@ export const useFAQPageStyles = makeStyles<void>()(
       },
     },
     divider: {
-      borderColor: '#111111',
+      borderColor: 'rgba(17, 17, 17, 0.25)',
       transition: 'all 250ms ease-out',
       '&.dark': {
-        borderColor: '#ffffff',
+        borderColor: 'rgba(255, 255, 255, 0.12)',
       },
     },
     selectInput: {

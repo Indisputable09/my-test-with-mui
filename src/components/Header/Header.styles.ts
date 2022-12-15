@@ -46,7 +46,9 @@ export const useHeaderStyles = makeStyles<void>()(
       fontSize: '11px',
       backgroundColor: 'transparent',
       transition: 'all linear 250ms',
+      color: '#1976D2',
       '&.dark': {
+        color: '#ffffff',
         backgroundColor: 'inherit',
         border: '1px solid #fff',
       },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Divider, IconButton, InputLabel } from '@mui/material';
+import { Autocomplete, Box, IconButton, InputLabel } from '@mui/material';
 import { Theme, useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
@@ -7,7 +7,11 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 import CancelIcon from '@mui/icons-material/Cancel';
-import { StyledField, useProductPageStyles } from '../ProductPage.styles';
+import {
+  StyledCustomPaper,
+  StyledField,
+  useProductPageStyles,
+} from '../ProductPage.styles';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -83,7 +87,7 @@ export const MultipleSelectChip: React.FC<IMultipleSelectChipProps> = ({
 
   return (
     <div>
-      <FormControl sx={{ width: '70%' }}>
+      <FormControl sx={{ width: '100%' }}>
         <Select
           sx={{ mt: '16px' }}
           id="multiple-chip"
@@ -171,34 +175,67 @@ export const Connections: React.FC<IConnectionsProps> = ({ darkTheme }) => {
       autoComplete="off"
     >
       <InputLabel
-        htmlFor="manufactured"
+        htmlFor="autocomplete-producer"
         className={cx(classes.label, darkTheme ? 'dark' : null)}
       >
         Виробник
-        <StyledField
+        <Autocomplete
+          id="autocomplete-producer"
+          noOptionsText={<p>Відсутні результати</p>}
+          options={names}
+          className={cx(classes.autocomplete, darkTheme ? 'dark' : null)}
+          renderInput={params => (
+            <StyledField {...params} darkTheme={darkTheme} />
+          )}
+          PaperComponent={props => {
+            return <StyledCustomPaper {...props} darkTheme={darkTheme} />;
+          }}
+          ListboxProps={{
+            style: {
+              maxHeight: '150px',
+            },
+          }}
+        />
+        {/* <StyledField
           id="manufactured"
           variant="outlined"
-          sx={{ width: '70%', mt: '16px' }}
+          sx={{ width: '100%', mt: '16px' }}
           darkTheme={darkTheme}
-        />
+        /> */}
       </InputLabel>
       <InputLabel
-        htmlFor="mainCategory"
+        htmlFor="autocomplete-category"
         className={cx(classes.label, darkTheme ? 'dark' : null)}
       >
         <div>
           Категорія<span style={{ color: 'red', fontSize: '20px' }}>*</span>
         </div>
-        <MultipleSelectChip darkTheme={darkTheme} list={names} />
+        <Autocomplete
+          id="autocomplete-category"
+          noOptionsText={<p>Відсутні результати</p>}
+          options={names}
+          className={cx(classes.autocomplete, darkTheme ? 'dark' : null)}
+          renderInput={params => (
+            <StyledField {...params} darkTheme={darkTheme} />
+          )}
+          PaperComponent={props => {
+            return <StyledCustomPaper {...props} darkTheme={darkTheme} />;
+          }}
+          ListboxProps={{
+            style: {
+              maxHeight: '150px',
+            },
+          }}
+        />
+        {/* <MultipleSelectChip darkTheme={darkTheme} list={names} /> */}
       </InputLabel>
       <InputLabel
         htmlFor="showInCategories"
-        className={cx(classes.noMarginLabel, darkTheme ? 'dark' : null)}
+        className={cx(classes.label, darkTheme ? 'dark' : null)}
       >
         Показувати в категоріях
         <MultipleSelectChip darkTheme={darkTheme} list={categories} />
       </InputLabel>
-      <Divider className={cx(classes.divider, darkTheme ? 'dark' : null)} />
       <InputLabel
         htmlFor="relatedProducts"
         className={cx(classes.label, darkTheme ? 'dark' : null)}

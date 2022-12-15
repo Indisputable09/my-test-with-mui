@@ -18,20 +18,26 @@ export const useProductPageStyles = makeStyles<void>()(
     linksListText: {
       fontSize: '15px',
       '&.active': {
-        color: '#3A57E8',
+        color: ' #1976D2',
         '&:after': {
           content: `''`,
-
           width: '100%',
           position: 'absolute',
           left: 0,
           top: 'calc(100% + 6px)',
-
-          borderBottom: '2px solid #3A57E8',
+          borderBottom: '2px solid #1976D2',
+        },
+        '&.dark': {
+          color: '#90CAF9',
+          '&:after': {
+            borderBottom: '2px solid #90CAF9',
+          },
         },
       },
     },
     label: {
+      fontWeight: 700,
+      fontSize: '20px',
       display: 'flex',
       flexDirection: 'column',
       marginBottom: '24px',
@@ -42,6 +48,8 @@ export const useProductPageStyles = makeStyles<void>()(
       },
     },
     radioButtonsLabel: {
+      fontWeight: 700,
+      fontSize: '20px',
       color: '#000',
       marginBottom: '16px',
       transition: 'all 250ms ease-out',
@@ -50,6 +58,8 @@ export const useProductPageStyles = makeStyles<void>()(
       },
     },
     publishedText: {
+      fontWeight: 700,
+      fontSize: '20px',
       marginTop: '24px',
       color: '#000',
       transition: 'all 250ms ease-out',
@@ -58,6 +68,8 @@ export const useProductPageStyles = makeStyles<void>()(
       },
     },
     noMarginLabel: {
+      fontWeight: 700,
+      fontSize: '20px',
       display: 'flex',
       flexDirection: 'column',
       color: '#000',
@@ -90,12 +102,10 @@ export const useProductPageStyles = makeStyles<void>()(
       },
     },
     divider: {
-      marginTop: '16px',
-      marginBottom: '24px',
-      borderColor: '#111111',
+      borderColor: 'rgba(17, 17, 17, 0.25)',
       transition: 'all 250ms ease-out',
       '&.dark': {
-        borderColor: '#ffffff',
+        borderColor: 'rgba(255, 255, 255, 0.12)',
       },
     },
     selectInput: {
@@ -170,7 +180,7 @@ export const useProductPageStyles = makeStyles<void>()(
         color: '#ffffff',
       },
     },
-    comboBox: { width: 300, marginTop: '16px' },
+    comboBox: { width: 440, marginTop: '16px' },
     comboBoxInput: {
       '&.dark': {
         color: '#fff',
@@ -199,19 +209,20 @@ export const useProductPageStyles = makeStyles<void>()(
     attributesDivider: {
       width: '124px',
       margin: '10px 32px 0 32px',
-      borderColor: '#111111',
+      borderColor: 'rgba(17, 17, 17, 0.25)',
       transition: 'all 250ms ease-out',
       '&.dark': {
-        borderColor: '#ffffff',
+        borderColor: 'rgba(255, 255, 255, 0.12)',
       },
     },
-    bottomDivider: {
-      width: '864px',
+    attributesBottomDivider: {
+      borderColor: 'rgba(17, 17, 17, 0.25)',
+      width: '100%',
       marginBottom: '24px',
-      borderColor: '#111111',
+
       transition: 'all 250ms ease-out',
       '&.dark': {
-        borderColor: '#ffffff',
+        borderColor: 'rgba(255, 255, 255, 0.12)',
       },
     },
     deleteAttributeButton: {
@@ -224,7 +235,6 @@ export const useProductPageStyles = makeStyles<void>()(
     addButton: {
       width: '116px',
       marginLeft: 'auto',
-      marginRight: '286px',
       padding: '8px 16px 8px 16px',
       fontSize: '11px',
       backgroundColor: '#3A57E8',
@@ -235,6 +245,7 @@ export const useProductPageStyles = makeStyles<void>()(
         border: '1px solid #fff',
       },
     },
+    autocomplete: { width: '100%', marginTop: '16px' },
   })
 );
 

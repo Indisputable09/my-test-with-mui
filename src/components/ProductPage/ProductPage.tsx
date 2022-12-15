@@ -151,7 +151,8 @@ const ProductPage: React.FC<IProductPageProps> = ({
               <Typography
                 className={cx(
                   classes.linksListText,
-                  linkId === link.id ? 'active' : null
+                  linkId === link.id ? 'active' : null,
+                  darkTheme ? 'dark' : null
                 )}
                 component="p"
               >
@@ -161,7 +162,7 @@ const ProductPage: React.FC<IProductPageProps> = ({
           );
         })}
       </List>
-      <Divider />
+      <Divider className={cx(classes.divider, darkTheme ? 'dark' : null)} />
       {linkId === 1 && <Basic darkTheme={darkTheme} />}
       {linkId === 2 && <Data darkTheme={darkTheme} />}
       {linkId === 3 && <Connections darkTheme={darkTheme} />}

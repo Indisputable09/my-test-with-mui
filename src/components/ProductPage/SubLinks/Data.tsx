@@ -126,7 +126,7 @@ export const Data: React.FC<IDataProps> = ({ darkTheme }) => {
         <StyledField
           id="price"
           variant="outlined"
-          sx={{ width: '70%', mt: '16px' }}
+          sx={{ width: '100%', mt: '16px' }}
           darkTheme={darkTheme}
         />
       </InputLabel>
@@ -143,7 +143,7 @@ export const Data: React.FC<IDataProps> = ({ darkTheme }) => {
         <StyledField
           id="minQuantity"
           variant="outlined"
-          sx={{ width: '70%', mt: '16px' }}
+          sx={{ width: '100%', mt: '16px' }}
           onChange={handleMinQuantityChange}
           value={minQuantity}
           darkTheme={darkTheme}
@@ -157,7 +157,7 @@ export const Data: React.FC<IDataProps> = ({ darkTheme }) => {
         <StyledField
           id="inStock"
           variant="outlined"
-          sx={{ width: '70%', mt: '16px' }}
+          sx={{ width: '100%', mt: '16px' }}
           darkTheme={darkTheme}
         />
       </InputLabel>
