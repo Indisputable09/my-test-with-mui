@@ -17,16 +17,20 @@ export const useFAQPageStyles = makeStyles<void>()(
     linksListText: {
       fontSize: '15px',
       '&.active': {
-        color: '#3A57E8',
+        color: ' #1976D2',
         '&:after': {
           content: `''`,
-
           width: '100%',
           position: 'absolute',
           left: 0,
           top: 'calc(100% + 6px)',
-
-          borderBottom: '2px solid #3A57E8',
+          borderBottom: '2px solid #1976D2',
+        },
+        '&.dark': {
+          color: '#90CAF9',
+          '&:after': {
+            borderBottom: '2px solid #90CAF9',
+          },
         },
       },
     },
