@@ -103,7 +103,8 @@ const FAQPage: React.FC<IFAQPageProps> = ({ chosenQuestion, darkTheme }) => {
               <Typography
                 className={cx(
                   classes.linksListText,
-                  linkId === link.id ? 'active' : null
+                  linkId === link.id ? 'active' : null,
+                  darkTheme ? 'dark' : null
                 )}
                 component="p"
               >
