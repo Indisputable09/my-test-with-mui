@@ -384,6 +384,7 @@ export const productRows = [
     status: 'Active',
   },
 ];
+
 export const productCategoriesRows = [
   {
     id: 1,
@@ -488,6 +489,17 @@ export const languagesRows = [
   {
     id: 2,
     name: 'English',
+  },
+];
+
+export const citiesRows = [
+  {
+    id: 1,
+    name: 'Київ',
+  },
+  {
+    id: 2,
+    name: 'Харків',
   },
 ];
 
