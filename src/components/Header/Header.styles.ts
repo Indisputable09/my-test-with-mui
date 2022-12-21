@@ -9,8 +9,8 @@ export const useHeaderStyles = makeStyles<void>()(
       position: 'relative',
       transition: 'all 250ms ease-out',
       '&.dark': {
-        backgroundColor: '#212C3A',
-        boxShadow: '0px 3px 11px -1px rgba(255,255,255,1);',
+        backgroundColor: '#1F2A38',
+        boxShadow: 'none',
       },
     },
     menuToggler: {

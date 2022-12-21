@@ -113,7 +113,14 @@ export const Attributes: React.FC<IAttributesProps> = ({ darkTheme }) => {
       {attributesCount.length === 0 ? (
         <Typography
           component="h2"
-          sx={{ fontWeight: 700, fontSize: '20px', textAlign: 'center', mb: 2 }}
+          sx={{
+            fontFamily: '"Work Sans", "Roboto", "sans-serif" !important',
+            fontWeight: 700,
+            fontSize: '20px',
+            lineHeight: '1.15',
+            textAlign: 'center',
+            mb: 2,
+          }}
         >
           Атрибути відсутні
         </Typography>

@@ -313,6 +313,8 @@ export const productRows = [
   {
     id: 1,
     image: img1,
+    sku: 'ART-2',
+    category: 'Mobile phone',
     name: 'В цій бібліотеці ще немає можливості робити рядки автоматичної висоти залежно від вмісту контенту, тому приходиться виходити з цієї ситуації кастомними шляхами',
     status: 'Inactive',
   },
@@ -320,9 +322,11 @@ export const productRows = [
     id: 2,
     image: img1,
     name: 'Cersei',
+    sku: 'ART-3',
     price: 1500,
     discount: 20,
     status: 'Active',
+    category: 'Mobile phone',
   },
   {
     id: 3,
@@ -330,6 +334,7 @@ export const productRows = [
     name: 'Jaime',
     price: 1800,
     status: 'Active',
+    category: 'Mobile phone',
   },
   {
     id: 4,

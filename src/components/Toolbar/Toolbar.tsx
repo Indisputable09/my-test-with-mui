@@ -90,11 +90,11 @@ const Toolbar: React.FC<IToolbarProps> = ({
         <SelectActions darkTheme={darkTheme} page={page} />
       ) : (
         <Button
-          variant="contained"
+          // variant="contained"
           className={cx(classes.addButton, darkTheme ? 'dark' : null)}
           onClick={handleAddClick}
         >
-          <AddIcon /> Додати
+          <AddIcon />
         </Button>
       )}
     </Box>

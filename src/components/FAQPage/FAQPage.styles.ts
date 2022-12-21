@@ -35,8 +35,10 @@ export const useFAQPageStyles = makeStyles<void>()(
       },
     },
     label: {
+      fontFamily: '"Work Sans", "Roboto", "sans-serif" !important',
       fontWeight: 700,
       fontSize: '20px',
+      lineHeight: '1.15',
       display: 'flex',
       flexDirection: 'column',
       marginBottom: '24px',
@@ -47,8 +49,10 @@ export const useFAQPageStyles = makeStyles<void>()(
       },
     },
     radioButtonsLabel: {
+      fontFamily: '"Work Sans", "Roboto", "sans-serif" !important',
       fontWeight: 700,
       fontSize: '20px',
+      lineHeight: '1.15',
       color: '#000',
       marginBottom: '16px',
       transition: 'all 250ms ease-out',

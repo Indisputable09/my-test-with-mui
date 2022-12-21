@@ -21,8 +21,10 @@ export const useLanguagesPageStyles = makeStyles<void>()(
       },
     },
     label: {
+      fontFamily: '"Work Sans", "Roboto", "sans-serif" !important',
       fontWeight: 700,
       fontSize: '20px',
+      lineHeight: '1.15',
       display: 'flex',
       flexDirection: 'column',
       marginBottom: '24px',
@@ -34,8 +36,10 @@ export const useLanguagesPageStyles = makeStyles<void>()(
     },
     autocomplete: { width: '100%', marginTop: '16px' },
     mainLanguageText: {
+      fontFamily: '"Work Sans", "Roboto", "sans-serif" !important',
       fontWeight: 700,
       fontSize: '20px',
+      lineHeight: '1.15',
       color: '#000',
       transition: 'all 250ms ease-out',
       '&.dark': {

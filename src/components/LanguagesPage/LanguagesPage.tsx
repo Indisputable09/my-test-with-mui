@@ -231,7 +231,10 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({
             component="p"
             className={cx(classes.mainLanguageText, darkTheme ? 'dark' : null)}
           >
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Box
+              component="span"
+              sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
+            >
               Індексований
               <CustomizedTooltip
                 title="no follow, no index"

@@ -5,7 +5,12 @@ import { CustomPaper } from './SubLinks/Attributes';
 
 export const useProductPageStyles = makeStyles<void>()(
   (theme, _params, classes) => ({
-    productTitle: { fontSize: '3rem', mb: '20px' },
+    productTitle: {
+      fontWeight: 400,
+      fontSize: '34px',
+      lineHeight: '123.5%',
+      marginBottom: '32px',
+    },
     panel: {
       display: 'flex',
       justifyContent: 'space-between',
@@ -14,9 +19,13 @@ export const useProductPageStyles = makeStyles<void>()(
     buttonsBlock: { display: 'flex', gap: '16px' },
     button: { display: 'flex', justifyContent: 'center', height: '34px' },
     linksList: { display: 'flex', gap: '32px' },
-    linksListItem: { width: 'inherit' },
+    linksListItem: {
+      width: 'inherit',
+    },
     linksListText: {
-      fontSize: '15px',
+      fontWeight: '500',
+      fontSize: '14px',
+      lineHeight: '1.7',
       '&.active': {
         color: ' #1976D2',
         '&:after': {
@@ -36,8 +45,10 @@ export const useProductPageStyles = makeStyles<void>()(
       },
     },
     label: {
+      fontFamily: '"Work Sans", "Roboto", "sans-serif" !important',
       fontWeight: 700,
       fontSize: '20px',
+      lineHeight: '1.15',
       display: 'flex',
       flexDirection: 'column',
       marginBottom: '24px',
@@ -48,8 +59,10 @@ export const useProductPageStyles = makeStyles<void>()(
       },
     },
     radioButtonsLabel: {
+      fontFamily: '"Work Sans", "Roboto", "sans-serif" !important',
       fontWeight: 700,
       fontSize: '20px',
+      lineHeight: '1.15',
       color: '#000',
       marginBottom: '16px',
       transition: 'all 250ms ease-out',
@@ -58,8 +71,10 @@ export const useProductPageStyles = makeStyles<void>()(
       },
     },
     publishedText: {
+      fontFamily: '"Work Sans", "Roboto", "sans-serif" !important',
       fontWeight: 700,
       fontSize: '20px',
+      lineHeight: '1.15',
       marginTop: '24px',
       color: '#000',
       transition: 'all 250ms ease-out',
@@ -68,8 +83,10 @@ export const useProductPageStyles = makeStyles<void>()(
       },
     },
     noMarginLabel: {
+      fontFamily: '"Work Sans", "Roboto", "sans-serif" !important',
       fontWeight: 700,
       fontSize: '20px',
+      lineHeight: '1.15',
       display: 'flex',
       flexDirection: 'column',
       color: '#000',

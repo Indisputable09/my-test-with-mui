@@ -50,7 +50,14 @@ export const Basic: React.FC<IBasicProps> = ({ darkTheme }) => {
       </InputLabel>
       <Typography
         component="h2"
-        sx={{ mb: '24px', mt: 2, fontWeight: 700, fontSize: '20px' }}
+        sx={{
+          mb: '24px',
+          mt: 2,
+          fontFamily: '"Work Sans", "Roboto", "sans-serif" !important',
+          fontWeight: 700,
+          fontSize: '20px',
+          lineHeight: '1.15',
+        }}
       >
         Опис
       </Typography>

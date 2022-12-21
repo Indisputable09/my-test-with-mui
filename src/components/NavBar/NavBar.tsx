@@ -50,12 +50,16 @@ const NavBar: React.FC<INavBarProps> = ({
       field: 'id',
       headerName: 'ID',
       width: 50,
+      headerAlign: 'center',
+      align: 'center',
     },
     {
       field: 'image',
       headerName: 'Image',
       width: 110,
       editable: false,
+      headerAlign: 'center',
+      align: 'center',
       renderCell: params => {
         return (
           <div>
@@ -68,6 +72,7 @@ const NavBar: React.FC<INavBarProps> = ({
       field: 'name',
       headerName: 'Name',
       width: 330,
+      flex: 1,
       editable: false,
       renderCell: (params: GridCellParams) => {
         return <CellExpandComponent params={params} darkTheme={darkTheme} />;
@@ -78,12 +83,16 @@ const NavBar: React.FC<INavBarProps> = ({
       headerName: 'SKU',
       width: showImgColumn ? 110 : 220,
       editable: false,
+      headerAlign: 'center',
+      align: 'center',
     },
     {
       field: 'price',
       headerName: 'Price',
       width: 110,
       editable: false,
+      headerAlign: 'center',
+      align: 'center',
       renderCell: params => {
         return (
           <PriceCell price={params.row.price} discount={params.row?.discount} />
@@ -94,13 +103,18 @@ const NavBar: React.FC<INavBarProps> = ({
       field: 'category',
       headerName: 'Category',
       width: 150,
+      flex: 1,
       editable: false,
+      headerAlign: 'center',
+      align: 'center',
     },
     {
       field: 'status',
       headerName: 'Status',
       width: 100,
       editable: false,
+      headerAlign: 'center',
+      align: 'center',
       renderCell: params => {
         return (
           <ControlledSwitch status={params.row.status} darkTheme={darkTheme} />
@@ -112,6 +126,8 @@ const NavBar: React.FC<INavBarProps> = ({
       headerName: 'Дії',
       editable: false,
       sortable: false,
+      headerAlign: 'center',
+      align: 'center',
       disableColumnMenu: true,
       renderCell: () => <MoreActions darkTheme={darkTheme} />,
       width: 120,
@@ -123,12 +139,16 @@ const NavBar: React.FC<INavBarProps> = ({
       field: 'id',
       headerName: 'ID',
       width: 50,
+      headerAlign: 'center',
+      align: 'center',
     },
     {
       field: 'image',
       headerName: 'Image',
       width: 110,
       editable: false,
+      headerAlign: 'center',
+      align: 'center',
       renderCell: params => {
         return (
           <div>
@@ -141,6 +161,7 @@ const NavBar: React.FC<INavBarProps> = ({
       field: 'name',
       headerName: 'Name',
       width: 700,
+      flex: 1,
       editable: false,
       renderCell: (params: GridCellParams) => {
         return <CellExpandComponent params={params} darkTheme={darkTheme} />;
@@ -151,6 +172,8 @@ const NavBar: React.FC<INavBarProps> = ({
       headerName: 'Сортування',
       width: 100,
       editable: false,
+      headerAlign: 'center',
+      align: 'center',
     },
     {
       field: 'actions',
@@ -160,6 +183,8 @@ const NavBar: React.FC<INavBarProps> = ({
       disableColumnMenu: true,
       renderCell: () => <FAQActions darkTheme={darkTheme} />,
       width: 120,
+      headerAlign: 'center',
+      align: 'center',
     },
   ];
 
@@ -168,11 +193,14 @@ const NavBar: React.FC<INavBarProps> = ({
       field: 'id',
       headerName: 'ID',
       width: 50,
+      headerAlign: 'center',
+      align: 'center',
     },
     {
       field: 'name',
       headerName: 'Name',
       width: 910,
+      flex: 1,
       editable: false,
       renderCell: (params: GridCellParams) => {
         return <CellExpandComponent params={params} darkTheme={darkTheme} />;
@@ -183,6 +211,8 @@ const NavBar: React.FC<INavBarProps> = ({
       headerName: 'Дії',
       editable: false,
       sortable: false,
+      headerAlign: 'center',
+      align: 'center',
       disableColumnMenu: true,
       renderCell: () => <FAQActions darkTheme={darkTheme} />,
       width: 120,
@@ -193,11 +223,14 @@ const NavBar: React.FC<INavBarProps> = ({
       field: 'id',
       headerName: 'ID',
       width: 50,
+      headerAlign: 'center',
+      align: 'center',
     },
     {
       field: 'name',
       headerName: 'Name',
       width: 910,
+      flex: 1,
       editable: false,
       renderCell: (params: GridCellParams) => {
         return <CellExpandComponent params={params} darkTheme={darkTheme} />;
@@ -211,6 +244,8 @@ const NavBar: React.FC<INavBarProps> = ({
       disableColumnMenu: true,
       renderCell: () => <FAQActions darkTheme={darkTheme} />,
       width: 120,
+      headerAlign: 'center',
+      align: 'center',
     },
   ];
 
@@ -267,6 +302,7 @@ const NavBar: React.FC<INavBarProps> = ({
                     darkTheme={darkTheme}
                     columns={productCatalogColumns}
                     rows={productRows}
+                    openDrawer={openDrawer}
                   />
                 </>
 
@@ -281,6 +317,7 @@ const NavBar: React.FC<INavBarProps> = ({
                     darkTheme={darkTheme}
                     columns={productCategoriesColumns}
                     rows={productCategoriesRows}
+                    openDrawer={openDrawer}
                   />
                 </>
                 <>
@@ -295,6 +332,7 @@ const NavBar: React.FC<INavBarProps> = ({
                     columns={FAQColumns}
                     rows={FAQRows}
                     page={'FAQ'}
+                    openDrawer={openDrawer}
                   />
                 </>
                 <>
@@ -309,6 +347,7 @@ const NavBar: React.FC<INavBarProps> = ({
                     columns={languagesColumns}
                     rows={languagesRows}
                     page={'languages'}
+                    openDrawer={openDrawer}
                   />
                 </>
               </>
