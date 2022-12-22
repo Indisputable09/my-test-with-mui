@@ -54,17 +54,51 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({
   const [openBackModal, setOpenBackModal] = React.useState<boolean>(false);
   const [openDeleteModal, setOpenDeleteModal] = React.useState<boolean>(false);
   const [openSaveModal, setOpenSaveModal] = React.useState<boolean>(false);
-  const [mainLanguage, setMainLanguage] = React.useState<boolean>(true);
-  const [indexed, setIndexed] = React.useState<boolean>(false);
 
-  const handlePublishedChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setMainLanguage(event.target.checked);
+  const [languagesFieldsValues, setLanguagesFieldsValues] = React.useState({
+    language: '',
+    ISO: '',
+    languageIcon: null,
+    url: '',
+    mainLanguage: true,
+    indexed: false,
+  });
+
+  const handleLanguagesFieldsChange = (e: React.ChangeEvent) => {
+    setLanguagesFieldsValues((prevState: any) => {
+      return {
+        ...prevState,
+        [e.target.id]: (e.target as HTMLInputElement).value,
+      };
+    });
   };
 
-  const handleIndexedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIndexed(event.target.checked);
+  const handleAutocompleteChange = (e: any, newValue: string | null) => {
+    const id = e.target.id.split('-')[0];
+    setLanguagesFieldsValues((prevState: any) => {
+      return {
+        ...prevState,
+        [id]: newValue,
+      };
+    });
+  };
+
+  const handleMainLanguageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLanguagesFieldsValues((prevState: any) => {
+      return {
+        ...prevState,
+        mainLanguage: (e.target as HTMLInputElement).checked,
+      };
+    });
+  };
+
+  const handleIndexedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLanguagesFieldsValues((prevState: any) => {
+      return {
+        ...prevState,
+        indexed: (e.target as HTMLInputElement).checked,
+      };
+    });
   };
 
   const handleClickOpenModal = (variant: string) => {
@@ -141,16 +175,18 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({
         autoComplete="off"
       >
         <InputLabel
-          htmlFor="name"
+          htmlFor="language"
           className={cx(classes.label, darkTheme ? 'dark' : null)}
         >
           Назва
           <StyledField
-            id="name"
+            id="language"
             variant="outlined"
             sx={{ width: '100%', mt: '16px' }}
             required
             darkTheme={darkTheme}
+            value={languagesFieldsValues.language}
+            onChange={handleLanguagesFieldsChange}
           />
         </InputLabel>
         <InputLabel
@@ -173,16 +209,20 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({
             sx={{ width: '100%', mt: '16px' }}
             required
             darkTheme={darkTheme}
+            value={languagesFieldsValues.ISO}
+            onChange={handleLanguagesFieldsChange}
           />
         </InputLabel>
 
         <InputLabel
-          htmlFor="icon"
+          htmlFor="languageIcon"
           className={cx(classes.label, darkTheme ? 'dark' : null)}
         >
           Значок
           <Autocomplete
-            id="autocomplete-icon"
+            id="languageIcon"
+            value={languagesFieldsValues.languageIcon}
+            onChange={handleAutocompleteChange}
             noOptionsText={<p>Відсутні результати</p>}
             options={icons}
             className={cx(classes.autocomplete, darkTheme ? 'dark' : null)}
@@ -210,6 +250,8 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({
             sx={{ width: '100%', mt: '16px' }}
             required
             darkTheme={darkTheme}
+            value={languagesFieldsValues.url}
+            onChange={handleLanguagesFieldsChange}
           />
         </InputLabel>
         <Box sx={{ mb: '24px' }}>
@@ -220,8 +262,8 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({
             Основна мова
           </Typography>
           <Switch
-            checked={mainLanguage}
-            onChange={handlePublishedChange}
+            checked={languagesFieldsValues.mainLanguage}
+            onChange={handleMainLanguageChange}
             inputProps={{ 'aria-label': 'published' }}
             className={cx(classes.switch, darkTheme ? 'dark' : null)}
           />
@@ -246,7 +288,7 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({
             </Box>
           </Typography>
           <Switch
-            checked={indexed}
+            checked={languagesFieldsValues.indexed}
             onChange={handleIndexedChange}
             inputProps={{ 'aria-label': 'published' }}
             className={cx(classes.switch, darkTheme ? 'dark' : null)}

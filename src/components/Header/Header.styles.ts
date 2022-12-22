@@ -48,9 +48,9 @@ export const useHeaderStyles = makeStyles<void>()(
       transition: 'all linear 250ms',
       color: '#1976D2',
       '&.dark': {
-        color: '#ffffff',
+        color: '#90CAF9',
         backgroundColor: 'inherit',
-        border: '1px solid #fff',
+        border: '1px solid #90CAF9',
       },
     },
     credentials: {

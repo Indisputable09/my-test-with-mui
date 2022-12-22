@@ -5,22 +5,28 @@ import { StyledField, useFAQPageStyles } from '../FAQPage.styles';
 
 interface IBasicFAQProps {
   darkTheme: boolean;
+  FAQFieldsValues: { question: string; answer: string };
+  setFAQFieldsValues: (obj: any) => void;
 }
 
-export const BasicFAQ: React.FC<IBasicFAQProps> = ({ darkTheme }) => {
+export const BasicFAQ: React.FC<IBasicFAQProps> = ({
+  darkTheme,
+  setFAQFieldsValues,
+  FAQFieldsValues,
+}) => {
   const { classes, cx } = useFAQPageStyles();
 
+  const handleFAQFieldsChange = (e: React.ChangeEvent) => {
+    setFAQFieldsValues((prevState: any) => {
+      return {
+        ...prevState,
+        [e.target.id]: (e.target as HTMLInputElement).value,
+      };
+    });
+  };
+
   return (
-    <Box
-      component="form"
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        py: '24px',
-      }}
-      noValidate
-      autoComplete="off"
-    >
+    <>
       <InputLabel
         htmlFor="question"
         className={cx(classes.label, darkTheme ? 'dark' : null)}
@@ -32,6 +38,8 @@ export const BasicFAQ: React.FC<IBasicFAQProps> = ({ darkTheme }) => {
           sx={{ width: '100%', mt: '16px' }}
           required
           darkTheme={darkTheme}
+          value={FAQFieldsValues.question}
+          onChange={handleFAQFieldsChange}
         />
       </InputLabel>
       <InputLabel
@@ -46,8 +54,10 @@ export const BasicFAQ: React.FC<IBasicFAQProps> = ({ darkTheme }) => {
           darkTheme={darkTheme}
           multiline
           rows={10}
+          value={FAQFieldsValues.answer}
+          onChange={handleFAQFieldsChange}
         />
       </InputLabel>
-    </Box>
+    </>
   );
 };

@@ -7,7 +7,7 @@ export const customTheme = createTheme({
       xs: 0,
       sm: 600,
       md: 1024,
-      lg: 1330,
+      lg: 1260,
       xl: 1450,
     },
   },
@@ -147,9 +147,6 @@ export const useNavBarStyles = makeStyles<void>()(
       },
     },
     container: {
-      [customTheme.breakpoints.down('lg')]: {
-        // paddingLeft: '74px',
-      },
       padding: 0,
       maxWidth: `calc(100%) !important`,
       // maxWidth: '1240px !important',

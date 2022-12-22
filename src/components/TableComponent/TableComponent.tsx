@@ -31,7 +31,6 @@ interface ITableComponentProps {
   columns: GridColDef[];
   rows: IRow[];
   page?: string;
-  openDrawer: boolean;
 }
 
 const TableComponent: React.FC<ITableComponentProps> = ({
@@ -39,7 +38,6 @@ const TableComponent: React.FC<ITableComponentProps> = ({
   columns,
   rows,
   page,
-  openDrawer,
 }) => {
   const [filter, setFilter] = React.useState<string>('');
   const [selectedRows, setSelectedRows] = React.useState<IRow[]>([]);

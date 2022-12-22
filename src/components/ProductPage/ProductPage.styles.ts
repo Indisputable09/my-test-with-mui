@@ -2,6 +2,7 @@ import { makeStyles } from 'tss-react/mui';
 import { styled } from '@mui/material/styles';
 import { TextField } from '@mui/material';
 import { CustomPaper } from './SubLinks/Attributes';
+import { customTheme } from '../NavBar/NavBar.styles';
 
 export const useProductPageStyles = makeStyles<void>()(
   (theme, _params, classes) => ({
@@ -18,7 +19,7 @@ export const useProductPageStyles = makeStyles<void>()(
     },
     buttonsBlock: { display: 'flex', gap: '16px' },
     button: { display: 'flex', justifyContent: 'center', height: '34px' },
-    linksList: { display: 'flex', gap: '32px' },
+    linksList: { display: 'flex', columnGap: '32px', flexWrap: 'wrap' },
     linksListItem: {
       width: 'inherit',
     },
@@ -197,7 +198,16 @@ export const useProductPageStyles = makeStyles<void>()(
         color: '#ffffff',
       },
     },
-    comboBox: { width: 440, marginTop: '16px' },
+    comboBox: {
+      width: 440,
+      marginTop: '16px',
+      [customTheme.breakpoints.down('lg')]: {
+        width: '300px',
+      },
+      [customTheme.breakpoints.down('md')]: {
+        width: '150px',
+      },
+    },
     comboBoxInput: {
       '&.dark': {
         color: '#fff',
@@ -259,7 +269,8 @@ export const useProductPageStyles = makeStyles<void>()(
       transition: 'all 250ms ease-out',
       '&.dark': {
         backgroundColor: 'transparent',
-        border: '1px solid #fff',
+        border: '1px solid #90CAF9',
+        color: '#90CAF9',
       },
     },
     autocomplete: { width: '100%', marginTop: '16px' },

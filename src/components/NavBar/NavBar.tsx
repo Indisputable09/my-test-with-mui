@@ -96,9 +96,21 @@ const NavBar: React.FC<INavBarProps> = ({
       align: 'center',
       renderCell: params => {
         return (
-          <PriceCell price={params.row.price} discount={params.row?.discount} />
+          <PriceCell
+            price={params.row.price}
+            discount={params.row?.discount}
+            darkTheme={darkTheme}
+          />
         );
       },
+    },
+    {
+      field: 'quantity',
+      headerName: 'Кількість',
+      width: 110,
+      editable: false,
+      headerAlign: 'center',
+      align: 'center',
     },
     {
       field: 'category',
@@ -335,7 +347,6 @@ const NavBar: React.FC<INavBarProps> = ({
                     darkTheme={darkTheme}
                     columns={productCatalogColumns}
                     rows={productRows}
-                    openDrawer={openDrawer}
                   />
                 </>
 
@@ -350,7 +361,6 @@ const NavBar: React.FC<INavBarProps> = ({
                     darkTheme={darkTheme}
                     columns={productCategoriesColumns}
                     rows={productCategoriesRows}
-                    openDrawer={openDrawer}
                   />
                 </>
                 <>
@@ -365,7 +375,6 @@ const NavBar: React.FC<INavBarProps> = ({
                     columns={FAQColumns}
                     rows={FAQRows}
                     page={'FAQ'}
-                    openDrawer={openDrawer}
                   />
                 </>
                 <>
@@ -380,7 +389,6 @@ const NavBar: React.FC<INavBarProps> = ({
                     columns={languagesColumns}
                     rows={languagesRows}
                     page={'languages'}
-                    openDrawer={openDrawer}
                   />
                 </>
                 <>
@@ -395,7 +403,6 @@ const NavBar: React.FC<INavBarProps> = ({
                     columns={citiesColumns}
                     rows={citiesRows}
                     page={'languages'}
-                    openDrawer={openDrawer}
                   />
                 </>
               </>
