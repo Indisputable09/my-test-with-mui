@@ -45,6 +45,48 @@ const ProductPage: React.FC<IProductPageProps> = ({
   const [openDeleteModal, setOpenDeleteModal] = React.useState<boolean>(false);
   const [openSaveModal, setOpenSaveModal] = React.useState<boolean>(false);
 
+  const [fieldsValues, setFieldsValues] = React.useState({
+    name: '',
+    sku: '',
+    description: '<p>Тут буде опис</p>',
+    price: 0,
+    minQuantity: 0,
+    inStock: 0,
+    fromStock: 'no',
+    published: true,
+    sort: 0,
+    producer: null,
+    category: null,
+    showInCategories: [],
+    relatedProducts: [],
+    featuredProducts: [],
+    attributes: [
+      // [
+      //   { id: nanoid() },
+      //   {
+      //     id: nanoid(),
+      //     value: 'attribute1',
+      //   },
+      //   {
+      //     id: nanoid(),
+      //     value: 'category1',
+      //   },
+      // ],
+      // [
+      //   { id: nanoid() },
+      //   {
+      //     id: nanoid(),
+      //     value: 'attribute2',
+      //   },
+      //   {
+      //     id: nanoid(),
+      //     value: 'category2',
+      //   },
+      // ],
+    ],
+    images: [],
+  });
+
   const handleClickOpenModal = (variant: string) => {
     if (variant === 'back') {
       setOpenBackModal(true);
@@ -163,13 +205,55 @@ const ProductPage: React.FC<IProductPageProps> = ({
         })}
       </List>
       <Divider className={cx(classes.divider, darkTheme ? 'dark' : null)} />
-      {linkId === 1 && <Basic darkTheme={darkTheme} />}
-      {linkId === 2 && <Data darkTheme={darkTheme} />}
-      {linkId === 3 && <Connections darkTheme={darkTheme} />}
-      {linkId === 4 && <Images />}
-      {linkId === 5 && <Attributes darkTheme={darkTheme} />}
-      {linkId === 6 && <Options />}
-      {linkId === 7 && <Discounts />}
+      <Box
+        component="form"
+        noValidate
+        autoComplete="off"
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          pt: '24px',
+          pb: '48px',
+        }}
+      >
+        {linkId === 1 && (
+          <Basic
+            darkTheme={darkTheme}
+            setFieldsValues={setFieldsValues}
+            fieldsValues={fieldsValues}
+          />
+        )}
+        {linkId === 2 && (
+          <Data
+            darkTheme={darkTheme}
+            setFieldsValues={setFieldsValues}
+            fieldsValues={fieldsValues}
+          />
+        )}
+        {linkId === 3 && (
+          <Connections
+            darkTheme={darkTheme}
+            setFieldsValues={setFieldsValues}
+            fieldsValues={fieldsValues}
+          />
+        )}
+        {linkId === 4 && (
+          <Images
+            darkTheme={darkTheme}
+            setFieldsValues={setFieldsValues}
+            fieldsValues={fieldsValues}
+          />
+        )}
+        {linkId === 5 && (
+          <Attributes
+            darkTheme={darkTheme}
+            setFieldsValues={setFieldsValues}
+            fieldsValues={fieldsValues}
+          />
+        )}
+        {linkId === 6 && <Options />}
+        {linkId === 7 && <Discounts />}
+      </Box>
     </Box>
   );
 };

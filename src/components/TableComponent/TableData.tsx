@@ -22,6 +22,7 @@ interface IControlledSwitchProps {
 interface IPriceCellProps {
   price: number;
   discount: number | null;
+  darkTheme: boolean;
 }
 
 interface IMoreActionsProps {
@@ -250,7 +251,12 @@ export const MoreActions: React.FC<IMoreActionsProps> = ({ darkTheme }) => {
   );
 };
 
-export const PriceCell: React.FC<IPriceCellProps> = ({ price, discount }) => {
+export const PriceCell: React.FC<IPriceCellProps> = ({
+  price,
+  discount,
+  darkTheme,
+}) => {
+  const { classes, cx } = useTableComponentStyles();
   return (
     <Box
       sx={{
@@ -265,43 +271,29 @@ export const PriceCell: React.FC<IPriceCellProps> = ({ price, discount }) => {
       <Typography
         variant="h6"
         component="p"
-        sx={{
-          fontSize: '14px',
-          position: discount ? 'absolute' : 'static',
-          textDecoration: discount ? 'line-through' : 'none',
-          bottom: '6px',
-          right: '12px',
-        }}
+        className={cx(
+          classes.totalPrice,
+          darkTheme ? 'dark' : null,
+          discount ? 'discount' : null
+        )}
       >
-        {price}
+        {price} грн
       </Typography>
       {discount && (
         <>
           <Typography
             variant="h6"
             component="p"
-            sx={{
-              fontSize: '10px',
-              position: 'absolute',
-              color: 'red',
-              top: '4px',
-              left: '5px',
-            }}
+            className={cx(classes.discountText, darkTheme ? 'dark' : null)}
           >
-            (-{discount}%)
+            -{discount}%
           </Typography>
           <Typography
             variant="h6"
             component="p"
-            sx={{
-              fontSize: '14px',
-              position: 'absolute',
-              top: '6px',
-              right: '12px',
-              color: 'green',
-            }}
+            className={cx(classes.withDiscountPrice, darkTheme ? 'dark' : null)}
           >
-            {price - (price * discount) / 100}
+            {price - (price * discount) / 100} грн
           </Typography>
         </>
       )}
@@ -313,6 +305,10 @@ export const productRows = [
   {
     id: 1,
     image: img1,
+    sku: 'ART-2',
+    price: 1000,
+    quantity: 2,
+    category: 'Mobile phone',
     name: 'В цій бібліотеці ще немає можливості робити рядки автоматичної висоти залежно від вмісту контенту, тому приходиться виходити з цієї ситуації кастомними шляхами',
     status: 'Inactive',
   },
@@ -320,21 +316,27 @@ export const productRows = [
     id: 2,
     image: img1,
     name: 'Cersei',
+    sku: 'ART-3',
+    quantity: 20,
     price: 1500,
     discount: 20,
     status: 'Active',
+    category: 'Mobile phone',
   },
   {
     id: 3,
     image: img2,
     name: 'Jaime',
+    quantity: 25,
     price: 1800,
     status: 'Active',
+    category: 'Mobile phone',
   },
   {
     id: 4,
     image: img1,
     name: 'Arya',
+    quantity: 222,
     price: 20000,
     discount: 20,
     status: 'Active',
@@ -379,6 +381,7 @@ export const productRows = [
     status: 'Active',
   },
 ];
+
 export const productCategoriesRows = [
   {
     id: 1,
@@ -483,6 +486,17 @@ export const languagesRows = [
   {
     id: 2,
     name: 'English',
+  },
+];
+
+export const citiesRows = [
+  {
+    id: 1,
+    name: 'Київ',
+  },
+  {
+    id: 2,
+    name: 'Харків',
   },
 ];
 

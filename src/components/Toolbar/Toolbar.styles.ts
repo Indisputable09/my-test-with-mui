@@ -1,4 +1,5 @@
 import { makeStyles } from 'tss-react/mui';
+import { customTheme } from '../NavBar/NavBar.styles';
 
 export const useToolbarStyles = makeStyles<void>()(
   (theme, _params, classes) => ({
@@ -9,14 +10,18 @@ export const useToolbarStyles = makeStyles<void>()(
       height: 80,
       width: '100%',
       backgroundColor: '#fff',
-      marginBottom: '16px',
       padding: '0 16px 0 16px',
-      borderRadius: '10px',
+      borderRadius: '4px 4px 0 0',
       transition: 'all 250ms ease-out',
-      '&.dark': { backgroundColor: '#24303F' },
-      border: '1px solid #ffffff',
+      borderBottom: 'none',
+      '&.dark': { backgroundColor: 'transparent' },
     },
-    searchField: { width: '720px' },
+    searchField: {
+      width: '720px',
+      [customTheme.breakpoints.down('md')]: {
+        width: '100%',
+      },
+    },
     searchIconButton: {
       transition: 'all 250ms ease-out',
       '&:hover': {
@@ -38,14 +43,24 @@ export const useToolbarStyles = makeStyles<void>()(
     },
     addButton: {
       marginLeft: 'auto',
-      padding: '8px 16px 8px 16px',
-      fontSize: '11px',
-      backgroundColor: '#3A57E8',
-      color: '#fff',
+      backgroundColor: '#1F2A38',
+      color: '#ffffff',
+      minWidth: '48px',
+      height: '48px',
+      borderRadius: '50%',
+      padding: 0,
+      boxShadow:
+        '0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px rgba(0, 0, 0, 0.14), 0px 1px 18px rgba(0, 0, 0, 0.12)',
+
       transition: 'all 250ms ease-out',
       '&.dark': {
-        backgroundColor: 'transparent',
-        border: '1px solid #fff',
+        boxShadow:
+          ' 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px rgba(0, 0, 0, 0.14), 0px 1px 18px rgba(0, 0, 0, 0.12)',
+        backgroundColor: '#f2f2f2',
+        '& svg': {
+          color: '#000000',
+          opacity: '0.87',
+        },
       },
     },
   })

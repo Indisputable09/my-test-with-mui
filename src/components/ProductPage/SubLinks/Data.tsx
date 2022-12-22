@@ -31,6 +31,7 @@ const ViewsDatePicker: React.FC<IViewsDatePickerProps> = ({ darkTheme }) => {
   const [value, setValue] = React.useState<Date | Dayjs | null>(
     dayjs('2022-04-07')
   );
+  // console.log('date value', value);
 
   const { classes, cx } = useProductPageStyles();
 
@@ -81,43 +82,56 @@ const CustomizedTooltip = styled(({ className, ...props }: TooltipProps) => (
 
 interface IDataProps {
   darkTheme: boolean;
+  setFieldsValues: (obj: any) => void;
+  fieldsValues: {
+    price: number;
+    minQuantity: number;
+    inStock: number;
+    fromStock: string;
+    published: boolean;
+    sort: number;
+  };
 }
 
-export const Data: React.FC<IDataProps> = ({ darkTheme }) => {
-  const [minQuantity, setMinQuantity] = React.useState<number>(0);
-  const [radioValue, setRadioValue] = React.useState<string>('no');
-  const [published, setPublished] = React.useState<boolean>(true);
-
-  const handlePublishedChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setPublished(event.target.checked);
+export const Data: React.FC<IDataProps> = ({
+  darkTheme,
+  setFieldsValues,
+  fieldsValues,
+}) => {
+  const handlePublishedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFieldsValues((prevState: any) => {
+      return {
+        ...prevState,
+        published: (e.target as HTMLInputElement).checked,
+      };
+    });
   };
 
-  const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRadioValue((event.target as HTMLInputElement).value);
+  const handleFromStockChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFieldsValues((prevState: any) => {
+      return {
+        ...prevState,
+        fromStock: (e.target as HTMLInputElement).value,
+      };
+    });
   };
 
-  const handleMinQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (isNaN(+e.target.value)) {
       return;
     }
-    setMinQuantity(+e.target.value);
+    setFieldsValues((prevState: any) => {
+      return {
+        ...prevState,
+        [e.target.id]: Number((e.target as HTMLInputElement).value),
+      };
+    });
   };
 
   const { classes, cx } = useProductPageStyles();
 
   return (
-    <Box
-      component="form"
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        py: '24px',
-      }}
-      noValidate
-      autoComplete="off"
-    >
+    <>
       <InputLabel
         htmlFor="price"
         className={cx(classes.label, darkTheme ? 'dark' : null)}
@@ -128,6 +142,8 @@ export const Data: React.FC<IDataProps> = ({ darkTheme }) => {
           variant="outlined"
           sx={{ width: '100%', mt: '16px' }}
           darkTheme={darkTheme}
+          onChange={handleInputsChange}
+          value={fieldsValues.price}
         />
       </InputLabel>
       <InputLabel
@@ -144,8 +160,8 @@ export const Data: React.FC<IDataProps> = ({ darkTheme }) => {
           id="minQuantity"
           variant="outlined"
           sx={{ width: '100%', mt: '16px' }}
-          onChange={handleMinQuantityChange}
-          value={minQuantity}
+          onChange={handleInputsChange}
+          value={fieldsValues.minQuantity}
           darkTheme={darkTheme}
         />
       </InputLabel>
@@ -159,21 +175,23 @@ export const Data: React.FC<IDataProps> = ({ darkTheme }) => {
           variant="outlined"
           sx={{ width: '100%', mt: '16px' }}
           darkTheme={darkTheme}
+          onChange={handleInputsChange}
+          value={fieldsValues.inStock}
         />
       </InputLabel>
       <FormControl sx={{ mb: '24px' }}>
         <FormLabel
-          id="radio-buttons-group"
+          id="take-from-stock"
           className={cx(classes.radioButtonsLabel, darkTheme ? 'dark' : null)}
         >
           Віднімати зі складу
         </FormLabel>
         <RadioGroup
           row
-          aria-labelledby="radio-buttons-group"
-          name="radio-buttons-group"
-          value={radioValue}
-          onChange={handleRadioChange}
+          aria-labelledby="take-from-stock"
+          name="take-from-stock"
+          value={fieldsValues.fromStock}
+          onChange={handleFromStockChange}
         >
           <FormControlLabel
             value="no"
@@ -204,7 +222,7 @@ export const Data: React.FC<IDataProps> = ({ darkTheme }) => {
           Опубліковано
         </Typography>
         <Switch
-          checked={published}
+          checked={fieldsValues.published}
           onChange={handlePublishedChange}
           inputProps={{ 'aria-label': 'published' }}
           className={cx(classes.switch, darkTheme ? 'dark' : null)}
@@ -221,8 +239,10 @@ export const Data: React.FC<IDataProps> = ({ darkTheme }) => {
           variant="outlined"
           sx={{ width: '10%', mt: '16px' }}
           darkTheme={darkTheme}
+          onChange={handleInputsChange}
+          value={fieldsValues.sort}
         />
       </InputLabel>
-    </Box>
+    </>
   );
 };

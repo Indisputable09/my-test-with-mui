@@ -1,13 +1,13 @@
 import { createTheme } from '@mui/system';
 import { makeStyles } from 'tss-react/mui';
 
-const customTheme = createTheme({
+export const customTheme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
       sm: 600,
       md: 1024,
-      lg: 1330,
+      lg: 1260,
       xl: 1450,
     },
   },
@@ -25,6 +25,7 @@ export const useNavBarStyles = makeStyles<void>()(
       width: miniDrawerWidth,
       backgroundColor: '#fff',
       position: 'absolute',
+      zIndex: '1101',
       height: 'calc(100vh - 64px)',
       top: '64px',
       [customTheme.breakpoints.down('sm')]: {
@@ -33,25 +34,26 @@ export const useNavBarStyles = makeStyles<void>()(
       },
       left: 0,
       overflowX: 'hidden',
-      transform: 'TranslateX(0) scale(1)',
+      // transform: 'TranslateX(0) scale(1)',
       transition:
-        'transform 500ms ease-out, background-color 250ms ease-out, box-shadow 250ms ease-out',
+        'transform 250ms ease-out, background-color 250ms ease-out, box-shadow 250ms ease-out',
       whiteSpace: 'nowrap',
       paddingTop: theme.spacing(4),
       paddingBottom: theme.spacing(4),
       boxShadow: '7px 4px 11px -1px rgba(0,0,0,0.47)',
 
       '&.dark': {
-        backgroundColor: '#212C3A',
-        boxShadow: '4px 5px 11px -1px rgba(255,255,255,1);',
+        backgroundColor: '#1F2A38',
+        boxShadow: 'none',
       },
 
-      '&.hide': {
-        transform: 'TranslateX(-100%) scale(0)',
-      },
+      // '&.hide': {
+      //   transform: 'TranslateX(-100%)',
+      // },
     },
     drawerPaper: {
       position: 'absolute',
+      zIndex: '1102',
       height: 'calc(100vh - 64px)',
       top: '64px',
       [customTheme.breakpoints.down('sm')]: {
@@ -60,20 +62,19 @@ export const useNavBarStyles = makeStyles<void>()(
       },
       left: 0,
       overflowX: 'hidden',
-      transform: 'TranslateX(-100%) scale(0)',
+      transform: 'TranslateX(-102%)',
       transition:
-        'transform 500ms ease-out, background-color 250ms ease-out, box-shadow 250ms ease-out',
+        'transform 250ms ease-out, background-color 250ms ease-out, box-shadow 250ms ease-out',
       whiteSpace: 'nowrap',
       width: drawerWidth,
       paddingTop: theme.spacing(4),
       paddingBottom: theme.spacing(4),
       boxShadow: '7px 4px 11px -1px rgba(0,0,0,0.47)',
       '&.dark': {
-        backgroundColor: '#212C3A',
-        boxShadow: '4px 5px 11px -1px rgba(255,255,255,1);',
+        backgroundColor: '#1F2A38',
       },
       '&.active': {
-        transform: 'TranslateX(0) scale(1)',
+        transform: 'TranslateX(0)',
       },
       '&::-webkit-scrollbar': {
         width: '5px',
@@ -114,8 +115,10 @@ export const useNavBarStyles = makeStyles<void>()(
       },
     },
     title: {
-      fontSize: '3rem',
-      mb: '20px',
+      fontWeight: 400,
+      fontSize: '34px',
+      lineHeight: '123.5%',
+      marginBottom: '32px',
       transition: 'all 250ms ease-out',
       '&.dark': {
         color: '#ffffff',
@@ -144,24 +147,24 @@ export const useNavBarStyles = makeStyles<void>()(
       },
     },
     container: {
-      [customTheme.breakpoints.down('lg')]: {
-        paddingLeft: '74px',
-      },
-      maxWidth: '100%',
-      marginRight: 'auto',
-      marginLeft: 'auto',
+      padding: 0,
+      maxWidth: `calc(100%) !important`,
+      // maxWidth: '1240px !important',
+      marginRight: '0',
+      marginLeft: '0',
       position: 'relative',
       top: 0,
       left: 0,
-      transform: 'TranslateX(0)',
-      transition: 'all 250ms ease-out',
+      // transform: `TranslateX(${miniDrawerWidth + 80}px)`,
+      // transform: `TranslateX(${miniDrawerWidth}px)`,
+      paddingLeft: `84px !important`,
+      transition: 'all 250ms linear',
       paddingTop: theme.spacing(2),
       paddingBottom: theme.spacing(8),
       '&.active': {
-        transform: `TranslateX(${miniDrawerWidth}px)`,
         [customTheme.breakpoints.up('xl')]: {
-          marginLeft: 0,
-          transform: `TranslateX(${drawerWidth}px)`,
+          width: `calc(100% - ${drawerWidth}px) !important`,
+          transform: `TranslateX(${drawerWidth - 24}px)`,
         },
       },
     },

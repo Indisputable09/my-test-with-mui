@@ -52,11 +52,17 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
 interface IMultipleSelectChipProps {
   list: string[];
   darkTheme: boolean;
+  id: string;
+  handleMultipleSelectChange: (id: string, newValue: Array<string>) => void;
+  value: string[];
 }
 
 export const MultipleSelectChip: React.FC<IMultipleSelectChipProps> = ({
   list,
   darkTheme,
+  id,
+  handleMultipleSelectChange,
+  value,
 }) => {
   const theme = useTheme();
   const [selectedListItems, setSelectedListItems] = React.useState<string[]>(
@@ -67,20 +73,19 @@ export const MultipleSelectChip: React.FC<IMultipleSelectChipProps> = ({
     const {
       target: { value },
     } = event;
-    setSelectedListItems(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value
-    );
+    handleMultipleSelectChange(id, value as string[]);
   };
 
-  const handleDelete = (e: React.MouseEvent, value: string) => {
+  const handleDelete = (e: React.MouseEvent, itemToDelete: string) => {
     e.preventDefault();
-    setSelectedListItems(prevState => prevState.filter(item => item !== value));
+    const remainingItems = value.filter(item => item !== itemToDelete);
+    handleMultipleSelectChange(id, remainingItems);
   };
 
   const handleDeleteAll = (e: React.MouseEvent) => {
     e.preventDefault();
     setSelectedListItems([]);
+    handleMultipleSelectChange(id, []);
   };
 
   const { classes, cx } = useProductPageStyles();
@@ -92,9 +97,10 @@ export const MultipleSelectChip: React.FC<IMultipleSelectChipProps> = ({
           sx={{ mt: '16px' }}
           id="multiple-chip"
           multiple
-          value={selectedListItems}
+          // value={selectedListItems}
+          value={value}
           onChange={handleChange}
-          input={<OutlinedInput id="select-multiple-chip" />}
+          input={<OutlinedInput id={id} />}
           className={cx(classes.selectInput, darkTheme ? 'dark' : null)}
           renderValue={selected => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
@@ -157,30 +163,53 @@ export const MultipleSelectChip: React.FC<IMultipleSelectChipProps> = ({
 
 interface IConnectionsProps {
   darkTheme: boolean;
+  setFieldsValues: (obj: any) => void;
+  fieldsValues: {
+    producer: string | null;
+    category: string | null;
+    showInCategories: string[];
+    relatedProducts: string[];
+    featuredProducts: string[];
+  };
 }
 
-export const Connections: React.FC<IConnectionsProps> = ({ darkTheme }) => {
+export const Connections: React.FC<IConnectionsProps> = ({
+  darkTheme,
+  setFieldsValues,
+  fieldsValues,
+}) => {
   const { classes, cx } = useProductPageStyles();
 
+  const handleAutocompleteChange = (e: any, newValue: string | null) => {
+    const id = e.target.id.split('-')[0];
+    setFieldsValues((prevState: any) => {
+      return {
+        ...prevState,
+        [id]: newValue,
+      };
+    });
+  };
+
+  const handleMultipleSelectChange = (id: string, newValue: string[]) => {
+    setFieldsValues((prevState: any) => {
+      return {
+        ...prevState,
+        [id]: newValue,
+      };
+    });
+  };
+
   return (
-    <Box
-      component="form"
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        pt: '24px',
-        pb: '48px',
-      }}
-      noValidate
-      autoComplete="off"
-    >
+    <>
       <InputLabel
-        htmlFor="autocomplete-producer"
+        htmlFor="producer"
         className={cx(classes.label, darkTheme ? 'dark' : null)}
       >
         Виробник
         <Autocomplete
-          id="autocomplete-producer"
+          id="producer"
+          value={fieldsValues.producer}
+          onChange={handleAutocompleteChange}
           noOptionsText={<p>Відсутні результати</p>}
           options={names}
           className={cx(classes.autocomplete, darkTheme ? 'dark' : null)}
@@ -196,22 +225,18 @@ export const Connections: React.FC<IConnectionsProps> = ({ darkTheme }) => {
             },
           }}
         />
-        {/* <StyledField
-          id="manufactured"
-          variant="outlined"
-          sx={{ width: '100%', mt: '16px' }}
-          darkTheme={darkTheme}
-        /> */}
       </InputLabel>
       <InputLabel
-        htmlFor="autocomplete-category"
+        htmlFor="category"
         className={cx(classes.label, darkTheme ? 'dark' : null)}
       >
         <div>
           Категорія<span style={{ color: 'red', fontSize: '20px' }}>*</span>
         </div>
         <Autocomplete
-          id="autocomplete-category"
+          id="category"
+          value={fieldsValues.category}
+          onChange={handleAutocompleteChange}
           noOptionsText={<p>Відсутні результати</p>}
           options={names}
           className={cx(classes.autocomplete, darkTheme ? 'dark' : null)}
@@ -227,29 +252,46 @@ export const Connections: React.FC<IConnectionsProps> = ({ darkTheme }) => {
             },
           }}
         />
-        {/* <MultipleSelectChip darkTheme={darkTheme} list={names} /> */}
       </InputLabel>
       <InputLabel
         htmlFor="showInCategories"
         className={cx(classes.label, darkTheme ? 'dark' : null)}
       >
         Показувати в категоріях
-        <MultipleSelectChip darkTheme={darkTheme} list={categories} />
+        <MultipleSelectChip
+          darkTheme={darkTheme}
+          list={categories}
+          id="showInCategories"
+          handleMultipleSelectChange={handleMultipleSelectChange}
+          value={fieldsValues.showInCategories}
+        />
       </InputLabel>
       <InputLabel
         htmlFor="relatedProducts"
         className={cx(classes.label, darkTheme ? 'dark' : null)}
       >
         Схожі товари
-        <MultipleSelectChip list={relatedProducts} darkTheme={darkTheme} />
+        <MultipleSelectChip
+          list={relatedProducts}
+          darkTheme={darkTheme}
+          id="relatedProducts"
+          handleMultipleSelectChange={handleMultipleSelectChange}
+          value={fieldsValues.relatedProducts}
+        />
       </InputLabel>
       <InputLabel
         htmlFor="featuredProducts"
         className={cx(classes.label, darkTheme ? 'dark' : null)}
       >
         Рекламні товари
-        <MultipleSelectChip list={featuredProducts} darkTheme={darkTheme} />
+        <MultipleSelectChip
+          list={featuredProducts}
+          darkTheme={darkTheme}
+          id="featuredProducts"
+          handleMultipleSelectChange={handleMultipleSelectChange}
+          value={fieldsValues.featuredProducts}
+        />
       </InputLabel>
-    </Box>
+    </>
   );
 };

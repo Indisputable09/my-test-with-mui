@@ -56,12 +56,14 @@ export const CustomPaper: React.FC = props => {
   return <Paper {...props} />;
 };
 
-export const ComboBox: React.FC<IComboBoxProps> = ({ list, darkTheme }) => {
+const ComboBox: React.FC<IComboBoxProps> = ({ list, darkTheme }) => {
+  // console.log('value', value);
   const { classes, cx } = useProductPageStyles();
 
   return (
     <Autocomplete
-      id="combo-box"
+      // id={id}
+      // value={value}
       noOptionsText={<p>Відсутні результати</p>}
       options={list}
       className={cx(classes.comboBox, darkTheme ? 'dark' : null)}
@@ -80,9 +82,17 @@ export const ComboBox: React.FC<IComboBoxProps> = ({ list, darkTheme }) => {
 
 interface IAttributesProps {
   darkTheme: boolean;
+  setFieldsValues: (obj: any) => void;
+  fieldsValues: {
+    attributes: any;
+  };
 }
 
-export const Attributes: React.FC<IAttributesProps> = ({ darkTheme }) => {
+export const Attributes: React.FC<IAttributesProps> = ({
+  darkTheme,
+  fieldsValues,
+  setFieldsValues,
+}) => {
   const [attributesCount, setAttributesCount] = React.useState([
     {
       id: nanoid(),
@@ -100,20 +110,174 @@ export const Attributes: React.FC<IAttributesProps> = ({ darkTheme }) => {
     setAttributesCount(filteredInputs);
   };
 
+  // const handleAutocompleteChange = (
+  //   e: any,
+  //   newValue: string | null,
+  //   index: string
+  // ) => {
+  //   console.log('index', index);
+  //   const id = e.target.id.split('-')[0];
+  //   console.log('e.target.id', id);
+  //   console.log('newValue', newValue);
+  //   setFieldsValues((prevState: any) => {
+  //     // console.log('attributes', fieldsValues.attributes[+index]);
+  //     const chosenValueToChange = fieldsValues.attributes[index].find(
+  //       (item: any) => {
+  //         console.log('item.id', item.id);
+  //         return item.id === id;
+  //       }
+  //     );
+  //     // const chosenKey = fieldsValues.attributes[+index].find();
+  //     console.log('chosenValueToChange', chosenValueToChange);
+  //     return {
+  //       ...prevState,
+  //       attributes: [
+  //         {
+  //           [fieldsValues.attributes[+index]]: [
+  //             { [chosenValueToChange.id]: newValue },
+  //             // fieldsValues.attributes[+index].map((item: any) => {
+  //             //   if (item.id !== id) {
+  //             //     return item;
+  //             //   }
+  //             //   return { [id]: newValue };
+  //             // }),
+  //           ],
+  //         },
+  //       ],
+  //       // [fieldsValues.attributes[+index]]: [
+  //       //   { [chosenValueToChange.id]: newValue },
+  //       //   // fieldsValues.attributes[+index].map((item: any) => {
+  //       //   //   if (item.id !== id) {
+  //       //   //     return item;
+  //       //   //   }
+  //       //   //   return { [id]: newValue };
+  //       //   // }),
+  //       // ],
+  //       // [id]: newValue,
+  //     };
+  //   });
+  // };
+
   const { classes, cx } = useProductPageStyles();
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        py: '24px',
-      }}
-    >
+    <>
+      {/* {fieldsValues.attributes.length === 0 ? (
+        <Typography
+          component="h2"
+          sx={{
+            fontFamily: '"Work Sans", "Roboto", "sans-serif" !important',
+            fontWeight: 700,
+            fontSize: '20px',
+            lineHeight: '1.15',
+            textAlign: 'center',
+            mb: 2,
+          }}
+        >
+          Атрибути відсутні
+        </Typography>
+      ) : (
+        fieldsValues.attributes.map(
+          (attribute: { id: string; value?: string }, index: string) => {
+            console.log('attribute', attribute);
+            console.log('attribute[0]', attribute[0]);
+            console.log('attribute[1]', attribute[1]);
+            console.log('attribute[2]', attribute[2]!.id);
+            return (
+              <Box
+                key={attribute[0].id}
+                sx={{ display: 'flex', alignItems: 'center' }}
+              >
+                <InputLabel
+                  id="attribute-selection-label"
+                  className={cx(classes.label, darkTheme ? 'dark' : null)}
+                >
+                  Атрибут
+                  <Autocomplete
+                    id={attribute[1].id}
+                    value={attribute[1].value}
+                    onChange={(e, newValue) =>
+                      handleAutocompleteChange(e, newValue, index)
+                    }
+                    noOptionsText={<p>Відсутні результати</p>}
+                    options={attributes}
+                    className={cx(classes.comboBox, darkTheme ? 'dark' : null)}
+                    renderInput={params => (
+                      <StyledField {...params} darkTheme={darkTheme} />
+                    )}
+                    PaperComponent={props => {
+                      return (
+                        <StyledCustomPaper {...props} darkTheme={darkTheme} />
+                      );
+                    }}
+                    ListboxProps={{
+                      style: {
+                        maxHeight: '150px',
+                      },
+                    }}
+                  />
+                </InputLabel>
+                <Divider
+                  className={cx(
+                    classes.attributesDivider,
+                    darkTheme ? 'dark' : null
+                  )}
+                />
+                <InputLabel
+                  id="attribute-category-selection-label"
+                  className={cx(classes.label, darkTheme ? 'dark' : null)}
+                >
+                  Значення атрибуту
+                  <Autocomplete
+                    id={attribute[2].id}
+                    value={attribute[2].value}
+                    onChange={(e, newValue) =>
+                      handleAutocompleteChange(e, newValue, index)
+                    }
+                    noOptionsText={<p>Відсутні результати</p>}
+                    options={attributeCategories}
+                    className={cx(classes.comboBox, darkTheme ? 'dark' : null)}
+                    renderInput={params => (
+                      <StyledField {...params} darkTheme={darkTheme} />
+                    )}
+                    PaperComponent={props => {
+                      return (
+                        <StyledCustomPaper {...props} darkTheme={darkTheme} />
+                      );
+                    }}
+                    ListboxProps={{
+                      style: {
+                        maxHeight: '150px',
+                      },
+                    }}
+                  />
+                </InputLabel>
+                <IconButton
+                  className={cx(
+                    classes.deleteAttributeButton,
+                    darkTheme ? 'dark' : null
+                  )}
+                  onClick={() => handleDelete(attribute[0].id)}
+                  name={attribute[0].id}
+                >
+                  <Delete sx={{ width: '28px', height: '28px' }} />
+                </IconButton>
+              </Box>
+            );
+          }
+        )
+      )} */}
       {attributesCount.length === 0 ? (
         <Typography
           component="h2"
-          sx={{ fontWeight: 700, fontSize: '20px', textAlign: 'center', mb: 2 }}
+          sx={{
+            fontFamily: '"Work Sans", "Roboto", "sans-serif" !important',
+            fontWeight: 700,
+            fontSize: '20px',
+            lineHeight: '1.15',
+            textAlign: 'center',
+            mb: 2,
+          }}
         >
           Атрибути відсутні
         </Typography>
@@ -168,6 +332,6 @@ export const Attributes: React.FC<IAttributesProps> = ({ darkTheme }) => {
       >
         <AddIcon /> Додати
       </Button>
-    </Box>
+    </>
   );
 };

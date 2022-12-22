@@ -96,7 +96,7 @@ const TableComponent: React.FC<ITableComponentProps> = ({
   );
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box className={cx(classes.tableToolbarBlock, darkTheme ? 'dark' : null)}>
       <Toolbar
         handleChangeFilter={handleChangeFilter}
         filter={filter}

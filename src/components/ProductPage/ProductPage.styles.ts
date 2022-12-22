@@ -2,10 +2,16 @@ import { makeStyles } from 'tss-react/mui';
 import { styled } from '@mui/material/styles';
 import { TextField } from '@mui/material';
 import { CustomPaper } from './SubLinks/Attributes';
+import { customTheme } from '../NavBar/NavBar.styles';
 
 export const useProductPageStyles = makeStyles<void>()(
   (theme, _params, classes) => ({
-    productTitle: { fontSize: '3rem', mb: '20px' },
+    productTitle: {
+      fontWeight: 400,
+      fontSize: '34px',
+      lineHeight: '123.5%',
+      marginBottom: '32px',
+    },
     panel: {
       display: 'flex',
       justifyContent: 'space-between',
@@ -13,10 +19,14 @@ export const useProductPageStyles = makeStyles<void>()(
     },
     buttonsBlock: { display: 'flex', gap: '16px' },
     button: { display: 'flex', justifyContent: 'center', height: '34px' },
-    linksList: { display: 'flex', gap: '32px' },
-    linksListItem: { width: 'inherit' },
+    linksList: { display: 'flex', columnGap: '32px', flexWrap: 'wrap' },
+    linksListItem: {
+      width: 'inherit',
+    },
     linksListText: {
-      fontSize: '15px',
+      fontWeight: '500',
+      fontSize: '14px',
+      lineHeight: '1.7',
       '&.active': {
         color: ' #1976D2',
         '&:after': {
@@ -36,8 +46,10 @@ export const useProductPageStyles = makeStyles<void>()(
       },
     },
     label: {
+      fontFamily: '"Work Sans", "Roboto", "sans-serif" !important',
       fontWeight: 700,
       fontSize: '20px',
+      lineHeight: '1.15',
       display: 'flex',
       flexDirection: 'column',
       marginBottom: '24px',
@@ -48,8 +60,10 @@ export const useProductPageStyles = makeStyles<void>()(
       },
     },
     radioButtonsLabel: {
+      fontFamily: '"Work Sans", "Roboto", "sans-serif" !important',
       fontWeight: 700,
       fontSize: '20px',
+      lineHeight: '1.15',
       color: '#000',
       marginBottom: '16px',
       transition: 'all 250ms ease-out',
@@ -58,8 +72,10 @@ export const useProductPageStyles = makeStyles<void>()(
       },
     },
     publishedText: {
+      fontFamily: '"Work Sans", "Roboto", "sans-serif" !important',
       fontWeight: 700,
       fontSize: '20px',
+      lineHeight: '1.15',
       marginTop: '24px',
       color: '#000',
       transition: 'all 250ms ease-out',
@@ -68,8 +84,10 @@ export const useProductPageStyles = makeStyles<void>()(
       },
     },
     noMarginLabel: {
+      fontFamily: '"Work Sans", "Roboto", "sans-serif" !important',
       fontWeight: 700,
       fontSize: '20px',
+      lineHeight: '1.15',
       display: 'flex',
       flexDirection: 'column',
       color: '#000',
@@ -180,7 +198,16 @@ export const useProductPageStyles = makeStyles<void>()(
         color: '#ffffff',
       },
     },
-    comboBox: { width: 440, marginTop: '16px' },
+    comboBox: {
+      width: 440,
+      marginTop: '16px',
+      [customTheme.breakpoints.down('lg')]: {
+        width: '300px',
+      },
+      [customTheme.breakpoints.down('md')]: {
+        width: '150px',
+      },
+    },
     comboBoxInput: {
       '&.dark': {
         color: '#fff',
@@ -242,7 +269,8 @@ export const useProductPageStyles = makeStyles<void>()(
       transition: 'all 250ms ease-out',
       '&.dark': {
         backgroundColor: 'transparent',
-        border: '1px solid #fff',
+        border: '1px solid #90CAF9',
+        color: '#90CAF9',
       },
     },
     autocomplete: { width: '100%', marginTop: '16px' },

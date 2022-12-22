@@ -27,6 +27,13 @@ const FAQPage: React.FC<IFAQPageProps> = ({ chosenQuestion, darkTheme }) => {
   const [openDeleteModal, setOpenDeleteModal] = React.useState<boolean>(false);
   const [openSaveModal, setOpenSaveModal] = React.useState<boolean>(false);
 
+  const [FAQFieldsValues, setFAQFieldsValues] = React.useState({
+    question: '',
+    answer: '',
+    page: [],
+  });
+  console.log('FAQFieldsValues', FAQFieldsValues);
+
   const handleClickOpenModal = (variant: string) => {
     if (variant === 'back') {
       setOpenBackModal(true);
@@ -115,8 +122,32 @@ const FAQPage: React.FC<IFAQPageProps> = ({ chosenQuestion, darkTheme }) => {
         })}
       </List>
       <Divider className={cx(classes.divider, darkTheme ? 'dark' : null)} />
-      {linkId === 1 && <BasicFAQ darkTheme={darkTheme} />}
-      {linkId === 2 && <ConnectionsFAQ darkTheme={darkTheme} />}
+      <Box
+        component="form"
+        noValidate
+        autoComplete="off"
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          pt: '24px',
+          pb: '48px',
+        }}
+      >
+        {linkId === 1 && (
+          <BasicFAQ
+            darkTheme={darkTheme}
+            FAQFieldsValues={FAQFieldsValues}
+            setFAQFieldsValues={setFAQFieldsValues}
+          />
+        )}
+        {linkId === 2 && (
+          <ConnectionsFAQ
+            darkTheme={darkTheme}
+            FAQFieldsValues={FAQFieldsValues}
+            setFAQFieldsValues={setFAQFieldsValues}
+          />
+        )}
+      </Box>
       {openBackModal && (
         <Modal
           shouldOpenModal={openBackModal}
