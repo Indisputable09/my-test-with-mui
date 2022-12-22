@@ -1,5 +1,4 @@
 import React from 'react';
-import Box from '@mui/material/Box';
 import { InputLabel } from '@mui/material';
 import { StyledField, useFAQPageStyles } from '../FAQPage.styles';
 
