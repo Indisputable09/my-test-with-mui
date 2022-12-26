@@ -144,7 +144,7 @@ export const MoreActions: React.FC<IMoreActionsProps> = ({ darkTheme }) => {
         <EditIcon className={cx(classes.editIcon, darkTheme ? 'dark' : null)} />
       </IconButton>
       <IconButton
-        sx={{ display: 'flex', justifyContent: 'center' }}
+        className={cx(classes.moreIconButton, darkTheme ? 'dark' : null)}
         size="large"
         edge="start"
         color="inherit"

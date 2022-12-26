@@ -220,8 +220,20 @@ export const useTableComponentStyles = makeStyles<void>()(
         color: '#219653',
         filter: 'drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.25))',
       },
-      'button:hover > &.dark': {
+      'button:hover > &.dark, button:focus > &.dark': {
         filter: 'drop-shadow(2px 2px 0px rgba(255, 255, 255, 0.25))',
+      },
+    },
+    moreIconButton: {
+      display: 'flex',
+      justifyContent: 'center',
+      transition: 'all 250ms ease-out',
+      borderRadius: '4px',
+      '&:hover, &:focus': {
+        backgroundColor: 'rgba(0, 0, 0, 0.04)',
+      },
+      '&.dark:hover, &.dark:focus': {
+        backgroundColor: 'rgba(144, 202, 249, 0.08)',
       },
     },
     deleteIcon: {

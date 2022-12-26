@@ -53,10 +53,13 @@ export const useToolbarStyles = makeStyles<void>()(
         '0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px rgba(0, 0, 0, 0.14), 0px 1px 18px rgba(0, 0, 0, 0.12)',
 
       transition: 'all 250ms ease-out',
+      '&:hover, &:focus': { backgroundColor: '#1565C0' },
       '&.dark': {
         boxShadow:
           ' 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px rgba(0, 0, 0, 0.14), 0px 1px 18px rgba(0, 0, 0, 0.12)',
         backgroundColor: '#f2f2f2',
+        '&:hover, &:focus': { backgroundColor: '#1565C0', color: '#ffffff' },
+        '&:hover svg, &:focus svg': { color: '#ffffff' },
         '& svg': {
           color: '#000000',
           opacity: '0.87',
