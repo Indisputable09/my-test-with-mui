@@ -71,7 +71,7 @@ const Toolbar: React.FC<IToolbarProps> = ({
   const { classes, cx } = useToolbarStyles();
   return (
     <Box className={cx(classes.toolbarContainer, darkTheme ? 'dark' : null)}>
-      {page !== 'languages' && (
+      {page !== 'languages' && page !== 'cities' && (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <SearchField
             id="search"

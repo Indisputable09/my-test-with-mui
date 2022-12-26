@@ -16,6 +16,7 @@ import {
   productCategoriesRows,
   FAQRows,
   languagesRows,
+  manufacturersRows,
   showImgColumn,
   FAQActions,
   citiesRows,
@@ -56,7 +57,7 @@ const NavBar: React.FC<INavBarProps> = ({
     },
     {
       field: 'image',
-      headerName: 'Фото',
+      headerName: 'Зображення',
       width: 110,
       editable: false,
       headerAlign: 'center',
@@ -157,7 +158,7 @@ const NavBar: React.FC<INavBarProps> = ({
     },
     {
       field: 'image',
-      headerName: 'Фото',
+      headerName: 'Зображення',
       width: 110,
       editable: false,
       headerAlign: 'center',
@@ -263,6 +264,51 @@ const NavBar: React.FC<INavBarProps> = ({
     },
   ];
 
+  const manufacturersColumns: GridColDef[] = [
+    {
+      field: 'id',
+      headerName: 'ID',
+      width: 50,
+      headerAlign: 'center',
+      align: 'center',
+    },
+    {
+      field: 'image',
+      headerName: 'Зображення',
+      width: 110,
+      editable: false,
+      headerAlign: 'center',
+      align: 'center',
+      renderCell: params => {
+        return (
+          <div>
+            <img src={params.row.image} alt={params.row.name} width="60" />
+          </div>
+        );
+      },
+    },
+    {
+      field: 'name',
+      headerName: 'Назва',
+      width: 910,
+      flex: 1,
+      editable: false,
+      renderCell: (params: GridCellParams) => {
+        return <CellExpandComponent params={params} darkTheme={darkTheme} />;
+      },
+    },
+    {
+      field: 'actions',
+      headerName: 'Дії',
+      editable: false,
+      sortable: false,
+      headerAlign: 'center',
+      align: 'center',
+      disableColumnMenu: true,
+      renderCell: () => <FAQActions darkTheme={darkTheme} />,
+      width: 120,
+    },
+  ];
   const citiesColumns: GridColDef[] = [
     {
       field: 'id',
@@ -402,7 +448,21 @@ const NavBar: React.FC<INavBarProps> = ({
                     darkTheme={darkTheme}
                     columns={citiesColumns}
                     rows={citiesRows}
-                    page={'languages'}
+                    page={'cities'}
+                  />
+                </>
+                <>
+                  <Typography
+                    component="h2"
+                    className={cx(classes.title, darkTheme ? 'dark' : null)}
+                  >
+                    Виробники
+                  </Typography>
+                  <TableComponent
+                    darkTheme={darkTheme}
+                    columns={manufacturersColumns}
+                    rows={manufacturersRows}
+                    page={'manufactures'}
                   />
                 </>
               </>
