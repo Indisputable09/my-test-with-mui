@@ -500,6 +500,49 @@ export const citiesRows = [
   },
 ];
 
+export const manufacturersRows = [
+  {
+    id: 1,
+    image: img1,
+    name: 'Mobile phone',
+  },
+  {
+    id: 2,
+    image: img1,
+    name: 'Mobile phone > Apple',
+  },
+  {
+    id: 3,
+    image: img2,
+    name: 'Mobile phone > Apple',
+  },
+  {
+    id: 4,
+    image: img2,
+    name: 'Mobile phone > Apple',
+  },
+  {
+    id: 5,
+    image: img1,
+    name: 'Mobile phone > Apple',
+  },
+  {
+    id: 6,
+    image: img1,
+    name: 'Mobile phone > Apple',
+  },
+  {
+    id: 7,
+    image: img1,
+    name: 'Mobile phone > Apple',
+  },
+  {
+    id: 8,
+    image: img1,
+    name: 'Mobile phone > Apple',
+  },
+];
+
 export const showImgColumn = productRows.some(item =>
   item.hasOwnProperty('image')
 );
