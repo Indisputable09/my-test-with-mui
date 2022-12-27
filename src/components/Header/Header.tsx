@@ -70,14 +70,16 @@ const Header: React.FC<HeaderProps> = ({
               >
                 Очистити кеш
               </Button>
-              <IconButton aria-label="show new notifications" color="inherit">
+              <IconButton
+                aria-label="show new notifications"
+                color="inherit"
+                className={cx(
+                  classes.headerNotificationsButton,
+                  darkTheme ? 'dark' : null
+                )}
+              >
                 <Badge badgeContent={17} color="error">
-                  <NotificationsIcon
-                    className={cx(
-                      classes.headerIcon,
-                      darkTheme ? 'dark' : null
-                    )}
-                  />
+                  <NotificationsIcon />
                 </Badge>
               </IconButton>
               <IconButton
@@ -85,11 +87,12 @@ const Header: React.FC<HeaderProps> = ({
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 color="inherit"
-                className={cx(classes.headerIconButton)}
+                className={cx(
+                  classes.headerAccountIconButton,
+                  darkTheme ? 'dark' : null
+                )}
               >
-                <AccountCircle
-                  className={cx(classes.headerIcon, darkTheme ? 'dark' : null)}
-                />
+                <AccountCircle style={{ width: '40px', height: '40px' }} />
               </IconButton>
 
               <Box className={classes.credentials}>
@@ -112,10 +115,12 @@ const Header: React.FC<HeaderProps> = ({
                 aria-haspopup="true"
                 onClick={handleClickAuth}
                 color="inherit"
+                className={cx(
+                  classes.headerLoginButton,
+                  darkTheme ? 'dark' : null
+                )}
               >
-                <LogoutIcon
-                  className={cx(classes.headerIcon, darkTheme ? 'dark' : null)}
-                />
+                <LogoutIcon />
               </IconButton>
             </Box>
           ) : (
@@ -125,13 +130,12 @@ const Header: React.FC<HeaderProps> = ({
               aria-haspopup="true"
               onClick={handleClickAuth}
               color="inherit"
-              sx={{
-                ml: 'auto',
-              }}
+              className={cx(
+                classes.headerLogoutButton,
+                darkTheme ? 'dark' : null
+              )}
             >
-              <LoginIcon
-                className={cx(classes.headerIcon, darkTheme ? 'dark' : null)}
-              />
+              <LoginIcon />
             </IconButton>
           )}
         </Toolbar>

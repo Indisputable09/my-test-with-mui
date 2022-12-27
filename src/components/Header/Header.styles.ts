@@ -42,7 +42,7 @@ export const useHeaderStyles = makeStyles<void>()(
     },
     cashButton: {
       padding: '6px 16px 6px 16px',
-      marginRight: '8px',
+      marginRight: '16px',
       fontSize: '11px',
       backgroundColor: 'transparent',
       transition: 'all linear 250ms',
@@ -67,7 +67,7 @@ export const useHeaderStyles = makeStyles<void>()(
       fontWeight: 400,
       fontSize: '16px',
       lineHeight: '1.75',
-      color: '#232D42',
+      color: '#000000DE',
       transition: 'all linear 250ms',
       '&.dark': {
         color: '#ffffff',
@@ -75,27 +75,49 @@ export const useHeaderStyles = makeStyles<void>()(
     },
     userEmail: {
       fontWeight: 400,
-      fontSize: '13px',
+      fontSize: '14px',
       lineHeight: '1.3',
-      color: '#8A92A6',
+      color: '#00000099',
       transition: 'all linear 250ms',
       '&.dark': {
-        color: '#c8cdd9',
+        color: '#FFFFFFB2',
       },
     },
-    headerIconButton: {
-      marginLeft: '8px',
-    },
-    headerIcon: {
-      width: '40px',
-      height: '40px',
+    headerAccountIconButton: {
+      marginLeft: '24px',
       transition: 'all linear 250ms',
-      [theme.breakpoints.down('sm')]: {
-        width: '35px',
-        height: '35px',
-      },
+      color: '#0000008A',
       '&.dark': {
-        color: '#ffffff',
+        color: 'rgba(250, 250, 250, 0.3)',
+      },
+    },
+    headerNotificationsButton: {
+      width: '16px',
+      height: '20px',
+      transition: 'all linear 250ms',
+      color: '#000000DE',
+      '&.dark': {
+        color: '#FFFFFF8F',
+      },
+    },
+    headerLogoutButton: {
+      marginLeft: 'auto',
+      width: '16px',
+      height: '20px',
+      transition: 'all linear 250ms',
+      color: '#0000008A',
+      '&.dark': {
+        color: '#FFFFFF8F',
+      },
+    },
+    headerLoginButton: {
+      marginLeft: '36px',
+      width: '16px',
+      height: '20px',
+      transition: 'all linear 250ms',
+      color: '#0000008A',
+      '&.dark': {
+        color: '#FFFFFF8F',
       },
     },
   })

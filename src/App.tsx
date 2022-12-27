@@ -5,7 +5,7 @@ import NavBar from './components/NavBar';
 import { THEME_MODE } from './constants/themeMode';
 
 export const App: React.FC = () => {
-  const [openDrawer, setOpenDrawer] = React.useState<boolean>(false);
+  const [openDrawer, setOpenDrawer] = React.useState<boolean>(true);
   const [darkTheme, setDarkTheme] = React.useState<boolean>(
     THEME_MODE === 'dark' ? true : false ?? false
   );
