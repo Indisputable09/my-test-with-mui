@@ -79,12 +79,7 @@ const Header: React.FC<HeaderProps> = ({
                 )}
               >
                 <Badge badgeContent={17} color="error">
-                  <NotificationsIcon
-                  // className={cx(
-                  //   classes.headerIcon,
-                  //   darkTheme ? 'dark' : null
-                  // )}
-                  />
+                  <NotificationsIcon />
                 </Badge>
               </IconButton>
               <IconButton
@@ -97,10 +92,7 @@ const Header: React.FC<HeaderProps> = ({
                   darkTheme ? 'dark' : null
                 )}
               >
-                <AccountCircle
-                  style={{ width: '40px', height: '40px' }}
-                  // className={cx(classes.headerIcon, darkTheme ? 'dark' : null)}
-                />
+                <AccountCircle style={{ width: '40px', height: '40px' }} />
               </IconButton>
 
               <Box className={classes.credentials}>
@@ -128,12 +120,7 @@ const Header: React.FC<HeaderProps> = ({
                   darkTheme ? 'dark' : null
                 )}
               >
-                <LogoutIcon
-                // className={cx(
-                //   classes.headerAuthButton,
-                //   darkTheme ? 'dark' : null
-                // )}
-                />
+                <LogoutIcon />
               </IconButton>
             </Box>
           ) : (
@@ -147,16 +134,8 @@ const Header: React.FC<HeaderProps> = ({
                 classes.headerLogoutButton,
                 darkTheme ? 'dark' : null
               )}
-              // sx={{
-              //   ml: 'auto',
-              // }}
             >
-              <LoginIcon
-              // className={cx(
-              //   classes.headerAuthButton,
-              //   darkTheme ? 'dark' : null
-              // )}
-              />
+              <LoginIcon />
             </IconButton>
           )}
         </Toolbar>
