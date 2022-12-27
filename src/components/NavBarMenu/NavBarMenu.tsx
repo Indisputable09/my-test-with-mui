@@ -14,12 +14,14 @@ import { useNavBarStyles } from '../NavBar/NavBar.styles';
 import { ThemeSwitcherStyled } from './NavBarMenu.styles';
 
 interface INavBarMenuProps {
+  toggleDrawer: (open: boolean) => void;
   openDrawer: boolean;
   handleThemeClick: () => void;
   darkTheme: boolean;
 }
 
 const NavBarMenu: React.FC<INavBarMenuProps> = ({
+  toggleDrawer,
   openDrawer,
   handleThemeClick,
   darkTheme,
@@ -71,6 +73,12 @@ const NavBarMenu: React.FC<INavBarMenuProps> = ({
         />
       </Drawer>
       <Drawer
+        onClick={e => {
+          if ((e.target as HTMLElement).nodeName === 'INPUT') {
+            return;
+          }
+          toggleDrawer(!openDrawer);
+        }}
         variant="permanent"
         classes={{
           paper: cx(

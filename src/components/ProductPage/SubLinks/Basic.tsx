@@ -66,7 +66,6 @@ export const Basic: React.FC<IBasicProps> = ({
         component="h2"
         sx={{
           mb: '24px',
-          mt: 2,
           fontFamily: '"Work Sans", "Roboto", "sans-serif" !important',
           fontWeight: 700,
           fontSize: '20px',

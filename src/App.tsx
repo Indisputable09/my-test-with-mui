@@ -15,6 +15,9 @@ export const App: React.FC = () => {
   const [mockLanguageId, setMockLanguageId] = React.useState<null | number>(
     null
   );
+  const [mockProductCategoryId, setMockProductCategoryId] = React.useState<
+    null | number
+  >(null);
 
   const handleThemeClick = () => {
     setDarkTheme(!darkTheme);
@@ -50,11 +53,19 @@ export const App: React.FC = () => {
       >
         До мови
       </Button>
+      <Button
+        onClick={() => setMockProductCategoryId(2)}
+        sx={{ position: 'absolute', right: 0, top: '150px' }}
+      >
+        До категорії продукту
+      </Button>
       <NavBar
+        toggleDrawer={toggleDrawer}
         openDrawer={openDrawer}
         productId={mockProductId}
         FAQId={mockFAQId}
         languageId={mockLanguageId}
+        productCategoryId={mockProductCategoryId}
         handleThemeClick={handleThemeClick}
         darkTheme={darkTheme}
       />

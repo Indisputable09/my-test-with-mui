@@ -73,15 +73,15 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({
     });
   };
 
-  const handleAutocompleteChange = (e: any, newValue: string | null) => {
-    const id = e.target.id.split('-')[0];
-    setLanguagesFieldsValues((prevState: any) => {
-      return {
-        ...prevState,
-        [id]: newValue,
-      };
-    });
-  };
+  // const handleAutocompleteChange = (e: any, newValue: string | null) => {
+  //   const id = e.target.id.split('-')[0];
+  //   setLanguagesFieldsValues((prevState: any) => {
+  //     return {
+  //       ...prevState,
+  //       [id]: newValue,
+  //     };
+  //   });
+  // };
 
   const handleMainLanguageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLanguagesFieldsValues((prevState: any) => {
@@ -222,7 +222,14 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({
           <Autocomplete
             id="languageIcon"
             value={languagesFieldsValues.languageIcon}
-            onChange={handleAutocompleteChange}
+            onChange={(e: any, newValue: string | null) => {
+              setLanguagesFieldsValues((prevState: any) => {
+                return {
+                  ...prevState,
+                  languageIcon: newValue,
+                };
+              });
+            }}
             noOptionsText={<p>Відсутні результати</p>}
             options={icons}
             className={cx(classes.autocomplete, darkTheme ? 'dark' : null)}

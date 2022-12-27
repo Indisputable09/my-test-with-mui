@@ -180,16 +180,6 @@ export const Connections: React.FC<IConnectionsProps> = ({
 }) => {
   const { classes, cx } = useProductPageStyles();
 
-  const handleAutocompleteChange = (e: any, newValue: string | null) => {
-    const id = e.target.id.split('-')[0];
-    setFieldsValues((prevState: any) => {
-      return {
-        ...prevState,
-        [id]: newValue,
-      };
-    });
-  };
-
   const handleMultipleSelectChange = (id: string, newValue: string[]) => {
     setFieldsValues((prevState: any) => {
       return {
@@ -208,8 +198,15 @@ export const Connections: React.FC<IConnectionsProps> = ({
         Виробник
         <Autocomplete
           id="producer"
+          onChange={(e: any, newValue: string | null) => {
+            setFieldsValues((prevState: any) => {
+              return {
+                ...prevState,
+                producer: newValue,
+              };
+            });
+          }}
           value={fieldsValues.producer}
-          onChange={handleAutocompleteChange}
           noOptionsText={<p>Відсутні результати</p>}
           options={names}
           className={cx(classes.autocomplete, darkTheme ? 'dark' : null)}
@@ -236,7 +233,14 @@ export const Connections: React.FC<IConnectionsProps> = ({
         <Autocomplete
           id="category"
           value={fieldsValues.category}
-          onChange={handleAutocompleteChange}
+          onChange={(e: any, newValue: string | null) => {
+            setFieldsValues((prevState: any) => {
+              return {
+                ...prevState,
+                category: newValue,
+              };
+            });
+          }}
           noOptionsText={<p>Відсутні результати</p>}
           options={names}
           className={cx(classes.autocomplete, darkTheme ? 'dark' : null)}
