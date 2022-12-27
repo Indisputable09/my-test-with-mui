@@ -24,25 +24,33 @@ import {
 import { CellExpandComponent } from '../TableComponent/CellExpand';
 import FAQPage from '../FAQPage';
 import LanguagesPage from '../LanguagesPage';
+import ProductCategoryPage from '../ProductCategoryPage';
 
 interface INavBarProps {
+  toggleDrawer: (open: boolean) => void;
   openDrawer: boolean;
   productId: number | null;
   FAQId: number | null;
   languageId: number | null;
+  productCategoryId: number | null;
   handleThemeClick: () => void;
   darkTheme: boolean;
 }
 
 const NavBar: React.FC<INavBarProps> = ({
+  toggleDrawer,
   openDrawer,
   productId,
   FAQId,
   languageId,
   handleThemeClick,
   darkTheme,
+  productCategoryId,
 }) => {
   const chosenProduct = productRows.find(row => row.id === productId);
+  const chosenProductCategory = productCategoriesRows.find(
+    row => row.id === productCategoryId
+  );
   const chosenQuestion = FAQRows.find(row => row.id === FAQId);
   const chosenLanguage = languagesRows.find(row => row.id === languageId);
   const { classes, cx } = useNavBarStyles();
@@ -309,6 +317,7 @@ const NavBar: React.FC<INavBarProps> = ({
       width: 120,
     },
   ];
+
   const citiesColumns: GridColDef[] = [
     {
       field: 'id',
@@ -344,6 +353,7 @@ const NavBar: React.FC<INavBarProps> = ({
     <div className={cx('App', classes.root)}>
       <CssBaseline />
       <NavBarMenu
+        toggleDrawer={toggleDrawer}
         openDrawer={openDrawer}
         handleThemeClick={handleThemeClick}
         darkTheme={darkTheme}
@@ -357,6 +367,7 @@ const NavBar: React.FC<INavBarProps> = ({
       >
         <Box
           className={cx(classes.overlay, openDrawer ? 'active' : null)}
+          onClick={() => toggleDrawer(!openDrawer)}
         ></Box>
         <Container
           className={cx(classes.container, openDrawer ? 'active' : null)}
@@ -373,12 +384,19 @@ const NavBar: React.FC<INavBarProps> = ({
               chosenLanguage={chosenLanguage}
             />
           )}
+          {productCategoryId && chosenProductCategory && (
+            <ProductCategoryPage
+              darkTheme={darkTheme}
+              chosenProductCategory={chosenProductCategory}
+            />
+          )}
           {!productId &&
             !chosenProduct &&
             !FAQId &&
             !chosenQuestion &&
             !languageId &&
-            !chosenLanguage && (
+            !chosenLanguage &&
+            !chosenProductCategory && (
               <>
                 <CollapsedBreadcrumbs darkTheme={darkTheme} />
 

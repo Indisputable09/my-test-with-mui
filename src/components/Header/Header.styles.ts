@@ -47,6 +47,7 @@ export const useHeaderStyles = makeStyles<void>()(
       backgroundColor: 'transparent',
       transition: 'all linear 250ms',
       color: '#1976D2',
+      '&:hover, &:focus': { backgroundColor: '#90CAF914 !important' },
       '&.dark': {
         color: '#90CAF9',
         backgroundColor: 'inherit',

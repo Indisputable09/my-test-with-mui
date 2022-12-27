@@ -230,10 +230,10 @@ export const useTableComponentStyles = makeStyles<void>()(
       transition: 'all 250ms ease-out',
       borderRadius: '4px',
       '&:hover, &:focus': {
-        backgroundColor: 'rgba(0, 0, 0, 0.04)',
+        backgroundColor: '#0000000A',
       },
       '&.dark:hover, &.dark:focus': {
-        backgroundColor: 'rgba(144, 202, 249, 0.08)',
+        backgroundColor: '#90CAF914',
       },
     },
     deleteIcon: {

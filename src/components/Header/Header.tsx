@@ -5,7 +5,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
@@ -44,15 +43,9 @@ const Header: React.FC<HeaderProps> = ({
             sx={{ mr: 2 }}
             onClick={() => toggleDrawer(!openDrawer)}
           >
-            {openDrawer ? (
-              <CloseIcon
-                className={cx(classes.menuToggler, darkTheme ? 'dark' : null)}
-              />
-            ) : (
-              <MenuIcon
-                className={cx(classes.menuToggler, darkTheme ? 'dark' : null)}
-              />
-            )}
+            <MenuIcon
+              className={cx(classes.menuToggler, darkTheme ? 'dark' : null)}
+            />
           </IconButton>
           <Typography
             variant="h6"
