@@ -41,6 +41,7 @@ const TableComponent: React.FC<ITableComponentProps> = ({
 }) => {
   const [filter, setFilter] = React.useState<string>('');
   const [selectedRows, setSelectedRows] = React.useState<IRow[]>([]);
+  // console.log('selectedRows', selectedRows);
   const [pageSize, setPageSize] = React.useState<number>(5);
 
   const handleChangeFilter = (
@@ -57,12 +58,12 @@ const TableComponent: React.FC<ITableComponentProps> = ({
     return filteredRows;
   };
 
+  const filteredRows = createFilter();
+
   const onRowsSelectionHandler = (ids: number[]) => {
     const selectedRowsData = ids.map(id => rows.find(row => row.id === id));
     setSelectedRows(selectedRowsData as IRow[]);
   };
-
-  const filteredRows = createFilter();
 
   const { classes, cx } = useTableComponentStyles();
 
@@ -95,10 +96,20 @@ const TableComponent: React.FC<ITableComponentProps> = ({
     }
   );
 
+  const handleSelectAllRows = () => {
+    setSelectedRows(rows as IRow[]);
+  };
+
+  const handleUnselectAllRows = () => {
+    setSelectedRows([]);
+  };
+
   return (
     <Box className={cx(classes.tableToolbarBlock, darkTheme ? 'dark' : null)}>
       <Toolbar
         handleChangeFilter={handleChangeFilter}
+        handleSelectAllRows={handleSelectAllRows}
+        handleUnselectAllRows={handleUnselectAllRows}
         filter={filter}
         selectedRows={selectedRows}
         darkTheme={darkTheme}
@@ -123,7 +134,8 @@ const TableComponent: React.FC<ITableComponentProps> = ({
         experimentalFeatures={{ newEditingApi: true }}
         localeText={ukUA.components.MuiDataGrid.defaultProps.localeText}
         onSelectionModelChange={ids => onRowsSelectionHandler(ids as number[])}
-        // selectionModel={rows.map(row => row.id)}
+        selectionModel={selectedRows.map(row => row.id)}
+        // selectionModel={1}
       />
     </Box>
   );

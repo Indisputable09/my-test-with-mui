@@ -11,6 +11,8 @@ import { Box, Typography } from '@mui/material';
 import { useSelectActionsStyles } from './SelectActions.styles';
 
 interface ISelectActions {
+  handleUnselectAllRows: () => void;
+  handleSelectAllRows: () => void;
   darkTheme: boolean;
   page?: string;
 }
@@ -18,6 +20,8 @@ interface ISelectActions {
 const SelectActions: React.FC<ISelectActions> = ({
   darkTheme,
   page = 'product',
+  handleSelectAllRows,
+  handleUnselectAllRows,
 }) => {
   const { classes, cx } = useSelectActionsStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -71,7 +75,7 @@ const SelectActions: React.FC<ISelectActions> = ({
         className={cx(classes.selectMenu, darkTheme ? 'dark' : null)}
       >
         {page === 'product' && (
-          <MenuItem value="всі">
+          <MenuItem value="всі" onClick={handleSelectAllRows}>
             <Box className={cx(classes.menuItem, darkTheme ? 'dark' : null)}>
               <IconButton
                 sx={{ display: 'flex', justifyContent: 'center' }}
@@ -88,7 +92,7 @@ const SelectActions: React.FC<ISelectActions> = ({
             </Box>
           </MenuItem>
         )}
-        <MenuItem value="Відмінити">
+        <MenuItem value="Відмінити" onClick={handleUnselectAllRows}>
           <Box className={cx(classes.menuItem, darkTheme ? 'dark' : null)}>
             <IconButton
               sx={{ display: 'flex', justifyContent: 'center' }}

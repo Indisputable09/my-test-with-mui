@@ -10,6 +10,8 @@ import SelectActions from '../SelectActions';
 import { useToolbarStyles } from './Toolbar.styles';
 
 interface IToolbarProps {
+  handleSelectAllRows: () => void;
+  handleUnselectAllRows: () => void;
   handleChangeFilter: (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => void;
@@ -60,6 +62,8 @@ const SearchField = styled(TextField, {
 });
 
 const Toolbar: React.FC<IToolbarProps> = ({
+  handleSelectAllRows,
+  handleUnselectAllRows,
   handleChangeFilter,
   filter,
   selectedRows,
@@ -87,7 +91,12 @@ const Toolbar: React.FC<IToolbarProps> = ({
         </Box>
       )}
       {selectedRows.length > 0 ? (
-        <SelectActions darkTheme={darkTheme} page={page} />
+        <SelectActions
+          darkTheme={darkTheme}
+          page={page}
+          handleSelectAllRows={handleSelectAllRows}
+          handleUnselectAllRows={handleUnselectAllRows}
+        />
       ) : (
         <Button
           className={cx(classes.addButton, darkTheme ? 'dark' : null)}
