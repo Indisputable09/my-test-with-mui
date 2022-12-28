@@ -238,11 +238,11 @@ export const useTableComponentStyles = makeStyles<void>()(
     },
     deleteIcon: {
       transition: 'color 250ms ease-out',
-      'button:hover > &': {
+      'button:hover > &, button:focus > &': {
         color: '#EB5757',
         filter: 'drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.25))',
       },
-      'button:hover > &.dark': {
+      'button:hover > &.dark, button:focus > &.dark': {
         filter: 'drop-shadow(2px 2px 0px rgba(255, 255, 255, 0.25))',
       },
     },
