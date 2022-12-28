@@ -258,6 +258,13 @@ export const useProductPageStyles = makeStyles<void>()(
       '&.dark': {
         color: '#fff',
       },
+      '&:hover, &:focus': {
+        color: '#EB5757',
+        filter: 'drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.25))',
+      },
+      '&.dark:hover, &.dark:focus': {
+        filter: 'drop-shadow(2px 2px 0px rgba(255, 255, 255, 0.25))',
+      },
     },
     addButton: {
       width: '116px',
@@ -267,7 +274,8 @@ export const useProductPageStyles = makeStyles<void>()(
       backgroundColor: '#3A57E8',
       color: '#fff',
       transition: 'all 250ms ease-out',
-      '&:hover, &:focus': { backgroundColor: '#90CAF914 !important' },
+      '&:hover, &:focus': { backgroundColor: '#1565C0 !important' },
+      '&.dark:hover, &.dark:focus': { backgroundColor: '#90CAF914 !important' },
       '&.dark': {
         backgroundColor: 'transparent',
         border: '1px solid #90CAF9',

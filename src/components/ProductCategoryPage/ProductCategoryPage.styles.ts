@@ -105,7 +105,8 @@ export const useProductCategoryPageStyles = makeStyles<void>()(
       backgroundColor: '#3A57E8',
       color: '#fff',
       transition: 'all 250ms ease-out',
-      '&:hover, &:focus': { backgroundColor: '#90CAF914 !important' },
+      '&:hover, &:focus': { backgroundColor: '#1565C0 !important' },
+      '&.dark:hover, &.dark:focus': { backgroundColor: '#90CAF914 !important' },
       '&.dark': {
         backgroundColor: 'transparent',
         border: '1px solid #90CAF9',
