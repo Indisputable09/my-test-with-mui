@@ -81,6 +81,7 @@ const NavBar: React.FC<INavBarProps> = ({
     {
       field: 'name',
       headerName: 'Назва',
+      // minWidth: 330,
       width: 330,
       flex: 1,
       editable: false,
@@ -124,11 +125,15 @@ const NavBar: React.FC<INavBarProps> = ({
     {
       field: 'category',
       headerName: 'Категорія',
+      // minWidth: 150,
       width: 150,
       flex: 1,
       editable: false,
       headerAlign: 'center',
       align: 'center',
+      renderCell: (params: GridCellParams) => {
+        return <CellExpandComponent params={params} darkTheme={darkTheme} />;
+      },
     },
     {
       field: 'status',

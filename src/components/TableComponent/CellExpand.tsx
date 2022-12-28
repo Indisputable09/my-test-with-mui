@@ -107,7 +107,7 @@ const CellExpand = React.memo(function CellExpand(
         >
           <Paper
             elevation={1}
-            style={{ minHeight: wrapper.current!.offsetHeight - 2 }}
+            // style={{ minHeight: wrapper.current!.offsetHeight - 2 }}
           >
             <div
               className={cx(tableClasses.cellExpand, darkTheme ? 'dark' : null)}
