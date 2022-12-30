@@ -7,7 +7,10 @@ import TableComponent from '../TableComponent';
 import { Box, Typography } from '@mui/material';
 import CollapsedBreadcrumbs from '../Crumbs';
 import ProductPage from '../ProductPage';
-import { GridColDef, GridCellParams } from '@mui/x-data-grid';
+import {
+  GridColDef,
+  // GridCellParams
+} from '@mui/x-data-grid';
 import {
   ControlledSwitch,
   MoreActions,
@@ -21,7 +24,7 @@ import {
   FAQActions,
   citiesRows,
 } from '../TableComponent/TableData';
-import { CellExpandComponent } from '../TableComponent/CellExpand';
+// import { CellExpandComponent } from '../TableComponent/CellExpand';
 import FAQPage from '../FAQPage';
 import LanguagesPage from '../LanguagesPage';
 import ProductCategoryPage from '../ProductCategoryPage';
@@ -36,6 +39,36 @@ interface INavBarProps {
   handleThemeClick: () => void;
   darkTheme: boolean;
 }
+
+const darkMode = !!localStorage.getItem('THEME_MODE');
+
+const citiesColumns: GridColDef[] = [
+  {
+    field: 'id',
+    headerName: 'ID',
+    width: 50,
+    headerAlign: 'center',
+    align: 'center',
+  },
+  {
+    field: 'name',
+    headerName: 'Назва',
+    width: 910,
+    flex: 1,
+    editable: false,
+  },
+  {
+    field: 'actions',
+    headerName: 'Дії',
+    editable: false,
+    sortable: false,
+    headerAlign: 'center',
+    align: 'center',
+    disableColumnMenu: true,
+    renderCell: () => <FAQActions darkTheme={darkMode} />,
+    width: 120,
+  },
+];
 
 const NavBar: React.FC<INavBarProps> = ({
   toggleDrawer,
@@ -81,13 +114,13 @@ const NavBar: React.FC<INavBarProps> = ({
     {
       field: 'name',
       headerName: 'Назва',
-      // minWidth: 330,
-      width: 330,
+      minWidth: 330,
+      // width: 330,
       flex: 1,
       editable: false,
-      renderCell: (params: GridCellParams) => {
-        return <CellExpandComponent params={params} darkTheme={darkTheme} />;
-      },
+      // renderCell: (params: GridCellParams) => {
+      //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
+      // },
     },
     {
       field: 'sku',
@@ -125,15 +158,13 @@ const NavBar: React.FC<INavBarProps> = ({
     {
       field: 'category',
       headerName: 'Категорія',
-      // minWidth: 150,
-      width: 150,
-      flex: 1,
+      width: 130,
       editable: false,
       headerAlign: 'center',
       align: 'center',
-      renderCell: (params: GridCellParams) => {
-        return <CellExpandComponent params={params} darkTheme={darkTheme} />;
-      },
+      // renderCell: (params: GridCellParams) => {
+      //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
+      // },
     },
     {
       field: 'status',
@@ -190,9 +221,9 @@ const NavBar: React.FC<INavBarProps> = ({
       width: 700,
       flex: 1,
       editable: false,
-      renderCell: (params: GridCellParams) => {
-        return <CellExpandComponent params={params} darkTheme={darkTheme} />;
-      },
+      // renderCell: (params: GridCellParams) => {
+      //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
+      // },
     },
     {
       field: 'sort',
@@ -229,9 +260,9 @@ const NavBar: React.FC<INavBarProps> = ({
       width: 910,
       flex: 1,
       editable: false,
-      renderCell: (params: GridCellParams) => {
-        return <CellExpandComponent params={params} darkTheme={darkTheme} />;
-      },
+      // renderCell: (params: GridCellParams) => {
+      //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
+      // },
     },
     {
       field: 'actions',
@@ -260,9 +291,9 @@ const NavBar: React.FC<INavBarProps> = ({
       width: 910,
       flex: 1,
       editable: false,
-      renderCell: (params: GridCellParams) => {
-        return <CellExpandComponent params={params} darkTheme={darkTheme} />;
-      },
+      // renderCell: (params: GridCellParams) => {
+      //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
+      // },
     },
     {
       field: 'actions',
@@ -306,40 +337,9 @@ const NavBar: React.FC<INavBarProps> = ({
       width: 910,
       flex: 1,
       editable: false,
-      renderCell: (params: GridCellParams) => {
-        return <CellExpandComponent params={params} darkTheme={darkTheme} />;
-      },
-    },
-    {
-      field: 'actions',
-      headerName: 'Дії',
-      editable: false,
-      sortable: false,
-      headerAlign: 'center',
-      align: 'center',
-      disableColumnMenu: true,
-      renderCell: () => <FAQActions darkTheme={darkTheme} />,
-      width: 120,
-    },
-  ];
-
-  const citiesColumns: GridColDef[] = [
-    {
-      field: 'id',
-      headerName: 'ID',
-      width: 50,
-      headerAlign: 'center',
-      align: 'center',
-    },
-    {
-      field: 'name',
-      headerName: 'Назва',
-      width: 910,
-      flex: 1,
-      editable: false,
-      renderCell: (params: GridCellParams) => {
-        return <CellExpandComponent params={params} darkTheme={darkTheme} />;
-      },
+      // renderCell: (params: GridCellParams) => {
+      //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
+      // },
     },
     {
       field: 'actions',

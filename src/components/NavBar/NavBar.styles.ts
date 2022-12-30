@@ -21,36 +21,6 @@ export const useNavBarStyles = makeStyles<void>()(
     root: {
       display: 'flex',
     },
-    miniDrawerPaper: {
-      width: miniDrawerWidth,
-      backgroundColor: '#fff',
-      position: 'absolute',
-      zIndex: '1101',
-      height: 'calc(100vh - 64px)',
-      top: '64px',
-      [customTheme.breakpoints.down('sm')]: {
-        top: '51px',
-        height: 'calc(100vh - 51px)',
-      },
-      left: 0,
-      overflowX: 'hidden',
-      // transform: 'TranslateX(0) scale(1)',
-      transition:
-        'transform 250ms ease-out, background-color 250ms ease-out, box-shadow 250ms ease-out',
-      whiteSpace: 'nowrap',
-      paddingTop: theme.spacing(4),
-      paddingBottom: theme.spacing(4),
-      boxShadow: '7px 4px 11px -1px rgba(0,0,0,0.47)',
-
-      '&.dark': {
-        backgroundColor: '#1F2A38',
-        boxShadow: 'none',
-      },
-
-      // '&.hide': {
-      //   transform: 'TranslateX(-100%)',
-      // },
-    },
     drawerPaper: {
       position: 'absolute',
       zIndex: '1102',
@@ -62,19 +32,19 @@ export const useNavBarStyles = makeStyles<void>()(
       },
       left: 0,
       overflowX: 'hidden',
-      transform: 'TranslateX(-102%)',
-      transition:
-        'transform 250ms ease-out, background-color 250ms ease-out, box-shadow 250ms ease-out',
+      transition: 'background-color 250ms linear, width 800ms linear',
       whiteSpace: 'nowrap',
-      width: drawerWidth,
+      width: miniDrawerWidth,
       paddingTop: theme.spacing(4),
       paddingBottom: theme.spacing(4),
-      boxShadow: '7px 4px 11px -1px rgba(0,0,0,0.47)',
+      boxShadow: '4px 5px 5px rgb(0 0 0 / 25%)',
       '&.dark': {
         backgroundColor: '#1F2A38',
+        boxShadow: 'none',
       },
       '&.active': {
-        transform: 'TranslateX(0)',
+        transition: 'all 1s linear',
+        width: drawerWidth,
       },
       '&::-webkit-scrollbar': {
         width: '5px',
