@@ -32,7 +32,7 @@ export const useNavBarStyles = makeStyles<void>()(
       },
       left: 0,
       overflowX: 'hidden',
-      transition: 'background-color 250ms linear, width 800ms linear',
+      transition: 'background-color 250ms linear, width 400ms linear',
       whiteSpace: 'nowrap',
       width: miniDrawerWidth,
       paddingTop: theme.spacing(4),
@@ -43,7 +43,7 @@ export const useNavBarStyles = makeStyles<void>()(
         boxShadow: 'none',
       },
       '&.active': {
-        transition: 'all 1s linear',
+        transition: 'all 400ms linear',
         width: drawerWidth,
       },
       '&::-webkit-scrollbar': {
