@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import { useNavBarStyles } from './NavBar.styles';
@@ -28,6 +28,7 @@ import {
 import FAQPage from '../FAQPage';
 import LanguagesPage from '../LanguagesPage';
 import ProductCategoryPage from '../ProductCategoryPage';
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 
 interface INavBarProps {
   toggleDrawer: (open: boolean) => void;
@@ -40,35 +41,35 @@ interface INavBarProps {
   darkTheme: boolean;
 }
 
-const darkMode = !!localStorage.getItem('THEME_MODE');
+// const darkMode = !!localStorage.getItem('THEME_MODE');
 
-const citiesColumns: GridColDef[] = [
-  {
-    field: 'id',
-    headerName: 'ID',
-    width: 50,
-    headerAlign: 'center',
-    align: 'center',
-  },
-  {
-    field: 'name',
-    headerName: 'Назва',
-    width: 910,
-    flex: 1,
-    editable: false,
-  },
-  {
-    field: 'actions',
-    headerName: 'Дії',
-    editable: false,
-    sortable: false,
-    headerAlign: 'center',
-    align: 'center',
-    disableColumnMenu: true,
-    renderCell: () => <FAQActions darkTheme={darkMode} />,
-    width: 120,
-  },
-];
+// const citiesColumns: GridColDef[] = [
+//   {
+//     field: 'id',
+//     headerName: 'ID',
+//     width: 50,
+//     headerAlign: 'center',
+//     align: 'center',
+//   },
+//   {
+//     field: 'name',
+//     headerName: 'Назва',
+//     width: 910,
+//     flex: 1,
+//     editable: false,
+//   },
+//   {
+//     field: 'actions',
+//     headerName: 'Дії',
+//     editable: false,
+//     sortable: false,
+//     headerAlign: 'center',
+//     align: 'center',
+//     disableColumnMenu: true,
+//     renderCell: () => <FAQActions darkTheme={darkMode} />,
+//     width: 120,
+//   },
+// ];
 
 const NavBar: React.FC<INavBarProps> = ({
   toggleDrawer,
@@ -88,271 +89,271 @@ const NavBar: React.FC<INavBarProps> = ({
   const chosenLanguage = languagesRows.find(row => row.id === languageId);
   const { classes, cx } = useNavBarStyles();
 
-  const productCatalogColumns: GridColDef[] = [
-    {
-      field: 'id',
-      headerName: 'ID',
-      width: 50,
-      headerAlign: 'center',
-      align: 'center',
-    },
-    {
-      field: 'image',
-      headerName: 'Зображення',
-      width: 110,
-      editable: false,
-      headerAlign: 'center',
-      align: 'center',
-      renderCell: params => {
-        return (
-          <div>
-            <img src={params.row.image} alt={params.row.name} width="60" />
-          </div>
-        );
-      },
-    },
-    {
-      field: 'name',
-      headerName: 'Назва',
-      minWidth: 330,
-      // width: 330,
-      flex: 1,
-      editable: false,
-      // renderCell: (params: GridCellParams) => {
-      //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
-      // },
-    },
-    {
-      field: 'sku',
-      headerName: 'Артикул',
-      width: showImgColumn ? 110 : 220,
-      editable: false,
-      headerAlign: 'center',
-      align: 'center',
-    },
-    {
-      field: 'price',
-      headerName: 'Ціна',
-      width: 110,
-      editable: false,
-      headerAlign: 'center',
-      align: 'center',
-      renderCell: params => {
-        return (
-          <PriceCell
-            price={params.row.price}
-            discount={params.row?.discount}
-            darkTheme={darkTheme}
-          />
-        );
-      },
-    },
-    {
-      field: 'quantity',
-      headerName: 'Кількість',
-      width: 110,
-      editable: false,
-      headerAlign: 'center',
-      align: 'center',
-    },
-    {
-      field: 'category',
-      headerName: 'Категорія',
-      width: 130,
-      editable: false,
-      headerAlign: 'center',
-      align: 'center',
-      // renderCell: (params: GridCellParams) => {
-      //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
-      // },
-    },
-    {
-      field: 'status',
-      headerName: 'Опубліковано',
-      width: 100,
-      editable: false,
-      headerAlign: 'center',
-      align: 'center',
-      renderCell: params => {
-        return (
-          <ControlledSwitch status={params.row.status} darkTheme={darkTheme} />
-        );
-      },
-    },
-    {
-      field: 'actions',
-      headerName: 'Дії',
-      editable: false,
-      sortable: false,
-      headerAlign: 'center',
-      align: 'center',
-      disableColumnMenu: true,
-      renderCell: () => <MoreActions darkTheme={darkTheme} />,
-      width: 120,
-    },
-  ];
+  // const productCatalogColumns: GridColDef[] = [
+  //   {
+  //     field: 'id',
+  //     headerName: 'ID',
+  //     width: 50,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //   },
+  //   {
+  //     field: 'image',
+  //     headerName: 'Зображення',
+  //     width: 110,
+  //     editable: false,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //     renderCell: params => {
+  //       return (
+  //         <div>
+  //           <img src={params.row.image} alt={params.row.name} width="60" />
+  //         </div>
+  //       );
+  //     },
+  //   },
+  //   {
+  //     field: 'name',
+  //     headerName: 'Назва',
+  //     minWidth: 330,
+  //     // width: 330,
+  //     flex: 1,
+  //     editable: false,
+  //     // renderCell: (params: GridCellParams) => {
+  //     //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
+  //     // },
+  //   },
+  //   {
+  //     field: 'sku',
+  //     headerName: 'Артикул',
+  //     width: showImgColumn ? 110 : 220,
+  //     editable: false,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //   },
+  //   {
+  //     field: 'price',
+  //     headerName: 'Ціна',
+  //     width: 110,
+  //     editable: false,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //     renderCell: params => {
+  //       return (
+  //         <PriceCell
+  //           price={params.row.price}
+  //           discount={params.row?.discount}
+  //           darkTheme={darkTheme}
+  //         />
+  //       );
+  //     },
+  //   },
+  //   {
+  //     field: 'quantity',
+  //     headerName: 'Кількість',
+  //     width: 110,
+  //     editable: false,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //   },
+  //   {
+  //     field: 'category',
+  //     headerName: 'Категорія',
+  //     width: 130,
+  //     editable: false,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //     // renderCell: (params: GridCellParams) => {
+  //     //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
+  //     // },
+  //   },
+  //   {
+  //     field: 'status',
+  //     headerName: 'Опубліковано',
+  //     width: 100,
+  //     editable: false,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //     renderCell: params => {
+  //       return (
+  //         <ControlledSwitch status={params.row.status} darkTheme={darkTheme} />
+  //       );
+  //     },
+  //   },
+  //   {
+  //     field: 'actions',
+  //     headerName: 'Дії',
+  //     editable: false,
+  //     sortable: false,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //     disableColumnMenu: true,
+  //     renderCell: () => <MoreActions darkTheme={darkTheme} />,
+  //     width: 120,
+  //   },
+  // ];
 
-  const productCategoriesColumns: GridColDef[] = [
-    {
-      field: 'id',
-      headerName: 'ID',
-      width: 50,
-      headerAlign: 'center',
-      align: 'center',
-    },
-    {
-      field: 'image',
-      headerName: 'Зображення',
-      width: 110,
-      editable: false,
-      headerAlign: 'center',
-      align: 'center',
-      renderCell: params => {
-        return (
-          <div>
-            <img src={params.row.image} alt={params.row.name} width="60" />
-          </div>
-        );
-      },
-    },
-    {
-      field: 'name',
-      headerName: 'Назва',
-      width: 700,
-      flex: 1,
-      editable: false,
-      // renderCell: (params: GridCellParams) => {
-      //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
-      // },
-    },
-    {
-      field: 'sort',
-      headerName: 'Сортування',
-      width: 100,
-      editable: false,
-      headerAlign: 'center',
-      align: 'center',
-    },
-    {
-      field: 'actions',
-      headerName: 'Дії',
-      editable: false,
-      sortable: false,
-      disableColumnMenu: true,
-      renderCell: () => <FAQActions darkTheme={darkTheme} />,
-      width: 120,
-      headerAlign: 'center',
-      align: 'center',
-    },
-  ];
+  // const productCategoriesColumns: GridColDef[] = [
+  //   {
+  //     field: 'id',
+  //     headerName: 'ID',
+  //     width: 50,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //   },
+  //   {
+  //     field: 'image',
+  //     headerName: 'Зображення',
+  //     width: 110,
+  //     editable: false,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //     renderCell: params => {
+  //       return (
+  //         <div>
+  //           <img src={params.row.image} alt={params.row.name} width="60" />
+  //         </div>
+  //       );
+  //     },
+  //   },
+  //   {
+  //     field: 'name',
+  //     headerName: 'Назва',
+  //     width: 700,
+  //     flex: 1,
+  //     editable: false,
+  //     // renderCell: (params: GridCellParams) => {
+  //     //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
+  //     // },
+  //   },
+  //   {
+  //     field: 'sort',
+  //     headerName: 'Сортування',
+  //     width: 100,
+  //     editable: false,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //   },
+  //   {
+  //     field: 'actions',
+  //     headerName: 'Дії',
+  //     editable: false,
+  //     sortable: false,
+  //     disableColumnMenu: true,
+  //     renderCell: () => <FAQActions darkTheme={darkTheme} />,
+  //     width: 120,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //   },
+  // ];
 
-  const languagesColumns: GridColDef[] = [
-    {
-      field: 'id',
-      headerName: 'ID',
-      width: 50,
-      headerAlign: 'center',
-      align: 'center',
-    },
-    {
-      field: 'name',
-      headerName: 'Назва',
-      width: 910,
-      flex: 1,
-      editable: false,
-      // renderCell: (params: GridCellParams) => {
-      //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
-      // },
-    },
-    {
-      field: 'actions',
-      headerName: 'Дії',
-      editable: false,
-      sortable: false,
-      headerAlign: 'center',
-      align: 'center',
-      disableColumnMenu: true,
-      renderCell: () => <FAQActions darkTheme={darkTheme} />,
-      width: 120,
-    },
-  ];
+  // const languagesColumns: GridColDef[] = [
+  //   {
+  //     field: 'id',
+  //     headerName: 'ID',
+  //     width: 50,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //   },
+  //   {
+  //     field: 'name',
+  //     headerName: 'Назва',
+  //     width: 910,
+  //     flex: 1,
+  //     editable: false,
+  //     // renderCell: (params: GridCellParams) => {
+  //     //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
+  //     // },
+  //   },
+  //   {
+  //     field: 'actions',
+  //     headerName: 'Дії',
+  //     editable: false,
+  //     sortable: false,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //     disableColumnMenu: true,
+  //     renderCell: () => <FAQActions darkTheme={darkTheme} />,
+  //     width: 120,
+  //   },
+  // ];
 
-  const FAQColumns: GridColDef[] = [
-    {
-      field: 'id',
-      headerName: 'ID',
-      width: 50,
-      headerAlign: 'center',
-      align: 'center',
-    },
-    {
-      field: 'name',
-      headerName: 'Назва',
-      width: 910,
-      flex: 1,
-      editable: false,
-      // renderCell: (params: GridCellParams) => {
-      //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
-      // },
-    },
-    {
-      field: 'actions',
-      headerName: 'Дії',
-      editable: false,
-      sortable: false,
-      disableColumnMenu: true,
-      renderCell: () => <FAQActions darkTheme={darkTheme} />,
-      width: 120,
-      headerAlign: 'center',
-      align: 'center',
-    },
-  ];
+  // const FAQColumns: GridColDef[] = [
+  //   {
+  //     field: 'id',
+  //     headerName: 'ID',
+  //     width: 50,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //   },
+  //   {
+  //     field: 'name',
+  //     headerName: 'Назва',
+  //     width: 910,
+  //     flex: 1,
+  //     editable: false,
+  //     // renderCell: (params: GridCellParams) => {
+  //     //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
+  //     // },
+  //   },
+  //   {
+  //     field: 'actions',
+  //     headerName: 'Дії',
+  //     editable: false,
+  //     sortable: false,
+  //     disableColumnMenu: true,
+  //     renderCell: () => <FAQActions darkTheme={darkTheme} />,
+  //     width: 120,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //   },
+  // ];
 
-  const manufacturersColumns: GridColDef[] = [
-    {
-      field: 'id',
-      headerName: 'ID',
-      width: 50,
-      headerAlign: 'center',
-      align: 'center',
-    },
-    {
-      field: 'image',
-      headerName: 'Зображення',
-      width: 110,
-      editable: false,
-      headerAlign: 'center',
-      align: 'center',
-      renderCell: params => {
-        return (
-          <div>
-            <img src={params.row.image} alt={params.row.name} width="60" />
-          </div>
-        );
-      },
-    },
-    {
-      field: 'name',
-      headerName: 'Назва',
-      width: 910,
-      flex: 1,
-      editable: false,
-      // renderCell: (params: GridCellParams) => {
-      //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
-      // },
-    },
-    {
-      field: 'actions',
-      headerName: 'Дії',
-      editable: false,
-      sortable: false,
-      headerAlign: 'center',
-      align: 'center',
-      disableColumnMenu: true,
-      renderCell: () => <FAQActions darkTheme={darkTheme} />,
-      width: 120,
-    },
-  ];
+  // const manufacturersColumns: GridColDef[] = [
+  //   {
+  //     field: 'id',
+  //     headerName: 'ID',
+  //     width: 50,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //   },
+  //   {
+  //     field: 'image',
+  //     headerName: 'Зображення',
+  //     width: 110,
+  //     editable: false,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //     renderCell: params => {
+  //       return (
+  //         <div>
+  //           <img src={params.row.image} alt={params.row.name} width="60" />
+  //         </div>
+  //       );
+  //     },
+  //   },
+  //   {
+  //     field: 'name',
+  //     headerName: 'Назва',
+  //     width: 910,
+  //     flex: 1,
+  //     editable: false,
+  //     // renderCell: (params: GridCellParams) => {
+  //     //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
+  //     // },
+  //   },
+  //   {
+  //     field: 'actions',
+  //     headerName: 'Дії',
+  //     editable: false,
+  //     sortable: false,
+  //     headerAlign: 'center',
+  //     align: 'center',
+  //     disableColumnMenu: true,
+  //     renderCell: () => <FAQActions darkTheme={darkTheme} />,
+  //     width: 120,
+  //   },
+  // ];
 
   return (
     <div className={cx('App', classes.root)}>
@@ -370,14 +371,63 @@ const NavBar: React.FC<INavBarProps> = ({
           darkTheme ? 'dark' : null
         )}
       >
-        <Box
-          className={cx(classes.overlay, openDrawer ? 'active' : null)}
-          onClick={() => toggleDrawer(!openDrawer)}
-        ></Box>
         <Container
           className={cx(classes.container, openDrawer ? 'active' : null)}
         >
-          {productId && chosenProduct && (
+          <Suspense>
+            <Outlet />
+          </Suspense>
+        </Container>
+        {/* <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <NavBarMenu
+                  toggleDrawer={toggleDrawer}
+                  openDrawer={openDrawer}
+                  handleThemeClick={handleThemeClick}
+                  darkTheme={darkTheme}
+                />
+              }
+            >
+              <Route
+                path="productsCategories"
+                element={
+                  <Suspense>
+                    <Outlet />
+                  </Suspense>
+                }
+              /> */}
+        {/* <Route
+                path="productsCategories"
+                element={
+                  <>
+                    <Typography
+                      component="h2"
+                      className={cx(classes.title, darkTheme ? 'dark' : null)}
+                    >
+                      Категорії товарів
+                    </Typography>
+                    <TableComponent
+                      darkTheme={darkTheme}
+                      columns={productCategoriesColumns}
+                      rows={productCategoriesRows}
+                    />
+                  </>
+                }
+              /> */}
+        {/* </Route>
+          </Routes>
+        </BrowserRouter> */}
+        {/* <Box
+          className={cx(classes.overlay, openDrawer ? 'active' : null)}
+          onClick={() => toggleDrawer(!openDrawer)}
+        ></Box> */}
+        {/* <Container
+          className={cx(classes.container, openDrawer ? 'active' : null)}
+        > */}
+        {/* {productId && chosenProduct && (
             <ProductPage chosenProduct={chosenProduct} darkTheme={darkTheme} />
           )}
           {FAQId && chosenQuestion && (
@@ -394,8 +444,8 @@ const NavBar: React.FC<INavBarProps> = ({
               darkTheme={darkTheme}
               chosenProductCategory={chosenProductCategory}
             />
-          )}
-          {!productId &&
+          )} */}
+        {/* {!productId &&
             !chosenProduct &&
             !FAQId &&
             !chosenQuestion &&
@@ -417,9 +467,9 @@ const NavBar: React.FC<INavBarProps> = ({
                     columns={productCatalogColumns}
                     rows={productRows}
                   />
-                </>
+                </> */}
 
-                <>
+        {/* <>
                   <Typography
                     component="h2"
                     className={cx(classes.title, darkTheme ? 'dark' : null)}
@@ -487,10 +537,14 @@ const NavBar: React.FC<INavBarProps> = ({
                     rows={manufacturersRows}
                     page={'manufactures'}
                   />
-                </>
-              </>
-            )}
-        </Container>
+                </> */}
+        {/* </> */}
+        {/* )} */}
+        {/* </Container> */}
+        <Box
+          className={cx(classes.overlay, openDrawer ? 'active' : null)}
+          onClick={() => toggleDrawer(!openDrawer)}
+        ></Box>
       </main>
     </div>
   );

@@ -10,10 +10,13 @@ import Collapse from '@mui/material/Collapse';
 import IconExpandLess from '@mui/icons-material/ExpandLess';
 import IconExpandMore from '@mui/icons-material/ExpandMore';
 import { useNavBarMenuItemStyles } from './NavBarMenuItem.styles';
+import NavBarMenuItemContent from '../NavBarMenuItemContent';
+import { NavLink, useLocation } from 'react-router-dom';
 
 export const NavBarMenuItemPropTypes = {
   name: PropTypes.string.isRequired,
   link: PropTypes.string,
+  primaryLinkName: PropTypes.string,
   Icon: PropTypes.elementType,
   items: PropTypes.array,
   id: PropTypes.number,
@@ -34,13 +37,26 @@ const NavBarMenuItem: React.FC<NavBarMenuItemProps> = (
   props: NavBarMenuItemProps
 ) => {
   const { classes, cx } = useNavBarMenuItemStyles();
-  const { name, Icon, items = [], id, darkTheme, openDrawer } = props;
+  const {
+    name,
+    Icon,
+    items = [],
+    id,
+    darkTheme,
+    openDrawer,
+    primaryLinkName,
+  } = props;
   const isExpandable = items && items.length > 0;
   const [open, setOpen] = React.useState(false);
+  const location = useLocation();
+  const activePath = location.pathname;
 
   function handleClick() {
     if (openDrawer) setOpen(!open);
   }
+
+  const activeIcon = activePath.includes(primaryLinkName as string);
+  // const activeIcon = activePath.includes('products') && name === 'Продукція';
 
   const MenuItemRoot = (
     <ListItem
@@ -50,7 +66,11 @@ const NavBarMenuItem: React.FC<NavBarMenuItemProps> = (
     >
       {!!Icon && (
         <ListItemIcon
-          className={cx(classes.menuItemIcon, darkTheme ? 'dark' : null)}
+          className={cx(
+            classes.menuItemIcon,
+            darkTheme ? 'dark' : null,
+            activeIcon ? 'active' : null
+          )}
         >
           <Icon />
         </ListItemIcon>
@@ -80,13 +100,14 @@ const NavBarMenuItem: React.FC<NavBarMenuItemProps> = (
           return (
             <ListItem
               key={index}
-              button
               className={cx(
                 classes.menuSecondaryItem,
                 darkTheme ? 'dark' : null
               )}
             >
-              <ListItemText primary={item.name} inset={!Icon} />
+              <NavLink to={item.link as string}>
+                <ListItemText primary={item.name} inset={!Icon} />
+              </NavLink>
             </ListItem>
           );
         })}
