@@ -3,32 +3,32 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import { useNavBarStyles } from './NavBar.styles';
 import NavBarMenu from '../NavBarMenu';
-import TableComponent from '../TableComponent';
-import { Box, Typography } from '@mui/material';
-import CollapsedBreadcrumbs from '../Crumbs';
-import ProductPage from '../ProductPage';
-import {
-  GridColDef,
-  // GridCellParams
-} from '@mui/x-data-grid';
-import {
-  ControlledSwitch,
-  MoreActions,
-  PriceCell,
-  productRows,
-  productCategoriesRows,
-  FAQRows,
-  languagesRows,
-  manufacturersRows,
-  showImgColumn,
-  FAQActions,
-  citiesRows,
-} from '../TableComponent/TableData';
+// import TableComponent from '../TableComponent';
+import { Box } from '@mui/material';
+// import CollapsedBreadcrumbs from '../Crumbs';
+// import ProductPage from '../ProductPage';
+// import {
+//   GridColDef,
+//   // GridCellParams
+// } from '@mui/x-data-grid';
+// import {
+//   ControlledSwitch,
+//   MoreActions,
+//   PriceCell,
+//   productRows,
+//   productCategoriesRows,
+//   FAQRows,
+//   languagesRows,
+//   manufacturersRows,
+//   showImgColumn,
+//   FAQActions,
+//   citiesRows,
+// } from '../TableComponent/TableData';
 // import { CellExpandComponent } from '../TableComponent/CellExpand';
-import FAQPage from '../FAQPage';
-import LanguagesPage from '../LanguagesPage';
-import ProductCategoryPage from '../ProductCategoryPage';
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
+// import FAQPage from '../FAQPage';
+// import LanguagesPage from '../LanguagesPage';
+// import ProductCategoryPage from '../ProductCategoryPage';
+import { Outlet } from 'react-router-dom';
 
 interface INavBarProps {
   toggleDrawer: (open: boolean) => void;
@@ -81,12 +81,12 @@ const NavBar: React.FC<INavBarProps> = ({
   darkTheme,
   productCategoryId,
 }) => {
-  const chosenProduct = productRows.find(row => row.id === productId);
-  const chosenProductCategory = productCategoriesRows.find(
-    row => row.id === productCategoryId
-  );
-  const chosenQuestion = FAQRows.find(row => row.id === FAQId);
-  const chosenLanguage = languagesRows.find(row => row.id === languageId);
+  // const chosenProduct = productRows.find(row => row.id === productId);
+  // const chosenProductCategory = productCategoriesRows.find(
+  //   row => row.id === productCategoryId
+  // );
+  // const chosenQuestion = FAQRows.find(row => row.id === FAQId);
+  // const chosenLanguage = languagesRows.find(row => row.id === languageId);
   const { classes, cx } = useNavBarStyles();
 
   // const productCatalogColumns: GridColDef[] = [

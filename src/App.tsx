@@ -1,4 +1,4 @@
-import { Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CollapsedBreadcrumbs from './components/Crumbs/Crumbs';
@@ -30,14 +30,10 @@ export const App: React.FC = () => {
     THEME_MODE === 'dark' ? true : false ?? false
   );
 
-  const [mockProductId, setMockProductId] = React.useState<null | number>(null);
-  const [mockFAQId, setMockFAQId] = React.useState<null | number>(null);
-  const [mockLanguageId, setMockLanguageId] = React.useState<null | number>(
-    null
-  );
-  const [mockProductCategoryId, setMockProductCategoryId] = React.useState<
-    null | number
-  >(null);
+  const [mockProductId] = React.useState<null | number>(null);
+  const [mockFAQId] = React.useState<null | number>(null);
+  const [mockLanguageId] = React.useState<null | number>(null);
+  const [mockProductCategoryId] = React.useState<null | number>(null);
 
   const handleThemeClick = () => {
     setDarkTheme(!darkTheme);
