@@ -77,7 +77,7 @@ export const App: React.FC = () => {
       >
         До категорії продукту
       </Button> */}
-      <BrowserRouter>
+      <BrowserRouter basename="/my-test-with-mui/">
         <Routes>
           <Route
             path="/"
