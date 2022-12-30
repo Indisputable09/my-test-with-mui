@@ -5,7 +5,8 @@ export const useHeaderStyles = makeStyles<void>()(
     appbar: {
       background: '#ffffff',
       color: '#232D42',
-      boxShadow: '0px 7px 11px -1px rgba(0,0,0,0.47)',
+      // boxShadow: '0px 7px 11px -1px rgba(0,0,0,0.47)',
+      boxShadow: '0px 4px 5px rgba(0, 0, 0, 0.25)',
       position: 'relative',
       transition: 'all 250ms ease-out',
       '&.dark': {

@@ -27,18 +27,19 @@ type NavBarMenuItemPropsWithoutItems = Omit<NavBarMenuItemPropsTypes, 'items'>;
 export type NavBarMenuItemProps = NavBarMenuItemPropsWithoutItems & {
   items?: NavBarMenuItemProps[];
   darkTheme?: boolean;
+  openDrawer?: boolean;
 };
 
 const NavBarMenuItem: React.FC<NavBarMenuItemProps> = (
   props: NavBarMenuItemProps
 ) => {
   const { classes, cx } = useNavBarMenuItemStyles();
-  const { name, Icon, items = [], id, darkTheme } = props;
+  const { name, Icon, items = [], id, darkTheme, openDrawer } = props;
   const isExpandable = items && items.length > 0;
   const [open, setOpen] = React.useState(false);
 
   function handleClick() {
-    setOpen(!open);
+    if (openDrawer) setOpen(!open);
   }
 
   const MenuItemRoot = (
@@ -64,7 +65,11 @@ const NavBarMenuItem: React.FC<NavBarMenuItemProps> = (
   );
 
   const MenuItemChildren = (
-    <Collapse in={id === 1 ? !open : open} timeout="auto" unmountOnExit>
+    <Collapse
+      in={id === 1 ? !open && openDrawer : open && openDrawer}
+      timeout="auto"
+      unmountOnExit
+    >
       <Divider />
       <List
         component="div"

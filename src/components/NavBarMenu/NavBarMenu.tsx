@@ -4,12 +4,7 @@ import Divider from '@mui/material/Divider';
 import { useNavBarMenuStyles } from './NavBarMenu.styles';
 import NavBarMenuItem from '../NavBarMenuItem';
 import { navBarMenuItems } from './NavBarMenuContent';
-import {
-  Drawer,
-  FormControlLabel,
-  ListItem,
-  ListItemIcon,
-} from '@mui/material';
+import { Drawer, FormControlLabel } from '@mui/material';
 import { useNavBarStyles } from '../NavBar/NavBar.styles';
 import { ThemeSwitcherStyled } from './NavBarMenu.styles';
 
@@ -36,6 +31,14 @@ const NavBarMenu: React.FC<INavBarMenuProps> = ({
   };
   localStorage.setItem('THEME_MODE', dark ? 'dark' : 'light');
 
+  const handleDrawerClick = (e: React.MouseEvent<HTMLElement>) => {
+    if ((e.target as HTMLElement).nodeName === 'INPUT' ?? openDrawer) {
+      return;
+    } else if (!openDrawer && (e.target as HTMLElement).nodeName !== 'INPUT') {
+      toggleDrawer(true);
+    }
+  };
+
   return (
     <>
       <Drawer
@@ -47,6 +50,7 @@ const NavBarMenu: React.FC<INavBarMenuProps> = ({
             darkTheme ? 'dark' : null
           ),
         }}
+        onClick={handleDrawerClick}
       >
         <List
           component="nav"
@@ -55,13 +59,18 @@ const NavBarMenu: React.FC<INavBarMenuProps> = ({
         >
           {navBarMenuItems.map((item, index) => (
             <React.Fragment key={index}>
-              <NavBarMenuItem {...item} darkTheme={darkTheme} />
+              <NavBarMenuItem
+                {...item}
+                darkTheme={darkTheme}
+                openDrawer={openDrawer}
+              />
               <Divider />
             </React.Fragment>
           ))}
         </List>
         <FormControlLabel
-          sx={{ mt: 'auto', mr: 'auto', ml: 'auto' }}
+          className={cx(classes.switcherControl, darkTheme ? 'dark' : null)}
+          label="Перемкнути тему"
           control={
             <ThemeSwitcherStyled
               sx={{ m: 1 }}
@@ -69,51 +78,6 @@ const NavBarMenu: React.FC<INavBarMenuProps> = ({
               onChange={handleChange}
             />
           }
-          label=""
-        />
-      </Drawer>
-      <Drawer
-        onClick={e => {
-          if ((e.target as HTMLElement).nodeName === 'INPUT') {
-            return;
-          }
-          toggleDrawer(!openDrawer);
-        }}
-        variant="permanent"
-        classes={{
-          paper: cx(
-            nbClasses.miniDrawerPaper,
-            openDrawer ? 'hide' : null,
-            darkTheme ? 'dark' : null
-          ),
-        }}
-      >
-        <List component="nav" className={classes.navBarMenu} disablePadding>
-          {navBarMenuItems.map(({ Icon }, index) => (
-            <ListItem button key={index} sx={{ mb: 2 }}>
-              {!!Icon && (
-                <ListItemIcon
-                  className={cx(
-                    classes.menuItemIcon,
-                    darkTheme ? 'dark' : null
-                  )}
-                >
-                  <Icon />
-                </ListItemIcon>
-              )}
-            </ListItem>
-          ))}
-        </List>
-        <FormControlLabel
-          sx={{ mt: 'auto', mr: 'auto', ml: '-11px' }}
-          control={
-            <ThemeSwitcherStyled
-              sx={{ m: 1 }}
-              checked={dark}
-              onChange={handleChange}
-            />
-          }
-          label=""
         />
       </Drawer>
     </>

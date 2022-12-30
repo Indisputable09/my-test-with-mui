@@ -21,6 +21,15 @@ export const useNavBarMenuStyles = makeStyles<void>()(
         color: '#ffffff',
       },
     },
+    switcherControl: {
+      marginTop: 'auto',
+      marginRight: 'auto',
+      color: '#111111',
+      transition: 'all 250ms ease-out',
+      '&.dark': {
+        color: '#ffffff',
+      },
+    },
   })
 );
 
