@@ -11,7 +11,6 @@ import {
   HideGridColMenuItem,
   GridColumnsMenuItem,
 } from '@mui/x-data-grid';
-import { showImgColumn } from './TableData';
 import Toolbar from '../Toolbar';
 import { useTableComponentStyles } from './TableComponent.styles';
 import { Checkbox, CheckboxProps } from '@mui/material';
@@ -125,9 +124,9 @@ const TableComponent: React.FC<ITableComponentProps> = ({
         components={{ BaseCheckbox: MyCheckbox, ColumnMenu: MyColumnMenu }}
         pagination
         checkboxSelection
-        columnVisibilityModel={{
-          image: showImgColumn,
-        }}
+        // columnVisibilityModel={{
+        //   image: showImgColumn,
+        // }}
         rows={filteredRows}
         columns={columns}
         disableSelectionOnClick

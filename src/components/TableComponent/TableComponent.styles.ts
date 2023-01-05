@@ -178,26 +178,6 @@ export const useTableComponentStyles = makeStyles<void>()(
         transition: 'all 250ms ease-out',
       },
     },
-    switch: {
-      '& .Mui-checked > .MuiSwitch-thumb': {
-        color: '#1976D2',
-      },
-      '& .MuiSwitch-track': {
-        backgroundColor: '#000000 !important',
-      },
-      '& .Mui-checked + .MuiSwitch-track': {
-        backgroundColor: '#1976D2 !important',
-      },
-      '&.dark .Mui-checked > .MuiSwitch-thumb': {
-        color: '#90CAF9',
-      },
-      '&.dark .MuiSwitch-track': {
-        backgroundColor: '#E0E0E0 !important',
-      },
-      '&.dark .Mui-checked + .MuiSwitch-track': {
-        backgroundColor: '#90CAF9 !important',
-      },
-    },
     moreActionsMenu: {
       display: 'flex',
       justifyContent: 'center',
@@ -214,16 +194,6 @@ export const useTableComponentStyles = makeStyles<void>()(
         color: '#fff',
       },
     },
-    editIcon: {
-      transition: 'all 250ms ease-out',
-      'button:hover > &': {
-        color: '#219653',
-        filter: 'drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.25))',
-      },
-      'button:hover > &.dark, button:focus > &.dark': {
-        filter: 'drop-shadow(2px 2px 0px rgba(255, 255, 255, 0.25))',
-      },
-    },
     moreIconButton: {
       display: 'flex',
       justifyContent: 'center',
@@ -235,55 +205,6 @@ export const useTableComponentStyles = makeStyles<void>()(
       '&.dark:hover, &.dark:focus': {
         backgroundColor: '#90CAF914',
       },
-    },
-    deleteIcon: {
-      transition: 'color 250ms ease-out',
-      'button:hover > &, button:focus > &': {
-        color: '#EB5757',
-        filter: 'drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.25))',
-      },
-      'button:hover > &.dark, button:focus > &.dark': {
-        filter: 'drop-shadow(2px 2px 0px rgba(255, 255, 255, 0.25))',
-      },
-    },
-    discountText: {
-      fontSize: '9px',
-      position: 'absolute',
-      color: 'red',
-      top: '0',
-      left: '0',
-      border: '2px solid grey',
-      borderRadius: '4px',
-      padding: '0 0.5px',
-      transition: 'all 250ms ease-out',
-      '&.dark': {
-        backgroundColor: '#ffffff',
-        opacity: '0.9',
-      },
-    },
-    totalPrice: {
-      fontSize: '15px',
-      position: 'absolute',
-      textDecoration: 'none',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      '&.discount': {
-        fontSize: '12px',
-        position: 'absolute',
-        textDecoration: 'line-through',
-        bottom: '0',
-        marginTop: '8px',
-        transform: 'translateX(-50%)',
-      },
-    },
-    withDiscountPrice: {
-      fontSize: '15px',
-      position: 'absolute',
-      top: '14px',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      color: 'green',
     },
   })
 );
