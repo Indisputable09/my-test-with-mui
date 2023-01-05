@@ -51,7 +51,7 @@ const Header: React.FC<HeaderProps> = ({
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            href="/my-test-with-mui/"
             className={cx(classes.logo, darkTheme ? 'dark' : null)}
           >
             LOGO

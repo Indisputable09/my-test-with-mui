@@ -1,12 +1,8 @@
 import { GridColDef } from '@mui/x-data-grid';
-import {
-  ControlledSwitch,
-  FAQActions,
-  MoreActions,
-  PriceCell,
-} from '../components/TableComponent/TableData';
-
-const darkTheme = !!localStorage.getItem('THEME_MODE');
+import MoreActions from '../components/TableComponents/MoreActions';
+import ControlledSwitch from '../components/TableComponents/ControlledSwitch';
+import BasicActions from '../components/TableComponents/BasicActions';
+import PriceCell from '../components/TableComponents/PriceCell';
 
 export const productCatalogColumns: GridColDef[] = [
   {
@@ -35,17 +31,12 @@ export const productCatalogColumns: GridColDef[] = [
     field: 'name',
     headerName: 'Назва',
     minWidth: 330,
-    // width: 330,
     flex: 1,
     editable: false,
-    // renderCell: (params: GridCellParams) => {
-    //   return <CellExpandComponent params={params} darkTheme={darkTheme} />;
-    // },
   },
   {
     field: 'sku',
     headerName: 'Артикул',
-    // width: showImgColumn ? 110 : 220,
     width: 110,
     editable: false,
     headerAlign: 'center',
@@ -60,11 +51,7 @@ export const productCatalogColumns: GridColDef[] = [
     align: 'center',
     renderCell: params => {
       return (
-        <PriceCell
-          price={params.row.price}
-          discount={params.row?.discount}
-          darkTheme={darkTheme}
-        />
+        <PriceCell price={params.row.price} discount={params.row?.discount} />
       );
     },
   },
@@ -92,9 +79,7 @@ export const productCatalogColumns: GridColDef[] = [
     headerAlign: 'center',
     align: 'center',
     renderCell: params => {
-      return (
-        <ControlledSwitch status={params.row.status} darkTheme={darkTheme} />
-      );
+      return <ControlledSwitch status={params.row.status} />;
     },
   },
   {
@@ -105,7 +90,8 @@ export const productCatalogColumns: GridColDef[] = [
     headerAlign: 'center',
     align: 'center',
     disableColumnMenu: true,
-    renderCell: () => <MoreActions darkTheme={darkTheme} />,
+    // renderCell: () => <MoreActions darkTheme={darkTheme} />,
+    renderCell: () => <MoreActions />,
     width: 120,
   },
 ];
@@ -154,7 +140,7 @@ export const productCategoriesColumns: GridColDef[] = [
     editable: false,
     sortable: false,
     disableColumnMenu: true,
-    renderCell: () => <FAQActions darkTheme={darkTheme} />,
+    renderCell: () => <BasicActions />,
     width: 120,
     headerAlign: 'center',
     align: 'center',
@@ -184,7 +170,7 @@ export const languagesColumns: GridColDef[] = [
     headerAlign: 'center',
     align: 'center',
     disableColumnMenu: true,
-    renderCell: () => <FAQActions darkTheme={darkTheme} />,
+    renderCell: () => <BasicActions />,
     width: 120,
   },
 ];
@@ -210,7 +196,7 @@ export const FAQColumns: GridColDef[] = [
     editable: false,
     sortable: false,
     disableColumnMenu: true,
-    renderCell: () => <FAQActions darkTheme={darkTheme} />,
+    renderCell: () => <BasicActions />,
     width: 120,
     headerAlign: 'center',
     align: 'center',
@@ -240,7 +226,7 @@ export const citiesColumns: GridColDef[] = [
     headerAlign: 'center',
     align: 'center',
     disableColumnMenu: true,
-    renderCell: () => <FAQActions darkTheme={darkTheme} />,
+    renderCell: () => <BasicActions />,
     width: 120,
   },
 ];
@@ -283,7 +269,7 @@ export const manufacturersColumns: GridColDef[] = [
     headerAlign: 'center',
     align: 'center',
     disableColumnMenu: true,
-    renderCell: () => <FAQActions darkTheme={darkTheme} />,
+    renderCell: () => <BasicActions />,
     width: 120,
   },
 ];

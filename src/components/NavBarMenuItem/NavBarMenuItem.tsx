@@ -56,7 +56,6 @@ const NavBarMenuItem: React.FC<NavBarMenuItemProps> = (
   }
 
   const activeIcon = activePath.includes(primaryLinkName as string);
-  // const activeIcon = activePath.includes('products') && name === 'Продукція';
 
   const MenuItemRoot = (
     <ListItem
