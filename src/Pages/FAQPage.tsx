@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography } from '@mui/material';
 import CollapsedBreadcrumbs from '../components/Crumbs/Crumbs';
 import { useNavBarStyles } from '../components/NavBar/NavBar.styles';
-import TableComponent from '../components/TableComponent';
+import Table from '../components/Table';
 import { FAQRows } from '../TableRows/TableRows';
 import { FAQColumns } from '../TableColumns/TableColumns';
 
@@ -27,7 +27,7 @@ const FAQPage: React.FC<IFAQPageProps> = ({ darkTheme }) => {
       >
         FAQ`s
       </Typography>
-      <TableComponent
+      <Table
         darkTheme={darkTheme}
         columns={FAQColumns}
         rows={FAQRows}

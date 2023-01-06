@@ -5,7 +5,6 @@ import { Link as MuiLink } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Box } from '@mui/material';
 import { useCrumbsStyles } from './Crumbs.styles';
-import { useLocation } from 'react-router-dom';
 
 function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
   event.preventDefault();
@@ -25,11 +24,6 @@ const CollapsedBreadcrumbs: React.FC<ICrumbsProps> = ({
   darkTheme,
 }) => {
   const { classes, cx } = useCrumbsStyles();
-  const location = useLocation();
-  const activePath = location.pathname.split('/');
-  // console.log('activePath', activePath);
-  const path = activePath[activePath.length - 1];
-  // console.log('path', path);
 
   return (
     <Box
@@ -53,21 +47,6 @@ const CollapsedBreadcrumbs: React.FC<ICrumbsProps> = ({
         >
           Дашборд
         </Link>
-        {/* {path && !productData && (
-          <Link
-            to={'/products/' + path}
-            className={cx(classes.mainLink, darkTheme ? 'dark' : null)}
-          >
-            {path === 'productsCatalog' && 'Каталог товарів'}
-            {path === 'productsCategories' && 'Категорії товарів'}
-            {path === 'FAQ' && 'FAQ`s'}
-            {path === 'languages' && 'Мови'}
-            {path === 'cities' && 'Міста'}
-            {path === 'manufacturers' && 'Виробники'}
-          </Link>
-        )} */}
-        {/* {productData && (
-          <> */}
         <Link
           to={linksData.link}
           className={cx(classes.mainLink, darkTheme ? 'dark' : null)}

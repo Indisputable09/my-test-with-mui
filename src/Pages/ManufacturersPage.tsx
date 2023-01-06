@@ -1,8 +1,8 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-import CollapsedBreadcrumbs from '../components/Crumbs/Crumbs';
+// import CollapsedBreadcrumbs from '../components/Crumbs/Crumbs';
 import { useNavBarStyles } from '../components/NavBar/NavBar.styles';
-import TableComponent from '../components/TableComponent';
+import Table from '../components/Table';
 import { manufacturersColumns } from '../TableColumns/TableColumns';
 import { manufacturersRows } from '../TableRows/TableRows';
 
@@ -23,7 +23,7 @@ const ManufacturersPage: React.FC<IManufacturersPageProps> = ({
       >
         Виробники
       </Typography>
-      <TableComponent
+      <Table
         darkTheme={darkTheme}
         columns={manufacturersColumns}
         rows={manufacturersRows}

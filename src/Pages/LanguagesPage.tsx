@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography } from '@mui/material';
 import CollapsedBreadcrumbs from '../components/Crumbs/Crumbs';
 import { useNavBarStyles } from '../components/NavBar/NavBar.styles';
-import TableComponent from '../components/TableComponent';
+import Table from '../components/Table';
 import { languagesRows } from '../TableRows/TableRows';
 import { languagesColumns } from '../TableColumns/TableColumns';
 
@@ -27,7 +27,7 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({ darkTheme }) => {
       >
         Мови
       </Typography>
-      <TableComponent
+      <Table
         darkTheme={darkTheme}
         columns={languagesColumns}
         rows={languagesRows}

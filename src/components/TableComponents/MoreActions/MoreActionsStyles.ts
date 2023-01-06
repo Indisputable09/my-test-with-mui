@@ -1,4 +1,3 @@
-import { color } from '@mui/system';
 import { makeStyles } from 'tss-react/mui';
 
 export const useMoreActionsStyles = makeStyles<void>()(

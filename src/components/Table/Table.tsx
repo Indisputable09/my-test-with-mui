@@ -12,7 +12,7 @@ import {
   GridColumnsMenuItem,
 } from '@mui/x-data-grid';
 import Toolbar from '../Toolbar';
-import { useTableComponentStyles } from './TableComponent.styles';
+import { useTableStyles } from './Table.styles';
 import { Checkbox, CheckboxProps } from '@mui/material';
 
 export interface IRow {
@@ -25,7 +25,7 @@ export interface IRow {
   sort?: number;
 }
 
-interface ITableComponentProps {
+interface ITableProps {
   darkTheme: boolean;
   columns: GridColDef[];
   rows: IRow[];
@@ -34,7 +34,7 @@ interface ITableComponentProps {
   // editLink: string;
 }
 
-const TableComponent: React.FC<ITableComponentProps> = ({
+const Table: React.FC<ITableProps> = ({
   darkTheme,
   columns,
   rows,
@@ -67,7 +67,7 @@ const TableComponent: React.FC<ITableComponentProps> = ({
     setSelectedRows(selectedRowsData as IRow[]);
   };
 
-  const { classes, cx } = useTableComponentStyles();
+  const { classes, cx } = useTableStyles();
 
   const MyCheckbox: React.FC<CheckboxProps> = React.forwardRef((props, ref) => {
     return (
@@ -139,10 +139,9 @@ const TableComponent: React.FC<ITableComponentProps> = ({
         localeText={ukUA.components.MuiDataGrid.defaultProps.localeText}
         onSelectionModelChange={ids => onRowsSelectionHandler(ids as number[])}
         selectionModel={selectedRows.map(row => row.id)}
-        // selectionModel={1}
       />
     </Box>
   );
 };
 
-export default TableComponent;
+export default Table;

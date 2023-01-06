@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography } from '@mui/material';
 import CollapsedBreadcrumbs from '../components/Crumbs/Crumbs';
 import { useNavBarStyles } from '../components/NavBar/NavBar.styles';
-import TableComponent from '../components/TableComponent';
+import Table from '../components/Table';
 import { productCategoriesRows } from '../TableRows/TableRows';
 import { productCategoriesColumns } from '../TableColumns/TableColumns';
 
@@ -29,7 +29,7 @@ const ProductsCategoriesPage: React.FC<IProductsCategoriesPageProps> = ({
       >
         Категорії товарів
       </Typography>
-      <TableComponent
+      <Table
         darkTheme={darkTheme}
         columns={productCategoriesColumns}
         rows={productCategoriesRows}

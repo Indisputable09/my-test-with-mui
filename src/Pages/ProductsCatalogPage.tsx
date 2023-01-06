@@ -3,7 +3,7 @@ import React from 'react';
 // import { useLocation } from 'react-router-dom';
 import CollapsedBreadcrumbs from '../components/Crumbs/Crumbs';
 import { useNavBarStyles } from '../components/NavBar/NavBar.styles';
-import TableComponent from '../components/TableComponent';
+import Table from '../components/Table';
 import { productRows } from '../TableRows/TableRows';
 import { productCatalogColumns } from '../TableColumns/TableColumns';
 
@@ -31,7 +31,7 @@ const ProductsCatalogPage: React.FC<IProductsCatalogPageProps> = ({
       >
         Каталог товарів
       </Typography>
-      <TableComponent
+      <Table
         darkTheme={darkTheme}
         columns={productCatalogColumns}
         rows={productRows}
