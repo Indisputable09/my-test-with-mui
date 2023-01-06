@@ -4,6 +4,10 @@ export const useBasicActionsStyles = makeStyles<void>()(
   (theme, _params, classes) => ({
     editIcon: {
       transition: 'all 250ms ease-out',
+      color: '#000000DE',
+      '&.dark': {
+        color: '#FFFFFF',
+      },
       'button:hover > &': {
         color: '#219653',
         filter: 'drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.25))',

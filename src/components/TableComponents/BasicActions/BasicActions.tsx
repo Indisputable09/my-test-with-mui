@@ -6,8 +6,13 @@ import { Box } from '@mui/material';
 import { useGlobalContext } from '../../../hooks/GlobalContext';
 import { useBasicActionsStyles } from './BasicActions.styles';
 import Modal from '../../Modal';
+import { Link } from 'react-router-dom';
 
-const BasicActions: React.FC = () => {
+interface IBasicActionsProps {
+  id: string;
+}
+
+const BasicActions: React.FC<IBasicActionsProps> = ({ id }) => {
   const { darkTheme } = useGlobalContext();
   const [openDeleteModal, setOpenDeleteModal] = React.useState<boolean>(false);
 
@@ -24,17 +29,19 @@ const BasicActions: React.FC = () => {
   return (
     <>
       <Box sx={{ display: 'flex', gap: 2 }}>
-        <IconButton
-          sx={{ display: 'flex', justifyContent: 'center', ml: 1 }}
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="edit"
-        >
-          <EditIcon
-            className={cx(classes.editIcon, darkTheme ? 'dark' : null)}
-          />
-        </IconButton>
+        <Link to={`${id}/edit`}>
+          <IconButton
+            sx={{ display: 'flex', justifyContent: 'center', ml: 1 }}
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="edit"
+          >
+            <EditIcon
+              className={cx(classes.editIcon, darkTheme ? 'dark' : null)}
+            />
+          </IconButton>
+        </Link>
         <IconButton
           sx={{ display: 'flex', justifyContent: 'center' }}
           size="large"

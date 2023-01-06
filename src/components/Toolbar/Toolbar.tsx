@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import { IRow } from '../TableComponent/TableComponent';
 import SelectActions from '../SelectActions';
 import { useToolbarStyles } from './Toolbar.styles';
+import { Link } from 'react-router-dom';
 
 interface IToolbarProps {
   handleSelectAllRows: () => void;
@@ -19,6 +20,8 @@ interface IToolbarProps {
   selectedRows: IRow[];
   darkTheme: boolean;
   page?: string;
+  // addLink: string;
+  // editLink: string;
 }
 
 interface ISearchFieldProps {
@@ -98,12 +101,14 @@ const Toolbar: React.FC<IToolbarProps> = ({
           handleUnselectAllRows={handleUnselectAllRows}
         />
       ) : (
-        <Button
-          className={cx(classes.addButton, darkTheme ? 'dark' : null)}
-          onClick={handleAddClick}
-        >
-          <AddIcon />
-        </Button>
+        <Link to={'add'} style={{ marginLeft: 'auto' }}>
+          <Button
+            className={cx(classes.addButton, darkTheme ? 'dark' : null)}
+            onClick={handleAddClick}
+          >
+            <AddIcon />
+          </Button>
+        </Link>
       )}
     </Box>
   );

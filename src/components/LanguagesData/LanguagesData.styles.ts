@@ -2,7 +2,7 @@ import { makeStyles } from 'tss-react/mui';
 import { styled } from '@mui/material/styles';
 import { TextField } from '@mui/material';
 
-export const useLanguagesPageStyles = makeStyles<void>()(
+export const useLanguagesDataStyles = makeStyles<void>()(
   (theme, _params, classes) => ({
     productTitle: { fontSize: '3rem', mb: '20px' },
     panel: {

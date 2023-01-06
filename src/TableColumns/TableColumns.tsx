@@ -90,8 +90,9 @@ export const productCatalogColumns: GridColDef[] = [
     headerAlign: 'center',
     align: 'center',
     disableColumnMenu: true,
-    // renderCell: () => <MoreActions darkTheme={darkTheme} />,
-    renderCell: () => <MoreActions />,
+    renderCell: params => {
+      return <MoreActions id={params.row.id} />;
+    },
     width: 120,
   },
 ];
@@ -140,7 +141,7 @@ export const productCategoriesColumns: GridColDef[] = [
     editable: false,
     sortable: false,
     disableColumnMenu: true,
-    renderCell: () => <BasicActions />,
+    renderCell: params => <BasicActions id={params.row.id} />,
     width: 120,
     headerAlign: 'center',
     align: 'center',
@@ -170,7 +171,7 @@ export const languagesColumns: GridColDef[] = [
     headerAlign: 'center',
     align: 'center',
     disableColumnMenu: true,
-    renderCell: () => <BasicActions />,
+    renderCell: params => <BasicActions id={params.row.id} />,
     width: 120,
   },
 ];
@@ -196,7 +197,7 @@ export const FAQColumns: GridColDef[] = [
     editable: false,
     sortable: false,
     disableColumnMenu: true,
-    renderCell: () => <BasicActions />,
+    renderCell: params => <BasicActions id={params.row.id} />,
     width: 120,
     headerAlign: 'center',
     align: 'center',
@@ -226,7 +227,7 @@ export const citiesColumns: GridColDef[] = [
     headerAlign: 'center',
     align: 'center',
     disableColumnMenu: true,
-    renderCell: () => <BasicActions />,
+    renderCell: params => <BasicActions id={params.row.id} />,
     width: 120,
   },
 ];
@@ -269,7 +270,7 @@ export const manufacturersColumns: GridColDef[] = [
     headerAlign: 'center',
     align: 'center',
     disableColumnMenu: true,
-    renderCell: () => <BasicActions />,
+    renderCell: params => <BasicActions id={params.row.id} />,
     width: 120,
   },
 ];

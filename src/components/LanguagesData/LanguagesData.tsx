@@ -18,12 +18,14 @@ import {
 import InfoIcon from '@mui/icons-material/Info';
 import CollapsedBreadcrumbs from '../Crumbs';
 import Modal from '../Modal';
-import { StyledField, useLanguagesPageStyles } from './LanguagesPage.styles';
-import { StyledCustomPaper } from '../ProductPage/ProductPage.styles';
+import { StyledField, useLanguagesDataStyles } from './LanguagesData.styles';
+import { StyledCustomPaper } from '../ProductData/ProductData.styles';
+import { useLocation, useParams } from 'react-router-dom';
+import { languagesRows } from '../../TableRows/TableRows';
 
-interface ILanguagesPageProps {
-  chosenLanguage: { id: number; name: string };
+interface ILanguagesDataProps {
   darkTheme: boolean;
+  initialLink: string;
 }
 
 interface ICustomizedTooltipProps extends TooltipProps {
@@ -47,22 +49,39 @@ const CustomizedTooltip = styled(
   },
 }));
 
-const LanguagesPage: React.FC<ILanguagesPageProps> = ({
+const LanguagesData: React.FC<ILanguagesDataProps> = ({
   darkTheme,
-  chosenLanguage,
+  initialLink,
 }) => {
   const [openBackModal, setOpenBackModal] = React.useState<boolean>(false);
   const [openDeleteModal, setOpenDeleteModal] = React.useState<boolean>(false);
   const [openSaveModal, setOpenSaveModal] = React.useState<boolean>(false);
 
-  const [languagesFieldsValues, setLanguagesFieldsValues] = React.useState({
-    language: '',
-    ISO: '',
-    languageIcon: null,
-    url: '',
-    mainLanguage: true,
-    indexed: false,
-  });
+  const { id } = useParams();
+  const location = useLocation();
+  const activePath = location.pathname.split('/');
+  const chosenAction = activePath[activePath.length - 1];
+  const chosenLanguage = languagesRows.find(row => row.id === Number(id));
+
+  const [languagesFieldsValues, setLanguagesFieldsValues] = React.useState(
+    chosenLanguage && chosenAction === 'edit'
+      ? {
+          language: chosenLanguage.name,
+          ISO: '',
+          languageIcon: null,
+          url: '',
+          mainLanguage: true,
+          indexed: false,
+        }
+      : {
+          language: '',
+          ISO: '',
+          languageIcon: null,
+          url: '',
+          mainLanguage: true,
+          indexed: false,
+        }
+  );
 
   const handleLanguagesFieldsChange = (e: React.ChangeEvent) => {
     setLanguagesFieldsValues((prevState: any) => {
@@ -72,16 +91,6 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({
       };
     });
   };
-
-  // const handleAutocompleteChange = (e: any, newValue: string | null) => {
-  //   const id = e.target.id.split('-')[0];
-  //   setLanguagesFieldsValues((prevState: any) => {
-  //     return {
-  //       ...prevState,
-  //       [id]: newValue,
-  //     };
-  //   });
-  // };
 
   const handleMainLanguageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLanguagesFieldsValues((prevState: any) => {
@@ -117,18 +126,24 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({
     setOpenSaveModal(false);
   };
 
-  const { classes, cx } = useLanguagesPageStyles();
+  const { classes, cx } = useLanguagesDataStyles();
   return (
     <Box>
       <Box className={classes.panel}>
         <Box>
           <CollapsedBreadcrumbs
-            productName={chosenLanguage!.name}
+            linksData={{
+              link: '/products/languages',
+              name: chosenLanguage ? chosenLanguage.name : null,
+              pageName: 'Мови',
+            }}
             darkTheme={darkTheme}
           />
-          <Typography component="h2" className={classes.productTitle}>
-            {chosenLanguage!.name}
-          </Typography>
+          {chosenLanguage && (
+            <Typography component="h2" className={classes.productTitle}>
+              {chosenLanguage.name}
+            </Typography>
+          )}
         </Box>
         <Box className={classes.buttonsBlock}>
           <IconButton
@@ -307,6 +322,7 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({
           shouldOpenModal={openBackModal}
           handleCloseModal={handleCloseModal}
           type={'back'}
+          link={initialLink}
         />
       )}
       {openDeleteModal && (
@@ -327,4 +343,4 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({
   );
 };
 
-export default LanguagesPage;
+export default LanguagesData;

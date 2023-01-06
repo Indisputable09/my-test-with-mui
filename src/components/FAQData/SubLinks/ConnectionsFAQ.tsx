@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputLabel } from '@mui/material';
-import { MultipleSelectChip } from '../../ProductPage/SubLinks/Connections';
-import { useFAQPageStyles } from '../FAQPage.styles';
+import { useFAQDataStyles } from '../FAQData.styles';
+import { MultipleSelectChip } from '../../ProductData/SubLinks/Connections';
 
 interface IConnectionsFAQProps {
   darkTheme: boolean;
@@ -38,7 +38,7 @@ export const ConnectionsFAQ: React.FC<IConnectionsFAQProps> = ({
     });
   };
 
-  const { classes, cx } = useFAQPageStyles();
+  const { classes, cx } = useFAQDataStyles();
   return (
     <>
       <InputLabel

@@ -5,6 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TransitionProps } from '@mui/material/transitions';
+import { useNavigate } from 'react-router-dom';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -19,19 +20,25 @@ interface IModalProps {
   shouldOpenModal: boolean;
   handleCloseModal: () => void;
   type?: string;
+  link?: string;
 }
 
 const Modal: React.FC<IModalProps> = ({
   shouldOpenModal,
   handleCloseModal,
   type = 'delete',
+  link,
 }) => {
+  const navigate = useNavigate();
   const handleAgreeClick = () => {
+    console.log('Agreed, do some action');
     handleCloseModal();
-    console.log('User agreed');
+    if (link) {
+      navigate(link);
+    }
   };
 
-  const handleDisareeClick = () => {
+  const handleDisagreeClick = () => {
     handleCloseModal();
     console.log('User disagreed');
   };
@@ -61,7 +68,7 @@ const Modal: React.FC<IModalProps> = ({
             Так
           </Button>
           <Button
-            onClick={handleDisareeClick}
+            onClick={handleDisagreeClick}
             variant="contained"
             sx={{ width: '50%' }}
           >

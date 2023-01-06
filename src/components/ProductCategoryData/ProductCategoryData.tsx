@@ -7,85 +7,72 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Divider, List, ListItem, Typography } from '@mui/material';
 import CollapsedBreadcrumbs from '../Crumbs';
 import { ProductType } from '../types/ProductTypes';
-import { useProductPageStyles } from './ProductPage.styles';
 import {
-  Attributes,
-  Basic,
-  Connections,
-  Discounts,
-  Images,
-  Options,
-  Data,
+  ProductCategoryBasic,
+  ProductCategoryConnections,
+  ProductCategoryImages,
+  ProductCategorySEO,
 } from './SubLinks';
 import Modal from '../Modal';
+import { useProductCategoryDataStyles } from './ProductCategoryData.styles';
+import { useLocation, useParams } from 'react-router-dom';
+import { productCategoriesRows } from '../../TableRows/TableRows';
 
-interface IProductPageProps {
-  chosenProduct: ProductType;
+interface IProductCategoryDataProps {
   darkTheme: boolean;
+  initialLink: string;
 }
 
 const links = [
   { name: 'загальне', id: 1 },
-  { name: 'данні', id: 2 },
-  { name: "зв'язок", id: 3 },
-  { name: 'зображення', id: 4 },
-  { name: 'атрибути', id: 5 },
-  { name: 'опції', id: 6 },
-  { name: 'акції', id: 7 },
-  { name: 'seo', id: 8 },
+  { name: "зв'язок", id: 2 },
+  { name: 'зображення', id: 3 },
+  { name: 'seo', id: 4 },
 ];
 
-const ProductPage: React.FC<IProductPageProps> = ({
-  chosenProduct,
+const ProductCategoryData: React.FC<IProductCategoryDataProps> = ({
+  initialLink,
   darkTheme,
 }) => {
-  const { classes, cx } = useProductPageStyles();
+  const { classes, cx } = useProductCategoryDataStyles();
   const [linkId, setLinkId] = React.useState<number>(1);
   const [openBackModal, setOpenBackModal] = React.useState<boolean>(false);
   const [openDeleteModal, setOpenDeleteModal] = React.useState<boolean>(false);
   const [openSaveModal, setOpenSaveModal] = React.useState<boolean>(false);
 
-  const [fieldsValues, setFieldsValues] = React.useState({
-    name: '',
-    sku: '',
-    description: '<p>Тут буде опис</p>',
-    price: 0,
-    minQuantity: 0,
-    inStock: 0,
-    fromStock: 'no',
-    published: true,
-    sort: 0,
-    producer: null,
-    category: null,
-    showInCategories: [],
-    relatedProducts: [],
-    featuredProducts: [],
-    attributes: [
-      // [
-      //   { id: nanoid() },
-      //   {
-      //     id: nanoid(),
-      //     value: 'attribute1',
-      //   },
-      //   {
-      //     id: nanoid(),
-      //     value: 'category1',
-      //   },
-      // ],
-      // [
-      //   { id: nanoid() },
-      //   {
-      //     id: nanoid(),
-      //     value: 'attribute2',
-      //   },
-      //   {
-      //     id: nanoid(),
-      //     value: 'category2',
-      //   },
-      // ],
-    ],
-    images: [],
-  });
+  const { id } = useParams();
+  const location = useLocation();
+  const activePath = location.pathname.split('/');
+  const chosenAction = activePath[activePath.length - 1];
+  const chosenProduct = productCategoriesRows.find(
+    row => row.id === Number(id)
+  );
+
+  const [categoryFieldsValues, setCategoryFieldsValues] = React.useState(
+    chosenProduct && chosenAction === 'edit'
+      ? {
+          categoryName: chosenProduct.name,
+          categoryDescription: '<p>Тут буде опис категорії</p>',
+          parentCategory: null,
+          sortOrder: 0,
+          publishedCategory: true,
+          categoryImages: [],
+          metaTitle: '',
+          metaDescription: '',
+          SEOUrl: '',
+        }
+      : {
+          categoryName: '',
+          categoryDescription: '<p>Тут буде опис категорії</p>',
+          parentCategory: null,
+          sortOrder: 0,
+          publishedCategory: true,
+          categoryImages: [],
+          metaTitle: '',
+          metaDescription: '',
+          SEOUrl: '',
+        }
+  );
 
   const handleClickOpenModal = (variant: string) => {
     if (variant === 'back') {
@@ -112,12 +99,18 @@ const ProductPage: React.FC<IProductPageProps> = ({
       <Box className={classes.panel}>
         <Box>
           <CollapsedBreadcrumbs
-            productName={chosenProduct!.name}
+            linksData={{
+              link: '/products/productsCategories',
+              name: chosenProduct ? chosenProduct.name : null,
+              pageName: 'Категорії товарів',
+            }}
             darkTheme={darkTheme}
           />
-          <Typography component="h2" className={classes.productTitle}>
-            {chosenProduct!.name}
-          </Typography>
+          {chosenProduct && (
+            <Typography component="h2" className={classes.productTitle}>
+              {chosenProduct.name}
+            </Typography>
+          )}
         </Box>
         <Box className={classes.buttonsBlock}>
           <IconButton
@@ -196,48 +189,40 @@ const ProductPage: React.FC<IProductPageProps> = ({
         }}
       >
         {linkId === 1 && (
-          <Basic
+          <ProductCategoryBasic
             darkTheme={darkTheme}
-            setFieldsValues={setFieldsValues}
-            fieldsValues={fieldsValues}
+            setCategoryFieldsValues={setCategoryFieldsValues}
+            categoryFieldsValues={categoryFieldsValues}
           />
         )}
         {linkId === 2 && (
-          <Data
+          <ProductCategoryConnections
             darkTheme={darkTheme}
-            setFieldsValues={setFieldsValues}
-            fieldsValues={fieldsValues}
+            setCategoryFieldsValues={setCategoryFieldsValues}
+            categoryFieldsValues={categoryFieldsValues}
           />
         )}
         {linkId === 3 && (
-          <Connections
+          <ProductCategoryImages
             darkTheme={darkTheme}
-            setFieldsValues={setFieldsValues}
-            fieldsValues={fieldsValues}
+            setCategoryFieldsValues={setCategoryFieldsValues}
+            categoryFieldsValues={categoryFieldsValues}
           />
         )}
         {linkId === 4 && (
-          <Images
+          <ProductCategorySEO
             darkTheme={darkTheme}
-            setFieldsValues={setFieldsValues}
-            fieldsValues={fieldsValues}
+            setCategoryFieldsValues={setCategoryFieldsValues}
+            categoryFieldsValues={categoryFieldsValues}
           />
         )}
-        {linkId === 5 && (
-          <Attributes
-            darkTheme={darkTheme}
-            setFieldsValues={setFieldsValues}
-            fieldsValues={fieldsValues}
-          />
-        )}
-        {linkId === 6 && <Options />}
-        {linkId === 7 && <Discounts />}
       </Box>
       {openBackModal && (
         <Modal
           shouldOpenModal={openBackModal}
           handleCloseModal={handleCloseModal}
           type={'back'}
+          link={initialLink}
         />
       )}
       {openDeleteModal && (
@@ -258,4 +243,4 @@ const ProductPage: React.FC<IProductPageProps> = ({
   );
 };
 
-export default ProductPage;
+export default ProductCategoryData;

@@ -2,53 +2,51 @@ import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save';
-import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Divider, List, ListItem, Typography } from '@mui/material';
 import CollapsedBreadcrumbs from '../Crumbs';
-import { ProductType } from '../types/ProductTypes';
-import {
-  ProductCategoryBasic,
-  ProductCategoryConnections,
-  ProductCategoryImages,
-  ProductCategorySEO,
-} from './SubLinks';
+import { useFAQDataStyles } from './FAQData.styles';
+import { BasicFAQ, ConnectionsFAQ } from './SubLinks';
 import Modal from '../Modal';
-import { useProductCategoryPageStyles } from './ProductCategoryPage.styles';
+import { useLocation, useParams } from 'react-router-dom';
+import { FAQRows } from '../../TableRows/TableRows';
 
-interface IProductCategoryPageProps {
-  chosenProductCategory: ProductType;
+interface IFAQDataProps {
   darkTheme: boolean;
+  initialLink: string;
 }
 
 const links = [
   { name: 'загальне', id: 1 },
   { name: "зв'язок", id: 2 },
-  { name: 'зображення', id: 3 },
-  { name: 'seo', id: 4 },
 ];
 
-const ProductCategoryPage: React.FC<IProductCategoryPageProps> = ({
-  chosenProductCategory,
-  darkTheme,
-}) => {
-  const { classes, cx } = useProductCategoryPageStyles();
+const FAQData: React.FC<IFAQDataProps> = ({ darkTheme, initialLink }) => {
+  const { classes, cx } = useFAQDataStyles();
   const [linkId, setLinkId] = React.useState<number>(1);
   const [openBackModal, setOpenBackModal] = React.useState<boolean>(false);
   const [openDeleteModal, setOpenDeleteModal] = React.useState<boolean>(false);
   const [openSaveModal, setOpenSaveModal] = React.useState<boolean>(false);
-  const [categoryFieldsValues, setCategoryFieldsValues] = React.useState({
-    categoryName: '',
-    categoryDescription: '<p>Тут буде опис категорії</p>',
-    parentCategory: null,
-    sortOrder: 0,
-    publishedCategory: true,
-    categoryImages: [],
-    metaTitle: '',
-    metaDescription: '',
-    SEOUrl: '',
-  });
-  console.log('categoryFieldsValues', categoryFieldsValues);
+
+  const { id } = useParams();
+  const location = useLocation();
+  const activePath = location.pathname.split('/');
+  const chosenAction = activePath[activePath.length - 1];
+  const chosenQuestion = FAQRows.find(row => row.id === Number(id));
+
+  const [FAQFieldsValues, setFAQFieldsValues] = React.useState(
+    chosenQuestion && chosenAction === 'edit'
+      ? {
+          question: chosenQuestion.name,
+          answer: '',
+          page: [],
+        }
+      : {
+          question: '',
+          answer: '',
+          page: [],
+        }
+  );
 
   const handleClickOpenModal = (variant: string) => {
     if (variant === 'back') {
@@ -75,12 +73,18 @@ const ProductCategoryPage: React.FC<IProductCategoryPageProps> = ({
       <Box className={classes.panel}>
         <Box>
           <CollapsedBreadcrumbs
-            productName={chosenProductCategory!.name}
+            linksData={{
+              link: '/products/FAQ',
+              name: chosenQuestion ? chosenQuestion.name : null,
+              pageName: 'FAQ`s',
+            }}
             darkTheme={darkTheme}
           />
-          <Typography component="h2" className={classes.productTitle}>
-            {chosenProductCategory!.name}
-          </Typography>
+          {chosenQuestion && (
+            <Typography component="h2" className={classes.productTitle}>
+              {chosenQuestion.name}
+            </Typography>
+          )}
         </Box>
         <Box className={classes.buttonsBlock}>
           <IconButton
@@ -92,15 +96,6 @@ const ProductCategoryPage: React.FC<IProductCategoryPageProps> = ({
             onClick={() => handleClickOpenModal('back')}
           >
             <ArrowBackIcon />
-          </IconButton>
-          <IconButton
-            className={classes.button}
-            size="small"
-            edge="start"
-            color="inherit"
-            aria-label="view"
-          >
-            <VisibilityIcon />
           </IconButton>
           <IconButton
             className={classes.button}
@@ -159,31 +154,17 @@ const ProductCategoryPage: React.FC<IProductCategoryPageProps> = ({
         }}
       >
         {linkId === 1 && (
-          <ProductCategoryBasic
+          <BasicFAQ
             darkTheme={darkTheme}
-            setCategoryFieldsValues={setCategoryFieldsValues}
-            categoryFieldsValues={categoryFieldsValues}
+            FAQFieldsValues={FAQFieldsValues}
+            setFAQFieldsValues={setFAQFieldsValues}
           />
         )}
         {linkId === 2 && (
-          <ProductCategoryConnections
+          <ConnectionsFAQ
             darkTheme={darkTheme}
-            setCategoryFieldsValues={setCategoryFieldsValues}
-            categoryFieldsValues={categoryFieldsValues}
-          />
-        )}
-        {linkId === 3 && (
-          <ProductCategoryImages
-            darkTheme={darkTheme}
-            setCategoryFieldsValues={setCategoryFieldsValues}
-            categoryFieldsValues={categoryFieldsValues}
-          />
-        )}
-        {linkId === 4 && (
-          <ProductCategorySEO
-            darkTheme={darkTheme}
-            setCategoryFieldsValues={setCategoryFieldsValues}
-            categoryFieldsValues={categoryFieldsValues}
+            FAQFieldsValues={FAQFieldsValues}
+            setFAQFieldsValues={setFAQFieldsValues}
           />
         )}
       </Box>
@@ -192,6 +173,7 @@ const ProductCategoryPage: React.FC<IProductCategoryPageProps> = ({
           shouldOpenModal={openBackModal}
           handleCloseModal={handleCloseModal}
           type={'back'}
+          link={initialLink}
         />
       )}
       {openDeleteModal && (
@@ -212,4 +194,4 @@ const ProductCategoryPage: React.FC<IProductCategoryPageProps> = ({
   );
 };
 
-export default ProductCategoryPage;
+export default FAQData;

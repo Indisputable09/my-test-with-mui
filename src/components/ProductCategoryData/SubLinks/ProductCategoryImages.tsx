@@ -1,29 +1,29 @@
 import React from 'react';
 import { Button, Divider, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { useProductPageStyles } from '../ProductPage.styles';
+import { useProductCategoryDataStyles } from '../ProductCategoryData.styles';
 
-interface IImageProps {
+interface IProductCategoryImagesProps {
   darkTheme: boolean;
-  setFieldsValues: (obj: any) => void;
-  fieldsValues: {
-    images: any[];
+  setCategoryFieldsValues: (obj: any) => void;
+  categoryFieldsValues: {
+    categoryImages: any[];
   };
 }
 
-export const Images: React.FC<IImageProps> = ({
+export const ProductCategoryImages: React.FC<IProductCategoryImagesProps> = ({
   darkTheme,
-  setFieldsValues,
-  fieldsValues,
+  setCategoryFieldsValues,
+  categoryFieldsValues,
 }) => {
+  const { classes, cx } = useProductCategoryDataStyles();
+
   const handleAddClick = () => {
     console.log('Відкрити файл менеджер');
   };
-
-  const { classes, cx } = useProductPageStyles();
   return (
     <>
-      {fieldsValues.images.length === 0 ? (
+      {categoryFieldsValues.categoryImages.length === 0 ? (
         <Typography
           component="h2"
           sx={{
@@ -41,10 +41,7 @@ export const Images: React.FC<IImageProps> = ({
         <p>Якісь зображення</p>
       )}
       <Divider
-        className={cx(
-          classes.attributesBottomDivider,
-          darkTheme ? 'dark' : null
-        )}
+        className={cx(classes.bottomDivider, darkTheme ? 'dark' : null)}
       />
       <Button
         onClick={handleAddClick}

@@ -15,8 +15,8 @@ import AddIcon from '@mui/icons-material/Add';
 import {
   StyledCustomPaper,
   StyledField,
-  useProductPageStyles,
-} from '../ProductPage.styles';
+  useProductDataStyles,
+} from '../ProductData.styles';
 
 const attributes = [
   'attribute1',
@@ -58,7 +58,7 @@ export const CustomPaper: React.FC = props => {
 
 const ComboBox: React.FC<IComboBoxProps> = ({ list, darkTheme }) => {
   // console.log('value', value);
-  const { classes, cx } = useProductPageStyles();
+  const { classes, cx } = useProductDataStyles();
 
   return (
     <Autocomplete
@@ -158,7 +158,7 @@ export const Attributes: React.FC<IAttributesProps> = ({
   //   });
   // };
 
-  const { classes, cx } = useProductPageStyles();
+  const { classes, cx } = useProductDataStyles();
 
   return (
     <>

@@ -16,7 +16,7 @@ const ManufacturersPage: React.FC<IManufacturersPageProps> = ({
   const { classes, cx } = useNavBarStyles();
   return (
     <>
-      <CollapsedBreadcrumbs darkTheme={darkTheme} />
+      {/* <CollapsedBreadcrumbs darkTheme={darkTheme} /> */}
       <Typography
         component="h2"
         className={cx(classes.title, darkTheme ? 'dark' : null)}

@@ -10,13 +10,14 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import {
   StyledCustomPaper,
   StyledField,
-  useProductPageStyles,
-} from '../ProductPage.styles';
+  useProductDataStyles,
+} from '../ProductData.styles';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 
 const names = [
+  'Mobile phone',
   'Oliver Hansen',
   'Van Henry',
   'April Tucker',
@@ -29,7 +30,7 @@ const names = [
   'Kelly Snyder',
 ];
 
-const categories = ['category1', 'category2', 'category3'];
+const categories = ['category1', 'category2', 'category3', 'Mobile phone'];
 const relatedProducts = ['category11', 'category12', 'category13'];
 const featuredProducts = [
   'category1',
@@ -88,7 +89,7 @@ export const MultipleSelectChip: React.FC<IMultipleSelectChipProps> = ({
     handleMultipleSelectChange(id, []);
   };
 
-  const { classes, cx } = useProductPageStyles();
+  const { classes, cx } = useProductDataStyles();
 
   return (
     <div>
@@ -178,7 +179,7 @@ export const Connections: React.FC<IConnectionsProps> = ({
   setFieldsValues,
   fieldsValues,
 }) => {
-  const { classes, cx } = useProductPageStyles();
+  const { classes, cx } = useProductDataStyles();
 
   const handleMultipleSelectChange = (id: string, newValue: string[]) => {
     setFieldsValues((prevState: any) => {

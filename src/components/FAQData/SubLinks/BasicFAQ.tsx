@@ -1,6 +1,6 @@
 import React from 'react';
 import { InputLabel } from '@mui/material';
-import { StyledField, useFAQPageStyles } from '../FAQPage.styles';
+import { StyledField, useFAQDataStyles } from '../FAQData.styles';
 
 interface IBasicFAQProps {
   darkTheme: boolean;
@@ -13,7 +13,7 @@ export const BasicFAQ: React.FC<IBasicFAQProps> = ({
   setFAQFieldsValues,
   FAQFieldsValues,
 }) => {
-  const { classes, cx } = useFAQPageStyles();
+  const { classes, cx } = useFAQDataStyles();
 
   const handleFAQFieldsChange = (e: React.ChangeEvent) => {
     setFAQFieldsValues((prevState: any) => {
