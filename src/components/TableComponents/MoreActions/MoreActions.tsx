@@ -10,8 +10,13 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useMoreActionsStyles } from './MoreActionsStyles';
 import Modal from '../../Modal';
 import { useGlobalContext } from '../../../hooks/GlobalContext';
+import { Link } from 'react-router-dom';
 
-const MoreActions: React.FC = () => {
+interface IMoreActionsProps {
+  id: string;
+}
+
+const MoreActions: React.FC<IMoreActionsProps> = ({ id }) => {
   const { darkTheme } = useGlobalContext();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [openDeleteModal, setOpenDeleteModal] = React.useState<boolean>(false);
@@ -37,15 +42,19 @@ const MoreActions: React.FC = () => {
 
   return (
     <Box sx={{ display: 'flex', gap: 2 }}>
-      <IconButton
-        sx={{ display: 'flex', justifyContent: 'center', ml: 1 }}
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="edit"
-      >
-        <EditIcon className={cx(classes.editIcon, darkTheme ? 'dark' : null)} />
-      </IconButton>
+      <Link to={`${id}/edit`}>
+        <IconButton
+          sx={{ display: 'flex', justifyContent: 'center', ml: 1 }}
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="edit"
+        >
+          <EditIcon
+            className={cx(classes.editIcon, darkTheme ? 'dark' : null)}
+          />
+        </IconButton>
+      </Link>
       <IconButton
         className={cx(classes.moreIconButton, darkTheme ? 'dark' : null)}
         size="large"

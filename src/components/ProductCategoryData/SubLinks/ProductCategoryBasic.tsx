@@ -3,8 +3,8 @@ import { CKEditor } from 'ckeditor4-react';
 import React from 'react';
 import {
   StyledField,
-  useProductCategoryPageStyles,
-} from '../ProductCategoryPage.styles';
+  useProductCategoryDataStyles,
+} from '../ProductCategoryData.styles';
 
 interface IProductCategoryBasicProps {
   darkTheme: boolean;
@@ -20,7 +20,7 @@ export const ProductCategoryBasic: React.FC<IProductCategoryBasicProps> = ({
   setCategoryFieldsValues,
   categoryFieldsValues,
 }) => {
-  const { classes, cx } = useProductCategoryPageStyles();
+  const { classes, cx } = useProductCategoryDataStyles();
 
   const handleFieldsChange = (e: React.ChangeEvent) => {
     setCategoryFieldsValues((prevState: any) => {

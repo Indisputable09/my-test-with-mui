@@ -9,6 +9,10 @@ import LanguagesPage from './Pages/LanguagesPage';
 import CitiesPage from './Pages/CitiesPage';
 import ManufacturersPage from './Pages/ManufacturersPage';
 import { GlobalContext } from './hooks/GlobalContext';
+import FAQData from './components/FAQData';
+import ProductData from './components/ProductData';
+import ProductCategoryData from './components/ProductCategoryData';
+import LanguagesData from './components/LanguagesData';
 
 export const App: React.FC = () => {
   const [openDrawer, setOpenDrawer] = React.useState<boolean>(true);
@@ -37,31 +41,6 @@ export const App: React.FC = () => {
           openDrawer={openDrawer}
           darkTheme={darkTheme}
         />
-
-        {/* <Button
-        onClick={() => setMockProductId(2)}
-        sx={{ position: 'absolute', right: 0 }}
-      >
-        До продукту
-      </Button>
-      <Button
-        onClick={() => setMockFAQId(3)}
-        sx={{ position: 'absolute', right: 0, top: '90px' }}
-      >
-        До питання
-      </Button>
-      <Button
-        onClick={() => setMockLanguageId(1)}
-        sx={{ position: 'absolute', right: 0, top: '120px' }}
-      >
-        До мови
-      </Button>
-      <Button
-        onClick={() => setMockProductCategoryId(2)}
-        sx={{ position: 'absolute', right: 0, top: '150px' }}
-      >
-        До категорії продукту
-      </Button> */}
         <BrowserRouter basename="/my-test-with-mui/">
           <Routes>
             <Route
@@ -87,26 +66,136 @@ export const App: React.FC = () => {
                 path="products/productsCatalog"
                 element={<ProductsCatalogPage darkTheme={darkTheme} />}
               />
+              {/* ----------------------- */}
+              <Route
+                path="products/productsCatalog/:id/edit"
+                element={
+                  <ProductData
+                    darkTheme={darkTheme}
+                    initialLink="/products/productsCatalog"
+                  />
+                }
+              />
+              <Route
+                path="products/productsCatalog/add"
+                element={
+                  <ProductData
+                    darkTheme={darkTheme}
+                    initialLink="/products/productsCatalog"
+                  />
+                }
+              />
+              {/* -------------------------- */}
+              {/* -------------------------- */}
               <Route
                 path="products/productsCategories"
                 element={<ProductsCategoriesPage darkTheme={darkTheme} />}
               />
               <Route
+                path="products/productsCategories/:id/edit"
+                element={
+                  <ProductCategoryData
+                    darkTheme={darkTheme}
+                    initialLink="/products/productsCategories"
+                  />
+                }
+              />
+              <Route
+                path="products/productsCategories/add"
+                element={
+                  <ProductCategoryData
+                    darkTheme={darkTheme}
+                    initialLink="/products/productsCategories"
+                  />
+                }
+              />
+              {/* -------------------------- */}
+              <Route
                 path="products/FAQ"
                 element={<FAQPage darkTheme={darkTheme} />}
               />
+              <Route
+                path="products/FAQ/:id/edit"
+                element={
+                  <FAQData darkTheme={darkTheme} initialLink="/products/FAQ" />
+                }
+              />
+              <Route
+                path="products/FAQ/add"
+                element={
+                  <FAQData darkTheme={darkTheme} initialLink="/products/FAQ" />
+                }
+              />
+              {/* ------------------------- */}
               <Route
                 path="products/languages"
                 element={<LanguagesPage darkTheme={darkTheme} />}
               />
               <Route
+                path="products/languages/:id/edit"
+                element={
+                  <LanguagesData
+                    darkTheme={darkTheme}
+                    initialLink="/products/languages"
+                  />
+                }
+              />
+              <Route
+                path="products/languages/add"
+                element={
+                  <LanguagesData
+                    darkTheme={darkTheme}
+                    initialLink="/products/languages"
+                  />
+                }
+              />
+              {/* ------------------------------------------------- */}
+              <Route
                 path="products/cities"
                 element={<CitiesPage darkTheme={darkTheme} />}
               />
+              {/* <Route
+                path="products/cities/:id/edit"
+                element={
+                  <CitiesData
+                    darkTheme={darkTheme}
+                    initialLink="/products/cities"
+                  />
+                }
+              />
+              <Route
+                path="products/cities/add"
+                element={
+                  <CitiesData
+                    darkTheme={darkTheme}
+                    initialLink="/products/cities"
+                  />
+                }
+              /> */}
+              {/* --------------------------------------------------- */}
               <Route
                 path="products/manufacturers"
                 element={<ManufacturersPage darkTheme={darkTheme} />}
               />
+              {/* <Route
+                path="products/manufacturers/:id/edit"
+                element={
+                  <ManufacturersData
+                    darkTheme={darkTheme}
+                    initialLink="/products/manufacturers"
+                  />
+                }
+              />
+              <Route
+                path="products/manufacturers/add"
+                element={
+                  <ManufacturersData
+                    darkTheme={darkTheme}
+                    initialLink="/products/manufacturers"
+                  />
+                }
+              /> */}
+              {/* -------------------------------- */}
               <Route path="*" element={<h1>Error when no link is found</h1>} />
             </Route>
           </Routes>

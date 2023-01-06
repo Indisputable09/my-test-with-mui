@@ -2,7 +2,7 @@ import { makeStyles } from 'tss-react/mui';
 import { styled } from '@mui/material/styles';
 import { TextField } from '@mui/material';
 
-export const useProductCategoryPageStyles = makeStyles<void>()(
+export const useProductCategoryDataStyles = makeStyles<void>()(
   (theme, _params, classes) => ({
     panel: {
       display: 'flex',

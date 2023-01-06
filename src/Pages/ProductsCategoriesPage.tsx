@@ -16,7 +16,13 @@ const ProductsCategoriesPage: React.FC<IProductsCategoriesPageProps> = ({
   const { classes, cx } = useNavBarStyles();
   return (
     <>
-      <CollapsedBreadcrumbs darkTheme={darkTheme} />
+      <CollapsedBreadcrumbs
+        darkTheme={darkTheme}
+        linksData={{
+          link: '/products/productsCategories',
+          pageName: 'Категорії товарів',
+        }}
+      />
       <Typography
         component="h2"
         className={cx(classes.title, darkTheme ? 'dark' : null)}

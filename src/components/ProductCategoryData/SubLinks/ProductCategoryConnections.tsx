@@ -6,11 +6,11 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
-import { StyledCustomPaper } from '../../ProductPage/ProductPage.styles';
+import { StyledCustomPaper } from '../../ProductData/ProductData.styles';
 import {
   StyledField,
-  useProductCategoryPageStyles,
-} from '../ProductCategoryPage.styles';
+  useProductCategoryDataStyles,
+} from '../ProductCategoryData.styles';
 
 interface IProductCategoryConnectionsProps {
   darkTheme: boolean;
@@ -34,7 +34,7 @@ const list = [
 export const ProductCategoryConnections: React.FC<
   IProductCategoryConnectionsProps
 > = ({ darkTheme, categoryFieldsValues, setCategoryFieldsValues }) => {
-  const { classes, cx } = useProductCategoryPageStyles();
+  const { classes, cx } = useProductCategoryDataStyles();
 
   const handleInputsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCategoryFieldsValues((prevState: any) => {

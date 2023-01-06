@@ -14,7 +14,13 @@ const LanguagesPage: React.FC<ILanguagesPageProps> = ({ darkTheme }) => {
   const { classes, cx } = useNavBarStyles();
   return (
     <>
-      <CollapsedBreadcrumbs darkTheme={darkTheme} />
+      <CollapsedBreadcrumbs
+        darkTheme={darkTheme}
+        linksData={{
+          link: '/products/languages',
+          pageName: 'Мови',
+        }}
+      />
       <Typography
         component="h2"
         className={cx(classes.title, darkTheme ? 'dark' : null)}

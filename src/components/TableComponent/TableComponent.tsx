@@ -30,6 +30,8 @@ interface ITableComponentProps {
   columns: GridColDef[];
   rows: IRow[];
   page?: string;
+  // addLink: string;
+  // editLink: string;
 }
 
 const TableComponent: React.FC<ITableComponentProps> = ({
@@ -37,10 +39,11 @@ const TableComponent: React.FC<ITableComponentProps> = ({
   columns,
   rows,
   page,
+  // addLink,
+  // editLink,
 }) => {
   const [filter, setFilter] = React.useState<string>('');
   const [selectedRows, setSelectedRows] = React.useState<IRow[]>([]);
-  // console.log('selectedRows', selectedRows);
   const [pageSize, setPageSize] = React.useState<number>(5);
 
   const handleChangeFilter = (
@@ -112,6 +115,8 @@ const TableComponent: React.FC<ITableComponentProps> = ({
         filter={filter}
         selectedRows={selectedRows}
         darkTheme={darkTheme}
+        // addLink={addLink}
+        // editLink={editLink}
         page={page}
       />
       <DataGrid

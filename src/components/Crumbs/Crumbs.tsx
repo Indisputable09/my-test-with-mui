@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import { Link } from 'react-router-dom';
+import { Link as MuiLink } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Box } from '@mui/material';
 import { useCrumbsStyles } from './Crumbs.styles';
@@ -11,18 +12,24 @@ function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 }
 
 interface ICrumbsProps {
-  productName?: string | null;
+  linksData: {
+    link: string;
+    name?: string | null;
+    pageName: string;
+  };
   darkTheme: boolean;
 }
 
 const CollapsedBreadcrumbs: React.FC<ICrumbsProps> = ({
-  productName = null,
+  linksData,
   darkTheme,
 }) => {
   const { classes, cx } = useCrumbsStyles();
   const location = useLocation();
   const activePath = location.pathname.split('/');
+  // console.log('activePath', activePath);
   const path = activePath[activePath.length - 1];
+  // console.log('path', path);
 
   return (
     <Box
@@ -31,7 +38,7 @@ const CollapsedBreadcrumbs: React.FC<ICrumbsProps> = ({
       sx={{ mb: 3, color: '#fff' }}
     >
       <Breadcrumbs
-        maxItems={2}
+        maxItems={3}
         aria-label="breadcrumb"
         separator={
           <ArrowForwardIcon
@@ -46,7 +53,7 @@ const CollapsedBreadcrumbs: React.FC<ICrumbsProps> = ({
         >
           Дашборд
         </Link>
-        {path && (
+        {/* {path && !productData && (
           <Link
             to={'/products/' + path}
             className={cx(classes.mainLink, darkTheme ? 'dark' : null)}
@@ -58,7 +65,26 @@ const CollapsedBreadcrumbs: React.FC<ICrumbsProps> = ({
             {path === 'cities' && 'Міста'}
             {path === 'manufacturers' && 'Виробники'}
           </Link>
+        )} */}
+        {/* {productData && (
+          <> */}
+        <Link
+          to={linksData.link}
+          className={cx(classes.mainLink, darkTheme ? 'dark' : null)}
+        >
+          {linksData.pageName}
+        </Link>
+        {linksData.name && (
+          <MuiLink
+            underline="none"
+            color="inherit"
+            className={cx(classes.mainLink, darkTheme ? 'dark' : null)}
+          >
+            {linksData.name}
+          </MuiLink>
         )}
+        {/* </>
+        )} */}
         {/* <Link
           underline="hover"
           color="inherit"

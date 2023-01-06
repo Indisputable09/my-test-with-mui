@@ -21,7 +21,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import 'dayjs/locale/uk';
-import { StyledField, useProductPageStyles } from '../ProductPage.styles';
+import { StyledField, useProductDataStyles } from '../ProductData.styles';
 
 interface IViewsDatePickerProps {
   darkTheme: boolean;
@@ -33,7 +33,7 @@ const ViewsDatePicker: React.FC<IViewsDatePickerProps> = ({ darkTheme }) => {
   );
   // console.log('date value', value);
 
-  const { classes, cx } = useProductPageStyles();
+  const { classes, cx } = useProductDataStyles();
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'uk'}>
@@ -128,7 +128,7 @@ export const Data: React.FC<IDataProps> = ({
     });
   };
 
-  const { classes, cx } = useProductPageStyles();
+  const { classes, cx } = useProductDataStyles();
 
   return (
     <>

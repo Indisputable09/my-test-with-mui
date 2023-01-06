@@ -1,7 +1,7 @@
 import React from 'react';
 import { CKEditor } from 'ckeditor4-react';
 import { InputLabel, Typography } from '@mui/material';
-import { StyledField, useProductPageStyles } from '../ProductPage.styles';
+import { StyledField, useProductDataStyles } from '../ProductData.styles';
 
 interface IBasicProps {
   darkTheme: boolean;
@@ -18,7 +18,7 @@ export const Basic: React.FC<IBasicProps> = ({
   setFieldsValues,
   fieldsValues,
 }) => {
-  const { classes, cx } = useProductPageStyles();
+  const { classes, cx } = useProductDataStyles();
 
   const handleFieldsChange = (e: React.ChangeEvent) => {
     setFieldsValues((prevState: any) => {

@@ -18,7 +18,13 @@ const ProductsCatalogPage: React.FC<IProductsCatalogPageProps> = ({
 
   return (
     <>
-      <CollapsedBreadcrumbs darkTheme={darkTheme} />
+      <CollapsedBreadcrumbs
+        darkTheme={darkTheme}
+        linksData={{
+          link: '/products/productsCatalog',
+          pageName: 'Каталог товарів',
+        }}
+      />
       <Typography
         component="h2"
         className={cx(classes.title, darkTheme ? 'dark' : null)}

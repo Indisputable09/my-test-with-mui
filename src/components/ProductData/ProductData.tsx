@@ -2,37 +2,100 @@ import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SaveIcon from '@mui/icons-material/Save';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Divider, List, ListItem, Typography } from '@mui/material';
 import CollapsedBreadcrumbs from '../Crumbs';
-import { useFAQPageStyles } from './FAQPage.styles';
-import { BasicFAQ, ConnectionsFAQ } from './SubLinks';
+import { ProductType } from '../types/ProductTypes';
+import { useProductDataStyles } from './ProductData.styles';
+import {
+  Attributes,
+  Basic,
+  Connections,
+  Discounts,
+  Images,
+  Options,
+  Data,
+} from './SubLinks';
 import Modal from '../Modal';
-import { FAQType } from '../types/FAQTypes';
+import { Link, useLocation, useParams } from 'react-router-dom';
+import { productRows } from '../../TableRows/TableRows';
 
-interface IFAQPageProps {
-  chosenQuestion: FAQType;
+interface IProductDataProps {
+  initialLink: string;
   darkTheme: boolean;
 }
 
 const links = [
   { name: 'загальне', id: 1 },
-  { name: "зв'язок", id: 2 },
+  { name: 'данні', id: 2 },
+  { name: "зв'язок", id: 3 },
+  { name: 'зображення', id: 4 },
+  { name: 'атрибути', id: 5 },
+  { name: 'опції', id: 6 },
+  { name: 'акції', id: 7 },
+  { name: 'seo', id: 8 },
 ];
 
-const FAQPage: React.FC<IFAQPageProps> = ({ chosenQuestion, darkTheme }) => {
-  const { classes, cx } = useFAQPageStyles();
+const ProductData: React.FC<IProductDataProps> = ({
+  darkTheme,
+  initialLink,
+}) => {
+  const { classes, cx } = useProductDataStyles();
   const [linkId, setLinkId] = React.useState<number>(1);
   const [openBackModal, setOpenBackModal] = React.useState<boolean>(false);
   const [openDeleteModal, setOpenDeleteModal] = React.useState<boolean>(false);
   const [openSaveModal, setOpenSaveModal] = React.useState<boolean>(false);
 
-  const [FAQFieldsValues, setFAQFieldsValues] = React.useState({
-    question: '',
-    answer: '',
-    page: [],
-  });
-  console.log('FAQFieldsValues', FAQFieldsValues);
+  const { id } = useParams();
+  const location = useLocation();
+  const activePath = location.pathname.split('/');
+  const chosenAction = activePath[activePath.length - 1];
+  const chosenProduct = productRows.find(row => row.id === Number(id));
+
+  // console.log('chosenProduct', chosenProduct);
+  // console.log('activePath', activePath);
+  // console.log('location', location);
+
+  const [fieldsValues, setFieldsValues] = React.useState(
+    chosenProduct && chosenAction === 'edit'
+      ? {
+          name: chosenProduct.name,
+          sku: chosenProduct.sku,
+          description: '<p>Тут буде опис</p>',
+          price: chosenProduct.price,
+          minQuantity: 0,
+          inStock: 0,
+          fromStock: 'no',
+          published: true,
+          sort: 0,
+          producer: null,
+          category: chosenProduct.category,
+          showInCategories: [],
+          relatedProducts: [],
+          featuredProducts: [],
+          attributes: [],
+          images: [],
+        }
+      : {
+          name: '',
+          sku: '',
+          description: '<p>Тут буде опис</p>',
+          price: 0,
+          minQuantity: 0,
+          inStock: 0,
+          fromStock: 'no',
+          published: true,
+          sort: 0,
+          producer: null,
+          category: null,
+          showInCategories: [],
+          relatedProducts: [],
+          featuredProducts: [],
+          attributes: [],
+          images: [],
+        }
+  );
 
   const handleClickOpenModal = (variant: string) => {
     if (variant === 'back') {
@@ -59,12 +122,18 @@ const FAQPage: React.FC<IFAQPageProps> = ({ chosenQuestion, darkTheme }) => {
       <Box className={classes.panel}>
         <Box>
           <CollapsedBreadcrumbs
-            productName={chosenQuestion!.name}
+            linksData={{
+              link: '/products/productsCatalog',
+              name: chosenProduct ? chosenProduct.name : null,
+              pageName: 'Каталог товарів',
+            }}
             darkTheme={darkTheme}
           />
-          <Typography component="h2" className={classes.productTitle}>
-            {chosenQuestion!.name}
-          </Typography>
+          {chosenProduct && (
+            <Typography component="h2" className={classes.productTitle}>
+              {chosenProduct.name}
+            </Typography>
+          )}
         </Box>
         <Box className={classes.buttonsBlock}>
           <IconButton
@@ -76,6 +145,15 @@ const FAQPage: React.FC<IFAQPageProps> = ({ chosenQuestion, darkTheme }) => {
             onClick={() => handleClickOpenModal('back')}
           >
             <ArrowBackIcon />
+          </IconButton>
+          <IconButton
+            className={classes.button}
+            size="small"
+            edge="start"
+            color="inherit"
+            aria-label="view"
+          >
+            <VisibilityIcon />
           </IconButton>
           <IconButton
             className={classes.button}
@@ -134,25 +212,49 @@ const FAQPage: React.FC<IFAQPageProps> = ({ chosenQuestion, darkTheme }) => {
         }}
       >
         {linkId === 1 && (
-          <BasicFAQ
+          <Basic
             darkTheme={darkTheme}
-            FAQFieldsValues={FAQFieldsValues}
-            setFAQFieldsValues={setFAQFieldsValues}
+            setFieldsValues={setFieldsValues}
+            fieldsValues={fieldsValues}
           />
         )}
         {linkId === 2 && (
-          <ConnectionsFAQ
+          <Data
             darkTheme={darkTheme}
-            FAQFieldsValues={FAQFieldsValues}
-            setFAQFieldsValues={setFAQFieldsValues}
+            setFieldsValues={setFieldsValues}
+            fieldsValues={fieldsValues}
           />
         )}
+        {linkId === 3 && (
+          <Connections
+            darkTheme={darkTheme}
+            setFieldsValues={setFieldsValues}
+            fieldsValues={fieldsValues}
+          />
+        )}
+        {linkId === 4 && (
+          <Images
+            darkTheme={darkTheme}
+            setFieldsValues={setFieldsValues}
+            fieldsValues={fieldsValues}
+          />
+        )}
+        {linkId === 5 && (
+          <Attributes
+            darkTheme={darkTheme}
+            setFieldsValues={setFieldsValues}
+            fieldsValues={fieldsValues}
+          />
+        )}
+        {linkId === 6 && <Options />}
+        {linkId === 7 && <Discounts />}
       </Box>
       {openBackModal && (
         <Modal
           shouldOpenModal={openBackModal}
           handleCloseModal={handleCloseModal}
           type={'back'}
+          link={initialLink}
         />
       )}
       {openDeleteModal && (
@@ -173,4 +275,4 @@ const FAQPage: React.FC<IFAQPageProps> = ({ chosenQuestion, darkTheme }) => {
   );
 };
 
-export default FAQPage;
+export default ProductData;
