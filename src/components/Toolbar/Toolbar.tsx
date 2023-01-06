@@ -5,7 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { IRow } from '../TableComponent/TableComponent';
+import { IRow } from '../Table/Table';
 import SelectActions from '../SelectActions';
 import { useToolbarStyles } from './Toolbar.styles';
 import { Link } from 'react-router-dom';

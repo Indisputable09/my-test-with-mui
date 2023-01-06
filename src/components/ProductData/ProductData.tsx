@@ -6,7 +6,6 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Divider, List, ListItem, Typography } from '@mui/material';
 import CollapsedBreadcrumbs from '../Crumbs';
-import { ProductType } from '../types/ProductTypes';
 import { useProductDataStyles } from './ProductData.styles';
 import {
   Attributes,
@@ -18,7 +17,7 @@ import {
   Data,
 } from './SubLinks';
 import Modal from '../Modal';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { productRows } from '../../TableRows/TableRows';
 
 interface IProductDataProps {

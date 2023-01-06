@@ -6,7 +6,6 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Divider, List, ListItem, Typography } from '@mui/material';
 import CollapsedBreadcrumbs from '../Crumbs';
-import { ProductType } from '../types/ProductTypes';
 import {
   ProductCategoryBasic,
   ProductCategoryConnections,
